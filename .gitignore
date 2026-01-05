@@ -1,0 +1,81 @@
+# 메모/임시
+mynote.txt
+temp/
+*.tmp
+*.swp
+*.swo
+*.old
+*.bak
+*.backup
+*.orig
+*.rej
+*.patch
+
+# 문서/워드/data 파일
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.pptx
+*.ppt
+*.hwp
+*.pdf
+*.csv
+
+
+# 가상환경/캐시/IDE
+*.env
+.venv/
+env/
+__pycache__/
+.vscode/
+.idea/
+
+# 로그/프로세스
+*.log*
+*.pid*
+*.seed
+*.cover
+
+# 언어/빌드 산출물
+*.py[cod]
+*.class
+*.jar
+*.war
+*.ear
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+*.lib
+*.obj
+*.out
+
+# 패키지/빌드 디렉터리
+node_modules/
+dist/
+build/
+coverage/
+*.egg-info/
+
+# 설정/비밀
+*.env
+*.local
+*.pem
+*.key
+*.crt
+*.db
+*.sqlite3
+
+# 압축/배포
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# 기타
+.DS_Store
+*.iml
+*.ipr
+*.iws
