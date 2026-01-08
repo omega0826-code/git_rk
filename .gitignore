@@ -21,7 +21,7 @@ temp/
 *.hwp
 *.pdf
 *.csv
-
+*.parquet
 
 # 가상환경/캐시/IDE
 *.env
