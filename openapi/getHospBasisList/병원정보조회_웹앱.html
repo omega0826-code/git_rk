@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<!-- 
+    ============================================================================
+    병원정보조회 웹 애플리케이션
+    ============================================================================
+    
+    ⚠️ 중요: 실행 방법
+    
+    이 파일은 CORS(Cross-Origin Resource Sharing) 정책으로 인해 
+    파일을 직접 더블 클릭하여 실행하면 API 호출이 차단됩니다.
+    
+    다음 방법 중 하나로 실행하세요:
+    
+    1. VS Code Live Server 사용 (권장)
+       - VS Code에서 파일 우클릭 > "Open with Live Server"
+       - 또는 하단 상태바의 "Go Live" 버튼 클릭
+    
+    2. Python 웹 서버
+       - 터미널: python -m http.server 8000
+       - 브라우저: http://localhost:8000/병원정보조회_웹앱.html
+    
+    3. Node.js http-server
+       - 터미널: npx http-server -p 8000
+       - 브라우저: http://localhost:8000/병원정보조회_웹앱.html
+    
+    ⚠️ API 인증키: 디코딩(Decoding) 인증키를 사용하세요
+    
+    공공데이터포털에서는 두 가지 형태의 인증키를 제공합니다:
+    - 인코딩 인증키: abc123%2Bdef456%3D%3D (특수문자가 인코딩됨)
+    - 디코딩 인증키: abc123+def456== (원본 형태)
+    
+    ✅ 올바른 사용법: 디코딩 인증키를 입력하세요
+    - 공공데이터포털 > 마이페이지 > 인증키 발급현황
+    - "일반 인증키(Decoding)" 열의 값을 복사하여 사용
+    
+    ❌ 잘못된 사용법: 인코딩 인증키를 입력하면 이중 인코딩되어 오류 발생
+    
+    이유: 이 애플리케이션은 URLSearchParams를 사용하여 자동으로 인코딩하므로
+         디코딩 인증키를 입력해야 정상적으로 작동합니다.
+    
+    ============================================================================
+-->
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>병원정보조회 (건강보험심사평가원 OpenAPI 활용)</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- SheetJS for Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    <!-- FileSaver.js for file download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+
+    <style>
+        body,
+        html {
+            width: 100%;
+            min-height: 100%;
+            padding: 0;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003668 0%, #004d99 100%);
+            color: #FFFFFF;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #003668;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-control,
+        .form-control:focus {
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(17, 153, 142, 0.6);
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .result-table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .result-table thead {
+            background: linear-gradient(135deg, #003668 0%, #004d99 100%);
+            color: white;
+        }
+
+        .result-table th {
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .result-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+        }
+
+        .result-table tbody tr:hover {
+            background-color: #f8f9ff;
+            transition: background-color 0.2s ease;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pagination-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .info-box ul,
+        .info-box ol {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        .info-box li {
+            margin-bottom: 5px;
+        }
+
+        .info-box a {
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .result-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .result-summary-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .alert-custom {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-table {
+                font-size: 0.8rem;
+            }
+
+            .result-table th,
+            .result-table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <div class="header">
+            <h1>🏥 병원정보조회</h1>
+            <p>건강보험심사평가원 OpenAPI 활용</p>
+        </div>
+
+        <!-- 섹션 I: API 인증키 입력 -->
+        <div class="section-card">
+            <div class="section-title">Ⅰ. 공공데이터 포털 OpenAPI 인증키</div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="apiKey" placeholder="인증키를 여기에 입력해 주세요" autocomplete="off">
+            </div>
+            <div class="info-box">
+                <h6 style="margin-top: 0; font-weight: bold;">📌 인증키 발급 및 확인 방법:</h6>
+                <ol>
+                    <li><a href="https://www.data.go.kr/" target="_blank">공공데이터포털</a> 회원가입 및 로그인</li>
+                    <li><a href="https://www.data.go.kr/data/15051059/openapi.do" target="_blank">병원정보서비스 OpenAPI</a>
+                        활용신청</li>
+                    <li>승인 후 약 30분 뒤부터 사용 가능 (자동승인)</li>
+                    <li><a href="https://www.data.go.kr/iim/api/selectApiKeyList.do" target="_blank">마이페이지 &gt; 인증키
+                            발급현황</a>에서 인증키 복사</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 섹션 II: 검색 조건 입력 -->
+        <div class="section-card">
+            <div class="section-title">Ⅱ. 검색 조건</div>
+            <div class="search-grid">
+                <div class="form-group">
+                    <label for="sidoCd">시도</label>
+                    <select class="form-control" id="sidoCd" onchange="updateSgguOptions()">
+                        <option value="">전체</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sgguCd">시군구</label>
+                    <select class="form-control" id="sgguCd">
+                        <option value="">전체</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="yadmNm">병원명</label>
+                    <input type="text" class="form-control" id="yadmNm" placeholder="예: 서울의료원">
+                </div>
+                <div class="form-group">
+                    <label for="emdongNm">읍면동명</label>
+                    <input type="text" class="form-control" id="emdongNm" placeholder="예: 신내동">
+                </div>
+                <div class="form-group">
+                    <label for="clCd">종별</label>
+                    <select class="form-control" id="clCd">
+                        <option value="">전체</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dgsbjtCd">진료과목</label>
+                    <select class="form-control" id="dgsbjtCd">
+                        <option value="">전체</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="numOfRows">결과 수</label>
+                    <select class="form-control" id="numOfRows">
+                        <option value="10">10개</option>
+                        <option value="20">20개</option>
+                        <option value="50" selected>50개</option>
+                        <option value="100">100개</option>
+                    </select>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-primary btn-lg" onclick="searchHospitals(1)">
+                    🔍 검색하기
+                </button>
+            </div>
+        </div>
+
+        <!-- 섹션 III: 검색 결과 -->
+        <div class="section-card" id="resultSection" style="display: none;">
+            <div class="section-title">Ⅲ. 검색 결과</div>
+
+            <!-- 로딩 표시 -->
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: #666;">데이터를 불러오는 중...</p>
+            </div>
+
+            <!-- 결과 요약 -->
+            <div class="result-summary" id="resultSummary" style="display: none;">
+                <div class="result-summary-text" id="summaryText"></div>
+                <button class="btn btn-success" onclick="downloadExcel()">
+                    📥 엑셀 다운로드
+                </button>
+            </div>
+
+            <!-- 결과 테이블 -->
+            <div class="result-table-container">
+                <table class="result-table" id="resultTable">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>병원명</th>
+                            <th>종별</th>
+                            <th>주소</th>
+                            <th>전화번호</th>
+                            <th>의사수</th>
+                            <th>개설일자</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 페이징 -->
+            <div class="pagination-container" id="paginationContainer"></div>
+        </div>
+
+        <!-- 섹션 IV: 주의사항 -->
+        <div class="section-card">
+            <div class="section-title">Ⅳ. 주의사항</div>
+            <div class="info-box">
+                <ul>
+                    <li>개발계정은 <strong>일 1,000건</strong> 트래픽 제한이 있습니다</li>
+                    <li>인증키 발급 후 약 30분 뒤부터 사용 가능합니다</li>
+                    <li>검색 결과가 없을 경우 검색 조건을 변경해 보세요</li>
+                    <li>오류 발생 시 페이지를 새로고침(F5) 후 재시도하세요</li>
+                    <li>엑셀 다운로드는 현재 페이지의 결과만 포함됩니다</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // 전역 변수
+        // ========================================
+        let currentData = [];
+        let currentPage = 1;
+        let totalCount = 0;
+        let numOfRows = 50;
+
+        // ========================================
+        // 코드 데이터
+        // ========================================
+
+        // 시도 코드
+        const SIDO_CODES = {
+            '110000': '서울',
+            '260000': '부산',
+            '270000': '대구',
+            '280000': '인천',
+            '290000': '광주',
+            '300000': '대전',
+            '310000': '울산',
+            '360000': '세종',
+            '410000': '경기',
+            '430000': '강원',
+            '440000': '충북',
+            '450000': '충남',
+            '460000': '전북',
+            '470000': '전남',
+            '480000': '경북',
+            '490000': '경남',
+            '500000': '제주'
+        };
+
+        // 시군구 코드 (서울만 예시, 필요시 확장)
+        const SGGU_CODES = {
+            '110000': [
+                { code: '110011', name: '종로구' },
+                { code: '110012', name: '중구' },
+                { code: '110013', name: '용산구' },
+                { code: '110014', name: '성동구' },
+                { code: '110015', name: '광진구' },
+                { code: '110016', name: '동대문구' },
+                { code: '110017', name: '중랑구' },
+                { code: '110018', name: '성북구' },
+                { code: '110019', name: '강북구' },
+                { code: '110020', name: '도봉구' },
+                { code: '110021', name: '노원구' },
+                { code: '110022', name: '은평구' },
+                { code: '110023', name: '서대문구' },
+                { code: '110024', name: '마포구' },
+                { code: '110025', name: '양천구' },
+                { code: '110026', name: '강서구' },
+                { code: '110027', name: '구로구' },
+                { code: '110028', name: '금천구' },
+                { code: '110029', name: '영등포구' },
+                { code: '110030', name: '동작구' },
+                { code: '110031', name: '관악구' },
+                { code: '110032', name: '서초구' },
+                { code: '110033', name: '강남구' },
+                { code: '110034', name: '송파구' },
+                { code: '110035', name: '강동구' }
+            ]
+        };
+
+        // 종별 코드
+        const CL_CODES = {
+            '01': '상급종합병원',
+            '11': '종합병원',
+            '21': '병원',
+            '28': '요양병원',
+            '29': '정신병원',
+            '31': '의원',
+            '41': '치과병원',
+            '51': '치과의원',
+            '61': '조산원',
+            '71': '보건소',
+            '72': '보건지소',
+            '73': '보건진료소',
+            '75': '보건의료원',
+            '92': '한방병원',
+            '93': '한의원'
+        };
+
+        // 진료과목 코드 (주요 항목)
+        const DGSBJ_CODES = {
+            '00': '일반의',
+            '01': '내과',
+            '02': '신경과',
+            '03': '정신건강의학과',
+            '04': '외과',
+            '05': '정형외과',
+            '06': '신경외과',
+            '07': '흉부외과',
+            '08': '성형외과',
+            '09': '마취통증의학과',
+            '10': '산부인과',
+            '11': '소아청소년과',
+            '12': '안과',
+            '13': '이비인후과',
+            '14': '피부과',
+            '15': '비뇨의학과',
+            '23': '가정의학과',
+            '24': '응급의학과'
+        };
+
+        // ========================================
+        // 초기화
+        // ========================================
+        window.onload = function () {
+            initializeSelects();
+        };
+
+        /**
+         * 드롭다운 초기화
+         */
+        function initializeSelects() {
+            // 시도 코드 초기화
+            const sidoSelect = document.getElementById('sidoCd');
+            for (const [code, name] of Object.entries(SIDO_CODES)) {
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = name;
+                sidoSelect.appendChild(option);
+            }
+
+            // 종별 코드 초기화
+            const clSelect = document.getElementById('clCd');
+            for (const [code, name] of Object.entries(CL_CODES)) {
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = name;
+                clSelect.appendChild(option);
+            }
+
+            // 진료과목 코드 초기화
+            const dgsbjtSelect = document.getElementById('dgsbjtCd');
+            for (const [code, name] of Object.entries(DGSBJ_CODES)) {
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = name;
+                dgsbjtSelect.appendChild(option);
+            }
+        }
+
+        /**
+         * 시군구 옵션 업데이트
+         */
+        function updateSgguOptions() {
+            const sidoCd = document.getElementById('sidoCd').value;
+            const sgguSelect = document.getElementById('sgguCd');
+
+            // 기존 옵션 제거
+            sgguSelect.innerHTML = '<option value="">전체</option>';
+
+            // 시도가 선택되었고 시군구 데이터가 있으면 추가
+            if (sidoCd && SGGU_CODES[sidoCd]) {
+                SGGU_CODES[sidoCd].forEach(sggu => {
+                    const option = document.createElement('option');
+                    option.value = sggu.code;
+                    option.textContent = sggu.name;
+                    sgguSelect.appendChild(option);
+                });
+            }
+        }
+
+        // ========================================
+        // API 호출
+        // ========================================
+
+        /**
+         * 병원 검색
+         */
+        async function searchHospitals(pageNo = 1) {
+            // 인증키 확인
+            const apiKey = document.getElementById('apiKey').value.trim();
+            if (!apiKey) {
+                alert('공공데이터포털 OpenAPI 인증키를 입력해 주세요.');
+                document.getElementById('apiKey').focus();
+                return;
+            }
+
+            // 검색 파라미터 구성
+            const params = buildSearchParams(pageNo);
+
+            // 로딩 표시
+            showLoading();
+
+            try {
+                // API 호출
+                const BASE_URL = 'http://apis.data.go.kr/B551182/hospInfoService1/getHospBasisList1';
+                const queryString = new URLSearchParams(params).toString();
+                const url = `${BASE_URL}?${queryString}`;
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // 응답 처리
+                handleApiResponse(data, pageNo);
+
+            } catch (error) {
+                hideLoading();
+                console.error('API 호출 오류:', error);
+                alert('API 호출 중 오류가 발생했습니다.\n네트워크 연결을 확인하거나 잠시 후 다시 시도해 주세요.');
+            }
+        }
+
+        /**
+         * 검색 파라미터 구성
+         */
+        function buildSearchParams(pageNo) {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            numOfRows = parseInt(document.getElementById('numOfRows').value);
+
+            const params = {
+                ServiceKey: apiKey,
+                pageNo: pageNo,
+                numOfRows: numOfRows,
+                _type: 'json'
+            };
+
+            // 선택적 파라미터 추가
+            const sidoCd = document.getElementById('sidoCd').value;
+            const sgguCd = document.getElementById('sgguCd').value;
+            const yadmNm = document.getElementById('yadmNm').value.trim();
+            const emdongNm = document.getElementById('emdongNm').value.trim();
+            const clCd = document.getElementById('clCd').value;
+            const dgsbjtCd = document.getElementById('dgsbjtCd').value;
+
+            if (sidoCd) params.sidoCd = sidoCd;
+            if (sgguCd) params.sgguCd = sgguCd;
+            if (yadmNm) params.yadmNm = yadmNm;
+            if (emdongNm) params.emdongNm = emdongNm;
+            if (clCd) params.clCd = clCd;
+            if (dgsbjtCd) params.dgsbjtCd = dgsbjtCd;
+
+            return params;
+        }
+
+        /**
+         * API 응답 처리
+         */
+        function handleApiResponse(data, pageNo) {
+            hideLoading();
+
+            // 응답 헤더 확인
+            const header = data.response.header;
+            if (header.resultCode !== '00') {
+                handleApiError(header.resultCode, header.resultMsg);
+                return;
+            }
+
+            // 응답 바디 확인
+            const body = data.response.body;
+            totalCount = body.totalCount || 0;
+
+            if (totalCount === 0) {
+                alert('검색 결과가 없습니다.\n검색 조건을 변경해 주세요.');
+                return;
+            }
+
+            // 아이템 처리
+            let items = body.items?.item || [];
+            if (!Array.isArray(items)) {
+                items = [items];
+            }
+
+            currentData = items;
+            currentPage = pageNo;
+
+            // 결과 표시
+            displayResults();
+        }
+
+        /**
+         * API 에러 처리
+         */
+        function handleApiError(errorCode, errorMsg) {
+            let message = `API 오류 [${errorCode}]: ${errorMsg}\n\n`;
+
+            switch (errorCode) {
+                case '3':
+                    message += '검색 결과가 없습니다. 검색 조건을 변경해 주세요.';
+                    break;
+                case '22':
+                    message += '일일 트래픽 제한(1,000건)을 초과했습니다.';
+                    break;
+                case '30':
+                    message += '등록되지 않은 인증키입니다. 인증키를 확인해 주세요.';
+                    break;
+                case '31':
+                    message += '기한이 만료된 인증키입니다. 인증키를 재발급 받으세요.';
+                    break;
+                default:
+                    message += '잠시 후 다시 시도해 주세요.';
+            }
+
+            alert(message);
+        }
+
+        // ========================================
+        // 결과 표시
+        // ========================================
+
+        /**
+         * 검색 결과 표시
+         */
+        function displayResults() {
+            // 결과 섹션 표시
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('resultSummary').style.display = 'flex';
+
+            // 요약 정보 업데이트
+            const startNum = (currentPage - 1) * numOfRows + 1;
+            const endNum = Math.min(currentPage * numOfRows, totalCount);
+            document.getElementById('summaryText').textContent =
+                `총 ${totalCount.toLocaleString()}건 중 ${startNum.toLocaleString()}-${endNum.toLocaleString()}건 표시`;
+
+            // 테이블 바디 업데이트
+            const tbody = document.getElementById('resultTableBody');
+            tbody.innerHTML = '';
+
+            currentData.forEach((item, index) => {
+                const row = tbody.insertRow();
+                const rowNum = (currentPage - 1) * numOfRows + index + 1;
+
+                row.innerHTML = `
+                    <td>${rowNum}</td>
+                    <td style="font-weight: 600;">${item.yadmNm || '-'}</td>
+                    <td>${item.clCdNm || '-'}</td>
+                    <td>${item.addr || '-'}</td>
+                    <td>${item.telno || '-'}</td>
+                    <td>${item.drTotCnt || '0'}</td>
+                    <td>${formatDate(item.estbDd)}</td>
+                `;
+            });
+
+            // 페이징 업데이트
+            updatePagination();
+
+            // 결과 섹션으로 스크롤
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        /**
+         * 날짜 포맷팅 (YYYYMMDD -> YYYY-MM-DD)
+         */
+        function formatDate(dateStr) {
+            if (!dateStr || dateStr.length !== 8) return '-';
+            return `${dateStr.substring(0, 4)}-${dateStr.substring(4, 6)}-${dateStr.substring(6, 8)}`;
+        }
+
+        /**
+         * 페이징 업데이트
+         */
+        function updatePagination() {
+            const container = document.getElementById('paginationContainer');
+            container.innerHTML = '';
+
+            const totalPages = Math.ceil(totalCount / numOfRows);
+
+            // 이전 버튼
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'pagination-btn';
+            prevBtn.textContent = '« 이전';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => searchHospitals(currentPage - 1);
+            container.appendChild(prevBtn);
+
+            // 페이지 번호 버튼 (현재 페이지 기준 ±2)
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'pagination-btn' + (i === currentPage ? ' active' : '');
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => searchHospitals(i);
+                container.appendChild(pageBtn);
+            }
+
+            // 다음 버튼
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'pagination-btn';
+            nextBtn.textContent = '다음 »';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => searchHospitals(currentPage + 1);
+            container.appendChild(nextBtn);
+        }
+
+        // ========================================
+        // 엑셀 다운로드
+        // ========================================
+
+        /**
+         * 엑셀 다운로드
+         */
+        function downloadExcel() {
+            if (currentData.length === 0) {
+                alert('다운로드할 데이터가 없습니다.');
+                return;
+            }
+
+            // 엑셀 데이터 구성
+            const excelData = currentData.map((item, index) => {
+                const rowNum = (currentPage - 1) * numOfRows + index + 1;
+                return {
+                    '번호': rowNum,
+                    '병원명': item.yadmNm || '',
+                    '종별': item.clCdNm || '',
+                    '시도': item.sidoCdNm || '',
+                    '시군구': item.sgguCdNm || '',
+                    '읍면동': item.emdongNm || '',
+                    '주소': item.addr || '',
+                    '우편번호': item.postNo || '',
+                    '전화번호': item.telno || '',
+                    '홈페이지': item.hospUrl || '',
+                    '개설일자': formatDate(item.estbDd),
+                    '의사총수': item.drTotCnt || 0,
+                    '의과전문의': item.mdeptSdrCnt || 0,
+                    '치과전문의': item.detySdrCnt || 0,
+                    '한방전문의': item.cmdcSdrCnt || 0,
+                    '경도': item.XPos || '',
+                    '위도': item.YPos || ''
+                };
+            });
+
+            // 워크북 생성
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.json_to_sheet(excelData);
+
+            // 열 너비 설정
+            ws['!cols'] = [
+                { wch: 8 },  // 번호
+                { wch: 30 }, // 병원명
+                { wch: 15 }, // 종별
+                { wch: 10 }, // 시도
+                { wch: 12 }, // 시군구
+                { wch: 12 }, // 읍면동
+                { wch: 50 }, // 주소
+                { wch: 10 }, // 우편번호
+                { wch: 15 }, // 전화번호
+                { wch: 30 }, // 홈페이지
+                { wch: 12 }, // 개설일자
+                { wch: 10 }, // 의사총수
+                { wch: 12 }, // 의과전문의
+                { wch: 12 }, // 치과전문의
+                { wch: 12 }, // 한방전문의
+                { wch: 18 }, // 경도
+                { wch: 18 }  // 위도
+            ];
+
+            XLSX.utils.book_append_sheet(wb, ws, '병원정보');
+
+            // 파일명 생성 (현재 날짜시간)
+            const now = new Date();
+            const fileName = `병원정보_${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}.xlsx`;
+
+            // 다운로드
+            const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+            saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), fileName);
+        }
+
+        /**
+         * 문자열을 ArrayBuffer로 변환
+         */
+        function s2ab(s) {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
+
+        // ========================================
+        // UI 헬퍼 함수
+        // ========================================
+
+        /**
+         * 로딩 표시
+         */
+        function showLoading() {
+            document.getElementById('loadingIndicator').classList.add('active');
+            document.getElementById('resultSummary').style.display = 'none';
+            document.getElementById('resultTableBody').innerHTML = '';
+            document.getElementById('paginationContainer').innerHTML = '';
+        }
+
+        /**
+         * 로딩 숨김
+         */
+        function hideLoading() {
+            document.getElementById('loadingIndicator').classList.remove('active');
+        }
+    </script>
+</body>
+
+</html>
