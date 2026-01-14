@@ -338,6 +338,92 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* 진행 상태 모달 */
+        .progress-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .progress-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            min-width: 500px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .progress-modal-content h3 {
+            color: #003668;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .progress-info {
+            margin-bottom: 25px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        #progressText {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #progressDetails {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.5rem;
@@ -452,9 +538,15 @@
             <!-- 결과 요약 -->
             <div class="result-summary" id="resultSummary" style="display: none;">
                 <div class="result-summary-text" id="summaryText"></div>
-                <button class="btn btn-success" onclick="downloadExcel()">
-                    📥 엑셀 다운로드
-                </button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-success" onclick="downloadExcel()">
+                        📥 현재 페이지 다운로드
+                    </button>
+                    <button class="btn btn-success" onclick="downloadAllData()"
+                        style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        📥 전체 데이터 다운로드
+                    </button>
+                </div>
             </div>
 
             <!-- 결과 테이블 -->
@@ -493,6 +585,21 @@
                 </ul>
             </div>
         </div>
+
+        <!-- 진행 상태 모달 -->
+        <div id="progressModal" class="progress-modal" style="display: none;">
+            <div class="progress-modal-content">
+                <h3>전체 데이터 다운로드 중...</h3>
+                <div class="progress-info">
+                    <div id="progressText">준비 중...</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div id="progressDetails"></div>
+                </div>
+                <button class="btn btn-danger" onclick="cancelDownload()">취소</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -503,6 +610,11 @@
         let currentPage = 1;
         let totalCount = 0;
         let numOfRows = 50;
+
+        // 전체 다운로드 관련 변수
+        let isDownloadingAll = false;
+        let downloadCancelled = false;
+        let allDownloadedData = [];
 
         // ========================================
         // 코드 데이터
@@ -684,8 +796,8 @@
             showLoading();
 
             try {
-                // API 호출
-                const BASE_URL = 'http://apis.data.go.kr/B551182/hospInfoService1/getHospBasisList1';
+                // API 호출 (Python 코드와 동일한 v2 엔드포인트 사용)
+                const BASE_URL = 'http://apis.data.go.kr/B551182/hospInfoServicev2/getHospBasisList';
                 const queryString = new URLSearchParams(params).toString();
                 const url = `${BASE_URL}?${queryString}`;
 
@@ -888,6 +1000,297 @@
             nextBtn.disabled = currentPage === totalPages;
             nextBtn.onclick = () => searchHospitals(currentPage + 1);
             container.appendChild(nextBtn);
+        }
+
+        // ========================================
+        // 전체 데이터 다운로드
+        // ========================================
+
+        /**
+         * 전체 데이터 다운로드 (Python의 get_all_hospitals 함수 구현)
+         * 모든 페이지를 순회하며 데이터를 수집하고 엑셀로 저장
+         */
+        async function downloadAllData() {
+            if (totalCount === 0) {
+                alert('검색 결과가 없습니다. 먼저 검색을 실행해주세요.');
+                return;
+            }
+
+            // 확인 메시지
+            const confirmed = confirm(`전체 ${totalCount.toLocaleString()}건의 데이터를 다운로드하시겠습니까?\n\n데이터 양에 따라 시간이 소요될 수 있습니다.`);
+            if (!confirmed) return;
+
+            // 초기화
+            isDownloadingAll = true;
+            downloadCancelled = false;
+            allDownloadedData = [];
+
+            // 모달 표시
+            showProgressModal();
+
+            try {
+                const startTime = Date.now();
+                const totalPages = Math.ceil(totalCount / numOfRows);
+
+                updateProgressText(`전체 ${totalPages}페이지 다운로드 시작...`);
+
+                // 모든 페이지 순회
+                for (let pageNo = 1; pageNo <= totalPages; pageNo++) {
+                    // 취소 확인
+                    if (downloadCancelled) {
+                        updateProgressText('다운로드가 취소되었습니다.');
+                        await sleep(1500);
+                        hideProgressModal();
+                        return;
+                    }
+
+                    // 진행률 계산
+                    const progress = (pageNo / totalPages) * 100;
+                    const currentCount = allDownloadedData.length;
+
+                    updateProgressBar(progress);
+                    updateProgressText(`페이지 ${pageNo}/${totalPages} 다운로드 중...`);
+
+                    // 예상 남은 시간 계산
+                    if (pageNo > 1) {
+                        const elapsed = (Date.now() - startTime) / 1000;
+                        const itemsPerSec = currentCount / elapsed;
+                        const remainingItems = totalCount - currentCount;
+                        const etaSeconds = Math.ceil(remainingItems / itemsPerSec);
+                        updateProgressDetails(`${currentCount.toLocaleString()}/${totalCount.toLocaleString()}건 수집 완료 (예상 남은 시간: ${etaSeconds}초)`);
+                    } else {
+                        updateProgressDetails(`${currentCount.toLocaleString()}/${totalCount.toLocaleString()}건 수집 완료`);
+                    }
+
+                    // API 호출 (재시도 로직 포함)
+                    const params = buildSearchParams(pageNo);
+                    const data = await fetchWithRetry(params, 3);
+
+                    if (!data) {
+                        throw new Error('API 호출 실패');
+                    }
+
+                    // 데이터 추가
+                    const body = data.response.body;
+                    let items = body.items?.item || [];
+                    if (!Array.isArray(items)) {
+                        items = [items];
+                    }
+
+                    allDownloadedData.push(...items);
+
+                    // API 호출 간격 (초당 요청 제한 고려)
+                    await sleep(100);
+                }
+
+                // 다운로드 완료
+                updateProgressText('데이터 수집 완료! 엑셀 파일 생성 중...');
+                updateProgressBar(100);
+                updateProgressDetails(`총 ${allDownloadedData.length.toLocaleString()}건 수집 완료`);
+
+                // 엑셀 저장
+                await sleep(500);
+                saveAllDataToExcel(allDownloadedData);
+
+                // 완료 메시지
+                updateProgressText('다운로드 완료!');
+                await sleep(1500);
+                hideProgressModal();
+
+                alert(`전체 ${allDownloadedData.length.toLocaleString()}건의 데이터가 다운로드되었습니다.`);
+
+            } catch (error) {
+                console.error('전체 다운로드 오류:', error);
+                hideProgressModal();
+                alert(`다운로드 중 오류가 발생했습니다.\n\n${error.message}\n\n현재까지 수집된 ${allDownloadedData.length}건의 데이터를 다운로드하시겠습니까?`);
+
+                if (allDownloadedData.length > 0) {
+                    saveAllDataToExcel(allDownloadedData);
+                }
+            } finally {
+                isDownloadingAll = false;
+            }
+        }
+
+        /**
+         * 재시도 로직이 포함된 API 호출 (Python의 재시도 로직 구현)
+         */
+        async function fetchWithRetry(params, maxRetries = 3) {
+            const BASE_URL = 'http://apis.data.go.kr/B551182/hospInfoServicev2/getHospBasisList';
+            let lastError = null;
+
+            for (let attempt = 0; attempt <= maxRetries; attempt++) {
+                try {
+                    if (attempt > 0) {
+                        const waitTime = 1000 * Math.pow(2, attempt - 1); // 지수 백오프: 1초, 2초, 4초
+                        console.log(`재시도 ${attempt}/${maxRetries}, ${waitTime}ms 대기 중...`);
+                        await sleep(waitTime);
+                    }
+
+                    const queryString = new URLSearchParams(params).toString();
+                    const url = `${BASE_URL}?${queryString}`;
+
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30초 타임아웃
+
+                    const response = await fetch(url, {
+                        signal: controller.signal
+                    });
+
+                    clearTimeout(timeoutId);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    // API 응답 헤더 확인
+                    const header = data.response.header;
+                    if (header.resultCode !== '00') {
+                        throw new Error(`API Error [${header.resultCode}]: ${header.resultMsg}`);
+                    }
+
+                    return data;
+
+                } catch (error) {
+                    lastError = error;
+
+                    if (error.name === 'AbortError') {
+                        console.error('API 호출 시간 초과');
+                    } else {
+                        console.error(`API 호출 오류 (시도 ${attempt + 1}/${maxRetries + 1}):`, error);
+                    }
+
+                    // 마지막 시도가 아니면 계속
+                    if (attempt < maxRetries) {
+                        continue;
+                    }
+                }
+            }
+
+            // 모든 재시도 실패
+            throw lastError || new Error('API 호출 실패');
+        }
+
+        /**
+         * 전체 데이터를 엑셀로 저장
+         */
+        function saveAllDataToExcel(items) {
+            if (items.length === 0) {
+                alert('저장할 데이터가 없습니다.');
+                return;
+            }
+
+            // 엑셀 데이터 구성
+            const excelData = items.map((item, index) => ({
+                '번호': index + 1,
+                '병원명': item.yadmNm || '',
+                '종별': item.clCdNm || '',
+                '시도': item.sidoCdNm || '',
+                '시군구': item.sgguCdNm || '',
+                '읍면동': item.emdongNm || '',
+                '주소': item.addr || '',
+                '우편번호': item.postNo || '',
+                '전화번호': item.telno || '',
+                '홈페이지': item.hospUrl || '',
+                '개설일자': formatDate(item.estbDd),
+                '의사총수': item.drTotCnt || 0,
+                '의과전문의': item.mdeptSdrCnt || 0,
+                '치과전문의': item.detySdrCnt || 0,
+                '한방전문의': item.cmdcSdrCnt || 0,
+                '경도': item.XPos || '',
+                '위도': item.YPos || ''
+            }));
+
+            // 워크북 생성
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.json_to_sheet(excelData);
+
+            // 열 너비 설정
+            ws['!cols'] = [
+                { wch: 8 },  // 번호
+                { wch: 30 }, // 병원명
+                { wch: 15 }, // 종별
+                { wch: 10 }, // 시도
+                { wch: 12 }, // 시군구
+                { wch: 12 }, // 읍면동
+                { wch: 50 }, // 주소
+                { wch: 10 }, // 우편번호
+                { wch: 15 }, // 전화번호
+                { wch: 30 }, // 홈페이지
+                { wch: 12 }, // 개설일자
+                { wch: 10 }, // 의사총수
+                { wch: 12 }, // 의과전문의
+                { wch: 12 }, // 치과전문의
+                { wch: 12 }, // 한방전문의
+                { wch: 18 }, // 경도
+                { wch: 18 }  // 위도
+            ];
+
+            XLSX.utils.book_append_sheet(wb, ws, '병원정보');
+
+            // 파일명 생성
+            const now = new Date();
+            const fileName = `병원정보_전체_${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}.xlsx`;
+
+            // 다운로드
+            const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+            saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), fileName);
+        }
+
+        /**
+         * 다운로드 취소
+         */
+        function cancelDownload() {
+            if (confirm('다운로드를 취소하시겠습니까?')) {
+                downloadCancelled = true;
+            }
+        }
+
+        /**
+         * 진행 상태 모달 표시
+         */
+        function showProgressModal() {
+            document.getElementById('progressModal').style.display = 'flex';
+            updateProgressBar(0);
+        }
+
+        /**
+         * 진행 상태 모달 숨김
+         */
+        function hideProgressModal() {
+            document.getElementById('progressModal').style.display = 'none';
+        }
+
+        /**
+         * 진행률 바 업데이트
+         */
+        function updateProgressBar(percent) {
+            const bar = document.getElementById('progressBar');
+            bar.style.width = percent + '%';
+            bar.textContent = Math.round(percent) + '%';
+        }
+
+        /**
+         * 진행 텍스트 업데이트
+         */
+        function updateProgressText(text) {
+            document.getElementById('progressText').textContent = text;
+        }
+
+        /**
+         * 진행 세부사항 업데이트
+         */
+        function updateProgressDetails(text) {
+            document.getElementById('progressDetails').textContent = text;
+        }
+
+        /**
+         * 대기 함수
+         */
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
 
         // ========================================
