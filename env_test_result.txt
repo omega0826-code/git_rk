@@ -1,0 +1,21 @@
+[START 21:05:58.55] 
+==================================================
+Python Environment Test
+==================================================
+Python: 3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]
+Executable: d:\git_rk\.venv\Scripts\python.exe
+PYTHONUNBUFFERED: NOT SET
+venv active: True
+
+--- Import Benchmark ---
+  pandas: 2.691s
+  matplotlib+font: 0.339s
+  numpy: 0.000s
+
+--- File I/O Test ---
+  Write 5000 lines: 0.023s
+  Read 5000 lines: 0.001s
+
+Total: 3.06s
+==================================================
+[END 21:06:01.96] 

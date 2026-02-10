@@ -72,49 +72,15 @@ print("=" * 70)
 print("\n[1/4] 한글 폰트 설정 중...", end=' ', flush=True)
 write_heartbeat("STEP 1/4 - 한글 폰트 설정 시작")
 
-font_loaded = False
-font_error = None
-
-def load_korean_font():
-    """별도 스레드에서 koreanize_matplotlib 로딩"""
-    global font_loaded, font_error
-    try:
-        import koreanize_matplotlib
-        font_loaded = True
-    except Exception as e:
-        font_error = str(e)
-
-# 타임아웃 60초로 폰트 로딩 시도
-font_thread = threading.Thread(target=load_korean_font, daemon=True)
-font_thread.start()
-font_thread.join(timeout=60)
-
-if font_loaded:
-    print("✓ 완료 (koreanize_matplotlib)", flush=True)
-    write_heartbeat("STEP 1/4 - 한글 폰트 설정 완료 (koreanize_matplotlib)")
-elif font_error:
-    print(f"⚠ 오류 발생: {font_error}", flush=True)
-    print("  → Malgun Gothic 대체 폰트 적용 중...", end=' ', flush=True)
-    try:
-        plt.rcParams['font.family'] = 'Malgun Gothic'
-        plt.rcParams['axes.unicode_minus'] = False
-        print("✓ 완료", flush=True)
-        write_heartbeat("STEP 1/4 - 한글 폰트 설정 완료 (Malgun Gothic 대체)")
-    except Exception as e:
-        print(f"✗ 실패: {e}", flush=True)
-        print("  → 기본 폰트 사용 (한글 깨짐 가능)", flush=True)
-        write_heartbeat(f"STEP 1/4 - 한글 폰트 설정 실패: {e}")
-else:
-    print("⚠ 타임아웃 (60초 초과)", flush=True)
-    print("  → Malgun Gothic 대체 폰트 적용 중...", end=' ', flush=True)
-    try:
-        plt.rcParams['font.family'] = 'Malgun Gothic'
-        plt.rcParams['axes.unicode_minus'] = False
-        print("✓ 완료", flush=True)
-        write_heartbeat("STEP 1/4 - 한글 폰트 설정 완료 (타임아웃 후 Malgun Gothic 대체)")
-    except Exception as e:
-        print(f"✗ 실패: {e}", flush=True)
-        write_heartbeat(f"STEP 1/4 - 한글 폰트 설정 실패 (타임아웃): {e}")
+try:
+    plt.rcParams['font.family'] = 'Malgun Gothic'
+    plt.rcParams['axes.unicode_minus'] = False
+    print("✓ 완료 (Malgun Gothic 직접 설정)", flush=True)
+    write_heartbeat("STEP 1/4 - 한글 폰트 설정 완료 (Malgun Gothic)")
+except Exception as e:
+    print(f"✗ 실패: {e}", flush=True)
+    print("  → 기본 폰트 사용 (한글 깨짐 가능)", flush=True)
+    write_heartbeat(f"STEP 1/4 - 한글 폰트 설정 실패: {e}")
 
 # ============================================================================
 # 재시도 로직 함수

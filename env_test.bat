@@ -1,0 +1,6 @@
+@echo off
+echo [START %TIME%] > d:\git_rk\env_test_result.txt
+
+python -u -c "import time,sys,os; t0=time.time(); print('='*50); print('Python Environment Test'); print('='*50); print(f'Python: {sys.version}'); print(f'Executable: {sys.executable}'); print(f'PYTHONUNBUFFERED: {os.environ.get(\"PYTHONUNBUFFERED\",\"NOT SET\")}'); venv=hasattr(sys,'base_prefix') and sys.base_prefix!=sys.prefix; print(f'venv active: {venv}'); print(); print('--- Import Benchmark ---'); t=time.time(); import pandas; print(f'  pandas: {time.time()-t:.3f}s'); t=time.time(); import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt; plt.rcParams['font.family']='Malgun Gothic'; plt.rcParams['axes.unicode_minus']=False; print(f'  matplotlib+font: {time.time()-t:.3f}s'); t=time.time(); import numpy; print(f'  numpy: {time.time()-t:.3f}s'); print(); print('--- File I/O Test ---'); t=time.time(); f=open('_io_test.tmp','w'); [f.write(f'line{i}\n') for i in range(5000)]; f.close(); print(f'  Write 5000 lines: {time.time()-t:.3f}s'); t=time.time(); f=open('_io_test.tmp','r'); d=f.readlines(); f.close(); os.remove('_io_test.tmp'); print(f'  Read 5000 lines: {time.time()-t:.3f}s'); print(); print(f'Total: {time.time()-t0:.2f}s'); print('='*50)" >> d:\git_rk\env_test_result.txt 2>&1
+
+echo [END %TIME%] >> d:\git_rk\env_test_result.txt
