@@ -1,0 +1,25 @@
+{
+    "doc_id": "2025년도_엔지니어링업체_임금실태조사_보고서_a307",
+    "ts": "02131759",
+    "source_pdf_path": "C:\\Users\\user\\Downloads\\2025년도 엔지니어링업체 임금실태조사 보고서.pdf",
+    "slugified_name": "2025년도_엔지니어링업체_임금실태조사_보고서_a307",
+    "page_count": 54,
+    "python_version": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "library_versions": {
+        "PyMuPDF": "1.27.1",
+        "pdfplumber": "0.11.9",
+        "pandas": "2.3.3",
+        "tabula-py": "2.10.0"
+    },
+    "args": {
+        "pdf": "",
+        "layout": "simple",
+        "tabula_mode": "stream",
+        "render_all": false,
+        "render_pages": "",
+        "csv_encoding": "utf-8-sig"
+    },
+    "render_policy": "selective_auto(keywords,vectors) or manual",
+    "java_available": true,
+    "scanned_suspect": false
+}

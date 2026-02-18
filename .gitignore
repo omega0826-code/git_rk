@@ -75,6 +75,36 @@ coverage/
 *.rar
 *.7z
 
+# 그림/이미지 파일
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.ico
+*.svg
+*.webp
+*.psd
+*.ai
+
+# GIS 파일
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sbn
+*.sbx
+*.geojson
+*.kml
+*.kmz
+*.gpkg
+*.gpx
+*.osm
+*.gdb/
+
 # 기타
 .DS_Store
 *.iml
