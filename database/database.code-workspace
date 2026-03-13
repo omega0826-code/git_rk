@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "name": "database",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe"
+    }
+}

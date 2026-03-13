@@ -1,0 +1,52 @@
+============================================================
+  전국공장등록현황 데이터 정제 파이프라인
+  타임스탬프: 260304_1355
+============================================================
+[1/6] 원본 데이터 로딩: d:\git_rk\database\company database\raw data\factory on\202601\raw\(2026.01)_National Factory Registration Status.csv
+       → 5000행 × 38컬럼 로딩 완료
+
+[2/6] nid 부여 (FC202601-NNNNNNNN)
+       → nid 부여 완료: 5000건, 유일성: OK
+
+[3/6] 주소 정제 (공장주소 + 공장주소_지번)
+       → 오타수정: 0건
+       → 약어확장: 0건
+       → 붙어쓰기보정: 53건
+       → 공백정규화: 277건
+       → 주소결함: 1건
+
+[4/6] 전화번호 정제
+       → 유효: 4277건
+       → 포맷팅복원: 6건
+       → 빈칸: 697건
+       → 특수번호: 15건
+       → 무효: 5건
+
+[5/6] 기업명 정제
+       → 법인표기포함: 3223건
+       → 영문포함: 135건
+       → 중복그룹: 121건 (258건)
+
+[6/6] 삭제 데이터 분리
+       → 정상 데이터: 4282건
+       → 주소결함 삭제: 1건
+       → 전화번호결함 삭제: 717건
+       → 복합결함 삭제: 0건
+       → 총 삭제: 718건
+
+=== 파일 저장 완료 ===
+  정제 데이터: d:\git_rk\database\company database\raw data\factory on\202601\output\factory_cleaned_260304_1355.csv (4282행)
+  삭제 데이터: d:\git_rk\database\company database\raw data\factory on\202601\output\factory_deleted_260304_1355.csv (718행)
+  리포트: d:\git_rk\database\company database\raw data\factory on\202601\logs\cleaning_log_260304_1355.md
+
+=== 검증 ===
+  원본: 5000행
+  정상+삭제: 5000행
+Traceback (most recent call last):
+  File "d:\git_rk\database\company database\raw data\factory on\202601\scripts\run_pipeline.py", line 300, in <module>
+    main()
+    ~~~~^^
+  File "d:\git_rk\database\company database\raw data\factory on\202601\scripts\run_pipeline.py", line 293, in main
+    print(f"  \u2705 행 수 보존 검증 통과")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp949' codec can't encode character '\u2705' in position 2: illegal multibyte sequence
