@@ -3,6 +3,7 @@ mynote.txt
 tmp_*
 temp/
 project/
+database/
 *.tmp
 *.swp
 *.swo
