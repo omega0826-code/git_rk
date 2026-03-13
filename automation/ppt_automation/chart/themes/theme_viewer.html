@@ -1,760 +1,697 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PPT 차트 테마 색상 뷰어</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0f172a;
-      --bg-card: #1e293b;
-      --bg-card-hover: #263348;
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --border: #334155;
-      --accent: #60a5fa;
-      --accent-glow: rgba(96, 165, 250, 0.15);
-      --radius: 16px;
-      --radius-sm: 10px;
-      --radius-xs: 6px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Inter', '맑은 고딕', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      min-height: 100vh;
-      padding: 40px 24px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Header */
-    .header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 8px;
-    }
-
-    .header p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    .header .path-badge {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 6px 14px;
-      background: rgba(96, 165, 250, 0.1);
-      border: 1px solid rgba(96, 165, 250, 0.2);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: var(--accent);
-      font-family: 'Consolas', monospace;
-    }
-
-    /* Tab Navigation */
-    .tab-nav {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      padding: 10px 24px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--bg-card);
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-family: inherit;
-    }
-
-    .tab-btn:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--accent);
-      color: var(--text-primary);
-    }
-
-    .tab-btn.active {
-      background: var(--accent);
-      color: #0f172a;
-      border-color: var(--accent);
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-
-    /* Theme Card */
-    .theme-panel {
-      display: none;
-      animation: fadeIn 0.35s ease;
-    }
-
-    .theme-panel.active { display: block; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .theme-meta {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 32px;
-      padding: 24px;
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-    }
-
-    .theme-meta .preview-bg {
-      width: 80px;
-      height: 80px;
-      border-radius: var(--radius-sm);
-      border: 2px solid var(--border);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .theme-meta .info h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .theme-meta .info p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .theme-meta .info .font-tag {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 4px 10px;
-      background: rgba(139, 92, 246, 0.12);
-      border: 1px solid rgba(139, 92, 246, 0.25);
-      border-radius: 6px;
-      font-size: 0.78rem;
-      color: #a78bfa;
-    }
-
-    /* Section */
-    .section {
-      margin-bottom: 32px;
-    }
-
-    .section-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-title::before {
-      content: '';
-      width: 4px;
-      height: 18px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
-
-    /* Color Grid */
-    .color-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-    }
-
-    .color-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .color-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    }
-
-    .color-card .swatch {
-      width: 100%;
-      height: 48px;
-      border-radius: var(--radius-xs);
-      margin-bottom: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .color-card .swatch::after {
-      content: 'Aa';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.1rem;
-      font-weight: 600;
-      opacity: 0.7;
-    }
-
-    .color-card .color-name {
-      font-size: 0.82rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: var(--text-primary);
-    }
-
-    .color-card .color-values {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .color-card .color-val {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-family: 'Consolas', monospace;
-    }
-
-    .color-card .copied-toast {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      padding: 3px 8px;
-      background: var(--accent);
-      color: #0f172a;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .color-card .copied-toast.show {
-      opacity: 1;
-    }
-
-    /* Palette Section */
-    .palette-strip {
-      display: flex;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      height: 64px;
-      margin-bottom: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .palette-strip .pal-cell {
-      flex: 1;
-      position: relative;
-      cursor: pointer;
-      transition: flex 0.25s ease;
-    }
-
-    .palette-strip .pal-cell:hover {
-      flex: 2;
-    }
-
-    .palette-strip .pal-cell .pal-tooltip {
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(4px);
-      padding: 4px 10px;
-      background: #0f172a;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.72rem;
-      font-family: 'Consolas', monospace;
-      color: var(--text-primary);
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.2s;
-      z-index: 10;
-    }
-
-    .palette-strip .pal-cell:hover .pal-tooltip {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-4px);
-    }
-
-    .palette-details {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-      gap: 8px;
-    }
-
-    .pal-detail {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xs);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .pal-detail:hover {
-      border-color: var(--accent);
-    }
-
-    .pal-detail .dot {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .pal-detail .pal-info {
-      font-size: 0.72rem;
-      font-family: 'Consolas', monospace;
-      color: var(--text-secondary);
-    }
-
-    .pal-detail .pal-idx {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-    }
-
-    /* Preview Section */
-    .preview-section {
-      margin-top: 32px;
-    }
-
-    .slide-preview {
-      border-radius: var(--radius);
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .slide-preview .preview-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .slide-preview .preview-subtitle {
-      font-size: 0.9rem;
-      margin-bottom: 24px;
-    }
-
-    .preview-chart-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-      height: 140px;
-    }
-
-    .preview-chart-bars .bar {
-      flex: 1;
-      border-radius: 6px 6px 0 0;
-      transition: height 0.5s ease;
-      position: relative;
-    }
-
-    .preview-chart-bars .bar .bar-label {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.7rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .preview-page-num {
-      text-align: right;
-      margin-top: 16px;
-      font-size: 0.8rem;
-    }
-
-    /* Compare View */
-    .compare-btn {
-      display: block;
-      margin: 0 auto 36px;
-      padding: 10px 28px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--bg-card);
-      color: var(--text-secondary);
-      font-size: 0.88rem;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.25s;
-    }
-
-    .compare-btn:hover {
-      border-color: var(--accent);
-      color: var(--text-primary);
-    }
-
-    .compare-btn.active {
-      background: rgba(96, 165, 250, 0.12);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .compare-container {
-      display: none;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      animation: fadeIn 0.35s ease;
-    }
-
-    .compare-container.active {
-      display: grid;
-    }
-
-    .compare-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-    }
-
-    .compare-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .compare-card h3 .mini-swatch {
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-    }
-
-    .compare-palette-row {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 12px;
-    }
-
-    .compare-palette-row .cp-cell {
-      flex: 1;
-      height: 32px;
-      border-radius: 4px;
-    }
-
-    .compare-palette-row .cp-cell:first-child {
-      border-radius: 6px 4px 4px 6px;
-    }
-
-    .compare-palette-row .cp-cell:last-child {
-      border-radius: 4px 6px 6px 4px;
-    }
-
-    .compare-colors-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
-    }
-
-    .compare-colors-list .cc-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      padding: 6px 8px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 6px;
-    }
-
-    .compare-colors-list .cc-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
-      flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .compare-colors-list .cc-name {
-      color: var(--text-secondary);
-    }
-
-    @media (max-width: 768px) {
-      .color-grid { grid-template-columns: repeat(2, 1fr); }
-      .compare-container { grid-template-columns: 1fr; }
-      .header h1 { font-size: 1.5rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPT 차트 테마 에디터</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary:#0f172a; --bg-card:#1e293b; --bg-card-hover:#263348;
+  --text-primary:#f1f5f9; --text-secondary:#94a3b8; --text-muted:#64748b;
+  --border:#334155; --accent:#60a5fa; --accent-glow:rgba(96,165,250,0.15);
+  --danger:#ef4444; --success:#22c55e;
+  --radius:16px; --radius-sm:10px; --radius-xs:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter','맑은 고딕',sans-serif;background:var(--bg-primary);color:var(--text-primary);min-height:100vh;padding:20px;}
+.container{max-width:1400px;margin:0 auto;}
+.header{text-align:center;margin-bottom:24px;}
+.header h1{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,#60a5fa,#a78bfa,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
+.header p{color:var(--text-secondary);font-size:0.85rem;}
+.toolbar{display:flex;gap:8px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;align-items:center;}
+.toolbar button,.toolbar label{padding:8px 18px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-card);color:var(--text-secondary);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit;}
+.toolbar button:hover,.toolbar label:hover{background:var(--bg-card-hover);border-color:var(--accent);color:var(--text-primary);}
+.toolbar .tab-btn.active{background:var(--accent);color:#0f172a;border-color:var(--accent);box-shadow:0 0 16px var(--accent-glow);}
+.toolbar .sep{width:1px;height:24px;background:var(--border);margin:0 4px;}
+.toolbar input[type=file]{display:none;}
+.toolbar .action-btn{background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.3);color:var(--accent);}
+.toolbar .danger-btn{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--danger);}
+.main-layout{display:grid;grid-template-columns:440px 1fr;gap:20px;align-items:start;}
+@media(max-width:900px){.main-layout{grid-template-columns:1fr;}}
+.edit-panel{display:flex;flex-direction:column;gap:16px;max-height:calc(100vh - 160px);overflow-y:auto;padding-right:8px;min-width:0;}
+.edit-panel::-webkit-scrollbar{width:5px;}
+.edit-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+.section-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;}
+.section-header{padding:12px 16px;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;transition:background .2s;}
+.section-header:hover{background:var(--bg-card-hover);}
+.section-header .arrow{transition:transform .2s;font-size:0.7rem;color:var(--text-muted);}
+.section-header.open .arrow{transform:rotate(90deg);}
+.section-body{padding:0 16px 16px;display:none;}
+.section-header.open+.section-body{display:block;}
+.form-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.form-row label{font-size:0.78rem;color:var(--text-secondary);min-width:80px;flex-shrink:0;}
+.form-row input[type=text],.form-row input[type=number],.form-row select{background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-xs);padding:6px 10px;color:var(--text-primary);font-size:0.8rem;font-family:inherit;flex:1;min-width:0;}
+.form-row input[type=number]{width:70px;flex:0 0 70px;}
+.form-row input[type=color]{width:36px;height:28px;border:1px solid var(--border);border-radius:4px;cursor:pointer;background:none;padding:1px;}
+.form-row .hex-input{width:80px;flex:0 0 80px;font-family:'Consolas',monospace;font-size:0.78rem;}
+.form-row .unit{font-size:0.72rem;color:var(--text-muted);flex-shrink:0;}
+.color-edit-grid{display:flex;flex-direction:column;gap:6px;}
+.color-edit-row{display:flex;align-items:center;gap:8px;padding:6px 8px;background:rgba(255,255,255,0.02);border-radius:var(--radius-xs);}
+.color-edit-row .clabel{font-size:0.76rem;color:var(--text-secondary);flex:1;min-width:0;}
+.palette-edit{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.pal-edit-cell{position:relative;width:36px;height:36px;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.pal-edit-cell:hover{border-color:var(--accent);transform:scale(1.1);}
+.pal-edit-cell .pal-del{position:absolute;top:-6px;right:-6px;width:16px;height:16px;background:var(--danger);border-radius:50%;font-size:0.6rem;color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;border:none;line-height:1;}
+.pal-edit-cell:hover .pal-del{display:flex;}
+.pal-add-btn{width:36px;height:36px;border-radius:6px;border:2px dashed var(--border);background:none;color:var(--text-muted);font-size:1.2rem;cursor:pointer;transition:all .2s;}
+.pal-add-btn:hover{border-color:var(--accent);color:var(--accent);}
+.font-size-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.font-size-item{display:flex;align-items:center;gap:6px;font-size:0.76rem;}
+.font-size-item label{color:var(--text-secondary);min-width:60px;}
+.font-size-item input{width:50px;background:var(--bg-primary);border:1px solid var(--border);border-radius:4px;padding:4px 6px;color:var(--text-primary);font-size:0.78rem;text-align:center;}
+.layout-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.layout-item{display:flex;align-items:center;gap:6px;font-size:0.76rem;}
+.layout-item label{color:var(--text-secondary);min-width:70px;}
+.layout-item input,.layout-item select{width:70px;background:var(--bg-primary);border:1px solid var(--border);border-radius:4px;padding:4px 6px;color:var(--text-primary);font-size:0.78rem;text-align:center;}
+.layout-item select{width:auto;}
+.layout-tabs{display:flex;gap:4px;margin-bottom:10px;}
+.layout-tab{padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:none;color:var(--text-muted);font-size:0.72rem;cursor:pointer;font-family:inherit;transition:all .2s;}
+.layout-tab.active{background:var(--accent);color:#0f172a;border-color:var(--accent);}
+/* Preview */
+.preview-panel{position:sticky;top:20px;min-width:0;overflow:hidden;}
+.preview-toolbar{display:flex;gap:6px;margin-bottom:12px;align-items:center;flex-wrap:wrap;}
+.chart-type-tab{padding:7px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text-muted);font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all .2s;}
+.chart-type-tab:hover{border-color:var(--accent);color:var(--text-secondary);}
+.chart-type-tab.active{background:var(--accent);color:#0f172a;border-color:var(--accent);}
+.preview-sep{width:1px;height:20px;background:var(--border);margin:0 4px;}
+.data-toggle{padding:5px 14px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-muted);font-size:0.75rem;cursor:pointer;font-family:inherit;transition:all .2s;}
+.data-toggle:hover{border-color:var(--accent);color:var(--text-secondary);}
+.data-toggle.active{background:rgba(96,165,250,0.15);border-color:var(--accent);color:var(--accent);}
+.slide-frame{position:relative;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border);aspect-ratio:16/9;}
+.slide-inner{position:absolute;inset:0;overflow:hidden;}
+.chart-area{position:absolute;border:1px dashed rgba(255,255,255,0.15);border-radius:4px;overflow:hidden;}
+.slide-title{position:absolute;font-weight:700;}
+.slide-subtitle{position:absolute;}
+.slide-page-num{position:absolute;bottom:3%;right:4%;font-size:0.7rem;}
+/* Charts */
+.chart-bars{display:flex;align-items:flex-end;gap:2%;height:100%;padding:8% 3% 12% 3%;}
+.chart-bars .bar-group{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;min-width:0;}
+.chart-bars .bar{width:70%;border-radius:3px 3px 0 0;position:relative;min-height:2px;transition:height .3s;}
+.chart-bars .bar .bar-val{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:0.5rem;white-space:nowrap;}
+.chart-bars .bar-cat{font-size:0.42rem;margin-top:4px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+.pie-container{display:flex;align-items:center;justify-content:center;height:100%;padding:4%;gap:4%;}
+.pie-svg{width:55%;height:90%;}
+.pie-legend{display:flex;flex-direction:column;gap:3px;font-size:0.5rem;max-width:40%;}
+.pie-legend-item{display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.pie-legend-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0;}
+.radar-container{display:flex;align-items:center;justify-content:center;height:100%;padding:4%;}
+.radar-svg{width:80%;height:80%;}
+.stacked-bars{display:flex;flex-direction:column;gap:4%;height:100%;padding:5% 3% 10% 3%;justify-content:center;}
+.stacked-row-wrap{display:flex;align-items:center;gap:2%;height:16%;}
+.stacked-label{font-size:0.45rem;width:12%;text-align:right;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.stacked-row{display:flex;flex:1;height:100%;border-radius:3px;overflow:hidden;}
+.stacked-segment{min-width:0;position:relative;}
+.stacked-segment .seg-val{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:0.38rem;white-space:nowrap;}
+/* Legend */
+.slide-legend{position:absolute;display:flex;flex-wrap:wrap;gap:3px 8px;}
+.legend-item{display:flex;align-items:center;gap:3px;font-size:0.48rem;}
+.legend-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0;}
+/* Preview info */
+.preview-info{margin-top:10px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xs);font-size:0.73rem;color:var(--text-secondary);display:flex;gap:14px;flex-wrap:wrap;}
+.preview-info span{font-family:'Consolas',monospace;}
+/* Palette slot */
+.pal-actions{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap;}
+.pal-act-btn{padding:3px 10px;border:1px solid var(--border);border-radius:5px;background:none;color:var(--text-muted);font-size:0.66rem;cursor:pointer;font-family:inherit;transition:all .2s;}
+.pal-act-btn:hover{border-color:var(--accent);color:var(--text-secondary);}
+.slot-list{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;}
+.slot-btn{padding:3px 8px;border:1px solid var(--border);border-radius:4px;background:rgba(255,255,255,0.03);color:var(--text-muted);font-size:0.64rem;cursor:pointer;font-family:inherit;transition:all .2s;}
+.slot-btn:hover{border-color:var(--accent);color:var(--text-primary);}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:100;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;min-width:340px;max-width:90vw;}
+.modal h3{margin-bottom:16px;font-size:1.1rem;}
+.modal .form-row{margin-bottom:12px;}
+.modal .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;}
+.modal .modal-actions button{padding:8px 20px;border-radius:var(--radius-xs);border:1px solid var(--border);background:var(--bg-primary);color:var(--text-primary);font-family:inherit;cursor:pointer;font-size:0.85rem;}
+.modal .modal-actions .primary{background:var(--accent);color:#0f172a;border-color:var(--accent);}
+/* Color mode */
+.cm-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
+.cm-btn{padding:4px 10px;border:1px solid var(--border);border-radius:5px;background:none;color:var(--text-muted);font-size:0.68rem;cursor:pointer;font-family:inherit;transition:all .2s;}
+.cm-btn:hover{border-color:var(--accent);color:var(--text-secondary);}
+.cm-btn.active{background:var(--accent);color:#0f172a;border-color:var(--accent);}
+.cm-colors{display:flex;gap:6px;align-items:center;margin-top:6px;flex-wrap:wrap;}
+.cm-color-item{display:flex;align-items:center;gap:4px;font-size:0.7rem;color:var(--text-secondary);}
+.cm-color-item input[type=color]{width:28px;height:22px;border:1px solid var(--border);border-radius:3px;cursor:pointer;background:none;padding:0;}
+.cm-check{display:flex;align-items:center;gap:6px;font-size:0.74rem;color:var(--text-secondary);cursor:pointer;margin-bottom:6px;}
+.cm-check input{accent-color:var(--accent);}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>🎨 PPT 차트 테마 색상 뷰어</h1>
-      <p>차트 자동화에 사용되는 테마 색상을 미리 확인합니다</p>
-      <div class="path-badge">📁 automation/ppt_automation/chart/themes/</div>
-    </div>
-
-    <div class="tab-nav" id="tabNav"></div>
-
-    <button class="compare-btn" id="compareBtn" onclick="toggleCompare()">⚖️ 테마 비교</button>
-
-    <div class="compare-container" id="compareContainer"></div>
-
-    <div id="themePanels"></div>
+<div class="container">
+  <div class="header">
+    <h1>🎨 PPT 차트 테마 에디터</h1>
+    <p>차트 테마 색상·폰트·레이아웃을 편집하고 JSON으로 내보냅니다</p>
   </div>
+  <div class="toolbar" id="toolbar"></div>
+  <div class="main-layout">
+    <div class="edit-panel" id="editPanel"></div>
+    <div class="preview-panel" id="previewPanel"></div>
+  </div>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal"></div>
+</div>
 
-  <script>
-    // ── Embedded Theme Data ──
-    const THEMES = {
-      "dark_premium": {
-        "name": "Dark Premium",
-        "description": "진남색 배경, 프레젠테이션용 다크 테마",
-        "slide": { "width_inches": 13.333, "height_inches": 7.5, "background": [15, 23, 42] },
-        "font": {
-          "name": "맑은 고딕",
-          "title_size": 22, "subtitle_size": 12, "label_size": 10,
-          "legend_size": 11, "page_num_size": 10, "data_label_size": 10, "stacked_label_size": 8
-        },
-        "colors": {
-          "title": [255, 255, 255], "subtitle": [148, 163, 184], "label": [226, 232, 240],
-          "axis_line": [51, 65, 85], "page_num": [148, 163, 184], "pie_label": [255, 255, 255],
-          "chart_palette": [
-            [96, 165, 250], [52, 211, 153], [251, 191, 36], [167, 139, 250], [248, 113, 113],
-            [34, 211, 238], [251, 146, 60], [244, 114, 182], [45, 212, 191], [192, 132, 252]
-          ]
-        }
-      },
-      "white_clean": {
-        "name": "White Clean",
-        "description": "흰 배경, 워드 삽입용 기본 테마",
-        "slide": { "width_inches": 13.333, "height_inches": 7.5, "background": [255, 255, 255] },
-        "font": {
-          "name": "맑은 고딕",
-          "title_size": 22, "subtitle_size": 12, "label_size": 10,
-          "legend_size": 11, "page_num_size": 10, "data_label_size": 10, "stacked_label_size": 8
-        },
-        "colors": {
-          "title": [34, 34, 34], "subtitle": [102, 102, 102], "label": [51, 51, 51],
-          "axis_line": [204, 204, 204], "page_num": [102, 102, 102], "pie_label": [255, 255, 255],
-          "chart_palette": [
-            [59, 130, 246], [16, 185, 129], [245, 158, 11], [139, 92, 246], [239, 68, 68],
-            [6, 182, 212], [249, 115, 22], [236, 72, 153], [20, 184, 166], [168, 85, 247]
-          ]
-        }
-      }
-    };
+<script>
+// ── Sample Data ──
+const SAMPLE_DATA = {
+  categories: ['서울','부산','대구','인천','광주','대전','울산','세종'],
+  values: [1842, 1350, 980, 1120, 680, 750, 520, 380],
+  series_names: ['전자','식품','섬유','의료','화학','기계'],
+  stacked_data: [
+    [320,180,150,280,220,190],
+    [250,210,180,150,170,160],
+    [180,160,220,120,140,200],
+    [290,140,110,200,180,150],
+    [150,130,170,90,120,140]
+  ],
+  radar_labels: ['매출','영업이익','시장점유율','고객만족','브랜드인지도','혁신지수'],
+  radar_values: [82,68,75,91,64,78]
+};
 
-    // ── Utilities ──
-    function rgb(arr) { return `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`; }
-    function hex(arr) { return '#' + arr.map(v => v.toString(16).padStart(2, '0')).join(''); }
-    function contrastColor(arr) {
-      const lum = (0.299 * arr[0] + 0.587 * arr[1] + 0.114 * arr[2]);
-      return lum > 140 ? '#1e293b' : '#f1f5f9';
+function fmtVal(v){return v.toLocaleString();}
+function fmtPct(v,tot){return ((v/tot)*100).toFixed(1)+'%';}
+function getLabel(v,tot){
+  if(!showValue&&!showPct) return '';
+  if(showValue&&showPct){
+    if(dataPrimary==='value') return fmtVal(v)+' ('+fmtPct(v,tot)+')';
+    return fmtPct(v,tot)+' ('+fmtVal(v)+')';
+  }
+  if(showPct) return fmtPct(v,tot);
+  return fmtVal(v);
+}
+function getBarHeights(vals){
+  const mx=Math.max(...vals);
+  return vals.map(v=>(v/mx)*90);
+}
+function toggleData(which){
+  if(which==='value'){showValue=!showValue;if(showValue&&showPct)dataPrimary='pct';}
+  else{showPct=!showPct;if(showValue&&showPct)dataPrimary='value';}
+  rebuild();
+}
+function dataModeLabel(){
+  if(!showValue&&!showPct) return '값 숨김';
+  if(showValue&&showPct) return dataPrimary==='value'?'빈도값 (비율%)':'비율% (빈도값)';
+  return showPct?'비율%':'빈도값';
+}
+
+// ── Color Mode System ──
+const COLOR_MODES=[
+  {key:'individual',label:'개별값',desc:'각 항목마다 다른 색'},
+  {key:'single',label:'단일색',desc:'모든 항목 같은 색'},
+  {key:'max',label:'최고값',desc:'최고값만 강조색'},
+  {key:'min',label:'최저값',desc:'최저값만 강조색'},
+  {key:'max_min',label:'최고-최저',desc:'최고·최저·그 외 3색'},
+  {key:'gradient',label:'그라디언트',desc:'명도 변화'},
+  {key:'custom',label:'커스터마이즈',desc:'직접 색 지정'}
+];
+function adjustLightness(c,factor){
+  let r=c[0]/255,g=c[1]/255,b=c[2]/255;
+  const mx=Math.max(r,g,b),mn=Math.min(r,g,b);
+  let h,s,l=(mx+mn)/2;
+  if(mx===mn){h=s=0;}else{
+    const d=mx-mn;s=l>0.5?d/(2-mx-mn):d/(mx+mn);
+    if(mx===r)h=((g-b)/d+(g<b?6:0))/6;
+    else if(mx===g)h=((b-r)/d+2)/6;
+    else h=((r-g)/d+4)/6;
+  }
+  l=factor;
+  let r2,g2,b2;
+  if(s===0){r2=g2=b2=l;}else{
+    const hue2rgb=(p,q,t)=>{if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};
+    const q=l<0.5?l*(1+s):l+s-l*s,p=2*l-q;
+    r2=hue2rgb(p,q,h+1/3);g2=hue2rgb(p,q,h);b2=hue2rgb(p,q,h-1/3);
+  }
+  return [Math.round(r2*255),Math.round(g2*255),Math.round(b2*255)];
+}
+function getChartColors(values,palette,chartType){
+  const mode=perChartColor?chartColorModes[chartType]:colorMode;
+  const n=values.length;
+  const p0=palette[0],p1=palette[1%palette.length],p2=palette[2%palette.length];
+  switch(mode){
+    case 'single': return values.map(()=>p0);
+    case 'max':{
+      const maxI=values.indexOf(Math.max(...values));
+      return values.map((_,i)=>i===maxI?p1:p0);
     }
-
-    const LABEL_MAP = {
-      title: '제목 (Title)', subtitle: '부제목 (Subtitle)', label: '레이블 (Label)',
-      axis_line: '축 선 (Axis Line)', page_num: '페이지 번호', pie_label: '파이 레이블'
-    };
-
-    // ── Copy to clipboard ──
-    function copyColor(text, el) {
-      navigator.clipboard.writeText(text).then(() => {
-        const toast = el.querySelector('.copied-toast');
-        if (toast) {
-          toast.textContent = '복사됨!';
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 1200);
-        }
+    case 'min':{
+      const minI=values.indexOf(Math.min(...values));
+      return values.map((_,i)=>i===minI?p1:p0);
+    }
+    case 'max_min':{
+      const maxI=values.indexOf(Math.max(...values));
+      const minI=values.indexOf(Math.min(...values));
+      return values.map((_,i)=>{if(i===maxI)return p1;if(i===minI)return p2;return p0;});
+    }
+    case 'gradient':{
+      const mx=Math.max(...values),mn=Math.min(...values);
+      return values.map(v=>{
+        const ratio=mx===mn?0.5:(v-mn)/(mx-mn);
+        return adjustLightness(p0,0.25+ratio*0.55);
       });
     }
+    case 'custom': return values.map((_,i)=>customColors[i]||palette[i%palette.length]);
+    default: return values.map((_,i)=>palette[i%palette.length]);
+  }
+}
 
-    // ── Build UI ──
-    const themeKeys = Object.keys(THEMES);
-    let activeTab = themeKeys[0];
+// ── Default themes ──
+const IN_TO_MM = 25.4;
+const SLIDE_PRESETS=[
+  {key:'a4',label:'A4 용지',w:275.17,h:190.5},
+  {key:'16_9',label:'와이드스크린 (16:9)',w:338.67,h:190.5},
+  {key:'4_3',label:'표준 (4:3)',w:254.0,h:190.5},
+  {key:'16_10',label:'와이드스크린 (16:10)',w:254.0,h:158.75},
+  {key:'a3',label:'A3 용지',w:355.6,h:266.7},
+  {key:'letter',label:'Letter 용지',w:254.0,h:190.5},
+  {key:'ledger',label:'Ledger 용지',w:338.67,h:254.0},
+  {key:'35mm',label:'35mm 슬라이드',w:285.75,h:190.5},
+  {key:'custom',label:'사용자 지정',w:0,h:0}
+];
+const DEFAULT_THEMES = {
+  dark_premium: {
+    name:"Dark Premium", description:"진남색 배경, 프레젠테이션용 다크 테마",
+    slide:{width_inches:13.333,height_inches:7.5,background:[15,23,42]},
+    font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
+    colors:{title:[255,255,255],subtitle:[148,163,184],label:[226,232,240],axis_line:[51,65,85],page_num:[148,163,184],pie_label:[255,255,255],
+      chart_palette:[[96,165,250],[52,211,153],[251,191,36],[167,139,250],[248,113,113],[34,211,238],[251,146,60],[244,114,182],[45,212,191],[192,132,252]]},
+    hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
+    pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
+    radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
+    stacked:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,label_position:"center"}
+  },
+  white_clean: {
+    name:"White Clean", description:"흰 배경, 워드 삽입용 기본 테마",
+    slide:{width_inches:13.333,height_inches:7.5,background:[255,255,255]},
+    font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
+    colors:{title:[34,34,34],subtitle:[102,102,102],label:[51,51,51],axis_line:[204,204,204],page_num:[102,102,102],pie_label:[255,255,255],
+      chart_palette:[[59,130,246],[16,185,129],[245,158,11],[139,92,246],[239,68,68],[6,182,212],[249,115,22],[236,72,153],[20,184,166],[168,85,247]]},
+    hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
+    pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
+    radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
+    stacked:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,label_position:"center"}
+  },
+  navy_modern: {
+    name:"Navy Modern", description:"모던 네이비, 기업 프레젠테이션용",
+    slide:{width_inches:13.333,height_inches:7.5,background:[17,24,39]},
+    font:{name:"맑은 고딕",title_size:24,subtitle_size:13,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
+    colors:{title:[248,250,252],subtitle:[148,163,184],label:[203,213,225],axis_line:[51,65,85],page_num:[148,163,184],pie_label:[255,255,255],
+      chart_palette:[[56,189,248],[74,222,128],[250,204,21],[196,181,253],[251,113,133],[45,212,191],[253,186,116],[249,168,212],[134,239,172],[165,180,252]]},
+    hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
+    pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
+    radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
+    stacked:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,label_position:"center"}
+  },
+  warm_earth: {
+    name:"Warm Earth", description:"따뜻한 어스톤, 보고서/인포그래픽용",
+    slide:{width_inches:13.333,height_inches:7.5,background:[254,252,247]},
+    font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
+    colors:{title:[41,37,36],subtitle:[120,113,108],label:[68,64,60],axis_line:[214,211,209],page_num:[120,113,108],pie_label:[255,255,255],
+      chart_palette:[[217,119,6],[22,163,74],[37,99,235],[220,38,38],[147,51,234],[13,148,136],[234,88,12],[219,39,119],[202,138,4],[79,70,229]]},
+    hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
+    pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
+    radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
+    stacked:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,label_position:"center"}
+  },
+  soft_pastel: {
+    name:"Soft Pastel", description:"파스텔톤, 교육/발표자료용",
+    slide:{width_inches:13.333,height_inches:7.5,background:[248,250,252]},
+    font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
+    colors:{title:[30,41,59],subtitle:[100,116,139],label:[51,65,85],axis_line:[203,213,225],page_num:[100,116,139],pie_label:[30,41,59],
+      chart_palette:[[129,140,248],[110,231,183],[252,211,77],[196,181,253],[253,164,175],[103,232,249],[253,186,116],[249,168,212],[134,239,172],[216,180,254]]},
+    hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
+    pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
+    radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
+    stacked:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,label_position:"center"}
+  }
+};
 
-    function buildTabs() {
-      const nav = document.getElementById('tabNav');
-      themeKeys.forEach((key, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
-        btn.textContent = THEMES[key].name;
-        btn.dataset.key = key;
-        btn.onclick = () => switchTab(key);
-        nav.appendChild(btn);
-      });
-    }
+// ── State ──
+let themes={}, activeThemeKey='', activeChartType='hbar';
+let showValue=true, showPct=false, dataPrimary='value';
+let colorMode='individual', perChartColor=false;
+let chartColorModes={hbar:'individual',pie:'individual',radar:'individual',stacked:'individual'};
+let customColors=[];
+let hAlign='center', vAlign='center';
+let chartCount=1;
+let isDirty=false;
+const FONT_LIST=['맑은 고딕','나눔고딕','나눔바른고딕','KoPubWorld돋움체','KoPubWorld바탕체','돋움','굴림','바탕','궁서','Arial','Calibri','Clear Sans','Noto Sans KR','Pretendard'];
 
-    function switchTab(key) {
-      activeTab = key;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.key === key));
-      document.querySelectorAll('.theme-panel').forEach(p => p.classList.toggle('active', p.dataset.key === key));
-    }
+// ── Utils ──
+const rgb=a=>`rgb(${a[0]},${a[1]},${a[2]})`;
+const hex=a=>'#'+a.map(v=>v.toString(16).padStart(2,'0')).join('');
+const hexToRgb=h=>{h=h.replace('#','');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];};
+const contrast=a=>(0.299*a[0]+0.587*a[1]+0.114*a[2])>140?'#1e293b':'#f1f5f9';
+const inToMm=v=>(v*IN_TO_MM).toFixed(1);
+const mmToIn=v=>v/IN_TO_MM;
+function detectPreset(wMm,hMm){return SLIDE_PRESETS.find(p=>Math.abs(p.w-wMm)<1&&Math.abs(p.h-hMm)<1)||null;}
+function applyAlign(s,ct,chartType){
+  const wMm=s.width_inches*IN_TO_MM,hMm=s.height_inches*IN_TO_MM;
+  const cW=ct.chart_width*IN_TO_MM,cH=ct.chart_height*IN_TO_MM;
+  const m=12.7,mt=25.4;
+  if(hAlign==='left')ct.chart_left=mmToIn(m);
+  else if(hAlign==='center')ct.chart_left=mmToIn((wMm-cW)/2);
+  else ct.chart_left=mmToIn(wMm-cW-m);
+  if(vAlign==='top')ct.chart_top=mmToIn(mt);
+  else if(vAlign==='center')ct.chart_top=mmToIn((hMm-cH)/2);
+  else ct.chart_top=mmToIn(hMm-cH-m);
+}
+function autoLayoutDefaults(wIn,hIn){
+  const w=wIn*IN_TO_MM,h=hIn*IN_TO_MM,m=12.7,mt=25.4;
+  const cW=mmToIn(w-m*2),cH=mmToIn(h-mt-m*2);
+  return{chart_left:mmToIn(m),chart_top:mmToIn(mt),chart_width:cW,chart_height:cH};
+}
+const LABEL_MAP={title:'제목',subtitle:'부제목',label:'레이블',axis_line:'축 선',page_num:'페이지 번호',pie_label:'파이 레이블'};
+const FONT_LABEL={title_size:'제목',subtitle_size:'부제목',label_size:'레이블',legend_size:'범례',page_num_size:'페이지번호',data_label_size:'데이터라벨',stacked_label_size:'누적라벨'};
+const CHART_TYPES=[{key:'hbar',label:'가로막대'},{key:'pie',label:'파이'},{key:'radar',label:'레이더'},{key:'stacked',label:'누적막대'}];
 
-    function buildPanel(key, theme) {
-      const c = theme.colors;
-      const bg = theme.slide.background;
-      const barHeights = [85, 60, 100, 45, 72, 90, 55, 78, 65, 95];
+// ── Storage ──
+function saveThemes(){localStorage.setItem('ppt_chart_themes',JSON.stringify(themes));}
+function loadThemes(){
+  const s=localStorage.getItem('ppt_chart_themes');
+  if(s){try{themes=JSON.parse(s);}catch(e){themes=JSON.parse(JSON.stringify(DEFAULT_THEMES));}}
+  else{themes=JSON.parse(JSON.stringify(DEFAULT_THEMES));}
+  if(!Object.keys(themes).length) themes=JSON.parse(JSON.stringify(DEFAULT_THEMES));
+  activeThemeKey=Object.keys(themes)[0];
+}
 
-      const namedColors = Object.entries(c).filter(([k]) => k !== 'chart_palette');
+// ── Toolbar ──
+function buildToolbar(){
+  const tb=document.getElementById('toolbar');
+  let h='';
+  Object.keys(themes).forEach(k=>{h+=`<button class="tab-btn ${k===activeThemeKey?'active':''}" onclick="switchTheme('${k}')">${themes[k].name}</button>`;});
+  h+=`<div class="sep"></div><button class="action-btn" onclick="showNewModal()">＋ 신규</button><button class="action-btn" onclick="duplicateTheme()">📋 복제</button><button class="danger-btn" onclick="deleteTheme()">🗑 삭제</button>`;
+  h+=`<div class="sep"></div><button class="action-btn" style="${isDirty?'background:rgba(34,197,94,0.2);border-color:var(--success);color:var(--success);font-weight:700':''}" onclick="manualSave()">💾 저장${isDirty?' ●':''}</button>`;
+  h+=`<label class="action-btn">📂 Import<input type="file" accept=".json" onchange="importJSON(event)"></label><button class="action-btn" onclick="exportJSON()">💾 Export</button>`;
+  tb.innerHTML=h;
+}
+function switchTheme(k){activeThemeKey=k;rebuild();}
 
-      return `
-        <div class="theme-panel ${key === activeTab ? 'active' : ''}" data-key="${key}">
+// ── Edit Panel ──
+function buildEditPanel(){
+  const t=themes[activeThemeKey]; if(!t) return;
+  const c=t.colors,f=t.font,s=t.slide;
+  let h='';
+  // Basic
+  h+=`<div class="section-box"><div class="section-header open" onclick="toggleSection(this)">📌 기본 정보<span class="arrow">▶</span></div><div class="section-body">`;
+  h+=`<div class="form-row"><label>테마명</label><input type="text" value="${t.name}" onchange="gt().name=this.value;saveR()"></div>`;
+  h+=`<div class="form-row"><label>설명</label><input type="text" value="${t.description}" onchange="gt().description=this.value;saveR()"></div>`;
+  h+=`<div class="form-row"><label>배경색</label><input type="color" value="${hex(s.background)}" onchange="gt().slide.background=hexToRgb(this.value);saveR()"><input class="hex-input" type="text" value="${hex(s.background)}" onchange="gt().slide.background=hexToRgb(this.value);saveR()"></div>`;
+  const wMm=+(s.width_inches*IN_TO_MM).toFixed(1), hMm_v=+(s.height_inches*IN_TO_MM).toFixed(1);
+  const curPreset=detectPreset(wMm,hMm_v);
+  h+=`<div class="form-row"><label>슬라이드 크기</label><select onchange="changeSlidePreset(this.value)">${SLIDE_PRESETS.map(p=>`<option value="${p.key}" ${curPreset&&curPreset.key===p.key?'selected':''}>${p.label} ${p.w?'('+p.w+'×'+p.h+'mm)':''}</option>`).join('')}</select></div>`;
+  if(!curPreset||curPreset.key==='custom'){
+    h+=`<div class="form-row"><label>너비</label><input type="number" step="0.1" value="${wMm}" onchange="gt().slide.width_inches=mmToIn(+this.value);saveR()"><span class="unit">mm</span></div>`;
+    h+=`<div class="form-row"><label>높이</label><input type="number" step="0.1" value="${hMm_v}" onchange="gt().slide.height_inches=mmToIn(+this.value);saveR()"><span class="unit">mm</span></div>`;
+  } else {
+    h+=`<div class="form-row"><label>크기</label><span class="unit">${wMm} × ${hMm_v} mm</span></div>`;
+  }
+  h+=`</div></div>`;
+  // Font
+  h+=`<div class="section-box"><div class="section-header open" onclick="toggleSection(this)">🔤 폰트 설정<span class="arrow">▶</span></div><div class="section-body">`;
+  h+=`<div class="form-row"><label>폰트명</label><select onchange="gt().font.name=this.value;saveR()">${FONT_LIST.map(fn=>`<option value="${fn}" ${fn===f.name?'selected':''}>${fn}</option>`).join('')}<option value="__custom" ${!FONT_LIST.includes(f.name)?'selected':''}>${!FONT_LIST.includes(f.name)?f.name:'직접 입력...'}</option></select></div>`;
+  if(!FONT_LIST.includes(f.name)){h+=`<div class="form-row"><label>폰트(직접)</label><input type="text" value="${f.name}" onchange="gt().font.name=this.value;saveR()"></div>`;}
+  h+=`<div class="font-size-grid">`;
+  Object.entries(FONT_LABEL).forEach(([k,v])=>{h+=`<div class="font-size-item"><label>${v}</label><input type="number" min="4" max="72" value="${f[k]}" onchange="gt().font.${k}=+this.value;saveR()">pt</div>`;});
+  h+=`</div></div></div>`;
+  // UI Colors
+  h+=`<div class="section-box"><div class="section-header" onclick="toggleSection(this)">🎨 UI 색상<span class="arrow">▶</span></div><div class="section-body"><div class="color-edit-grid">`;
+  Object.entries(c).filter(([k])=>k!=='chart_palette').forEach(([k,v])=>{
+    h+=`<div class="color-edit-row"><span class="clabel">${LABEL_MAP[k]||k}</span><input type="color" value="${hex(v)}" onchange="gt().colors.${k}=hexToRgb(this.value);saveR()"><input class="hex-input" type="text" value="${hex(v)}" onchange="gt().colors.${k}=hexToRgb(this.value);saveR()"></div>`;
+  });
+  h+=`</div></div></div>`;
+  h+=`</div></div></div>`;
+  document.getElementById('editPanel').innerHTML=h;
+}
 
-          <div class="theme-meta">
-            <div class="preview-bg" style="background:${rgb(bg)}; color:${contrastColor(bg)}">BG</div>
-            <div class="info">
-              <h2>${theme.name}</h2>
-              <p>${theme.description}</p>
-              <span class="font-tag">🔤 ${theme.font.name} · Title ${theme.font.title_size}pt</span>
-            </div>
-          </div>
+// ── Preview ──
+function buildPreviewPanel(){
+  const th=themes[activeThemeKey]; if(!th) return;
+  const c=th.colors,f=th.font,s=th.slide,bg=s.background;
+  const lt=th[activeChartType]||{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9};
+  const W=s.width_inches,H=s.height_inches;
+  const cL=(lt.chart_left||0)/W*100, cT=(lt.chart_top||0)/H*100;
+  const cW=(lt.chart_width||10)/W*100, cH=(lt.chart_height||5)/H*100;
+  const titleTop=cT*0.35, titleLeft=cL;
+  const pal=c.chart_palette;
+  const SD=SAMPLE_DATA;
+  let chartHtml='';
 
-          <div class="section">
-            <div class="section-title">텍스트 · UI 색상</div>
-            <div class="color-grid">
-              ${namedColors.map(([name, val]) => `
-                <div class="color-card" onclick="copyColor('${hex(val)}', this)">
-                  <div class="swatch" style="background:${rgb(val)}; color:${contrastColor(val)}"></div>
-                  <div class="color-name">${LABEL_MAP[name] || name}</div>
-                  <div class="color-values">
-                    <span class="color-val">${hex(val)}</span>
-                    <span class="color-val">RGB(${val.join(', ')})</span>
-                  </div>
-                  <div class="copied-toast"></div>
-                </div>
-              `).join('')}
-              <div class="color-card" onclick="copyColor('${hex(bg)}', this)">
-                <div class="swatch" style="background:${rgb(bg)}; color:${contrastColor(bg)}; border: 2px dashed rgba(255,255,255,0.15)"></div>
-                <div class="color-name">슬라이드 배경 (Background)</div>
-                <div class="color-values">
-                  <span class="color-val">${hex(bg)}</span>
-                  <span class="color-val">RGB(${bg.join(', ')})</span>
-                </div>
-                <div class="copied-toast"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="section-title">차트 팔레트 (Chart Palette)</div>
-            <div class="palette-strip">
-              ${c.chart_palette.map((col, i) => `
-                <div class="pal-cell" style="background:${rgb(col)}" onclick="navigator.clipboard.writeText('${hex(col)}')">
-                  <div class="pal-tooltip">#${i} · ${hex(col)}</div>
-                </div>
-              `).join('')}
-            </div>
-            <div class="palette-details">
-              ${c.chart_palette.map((col, i) => `
-                <div class="pal-detail" onclick="navigator.clipboard.writeText('${hex(col)}')">
-                  <div class="dot" style="background:${rgb(col)}"></div>
-                  <div>
-                    <div class="pal-idx">#${i}</div>
-                    <div class="pal-info">${hex(col)}</div>
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <div class="section preview-section">
-            <div class="section-title">슬라이드 미리보기</div>
-            <div class="slide-preview" style="background:${rgb(bg)}">
-              <div class="preview-title" style="color:${rgb(c.title)}">차트 제목 예시</div>
-              <div class="preview-subtitle" style="color:${rgb(c.subtitle)}">부제목 텍스트 · ${theme.font.name}</div>
-              <div class="preview-chart-bars">
-                ${c.chart_palette.map((col, i) => `
-                  <div class="bar" style="background:${rgb(col)}; height:${barHeights[i]}%">
-                    <div class="bar-label" style="color:${rgb(c.label)}">${barHeights[i]}</div>
-                  </div>
-                `).join('')}
-              </div>
-              <div class="preview-page-num" style="color:${rgb(c.page_num)}">1 / 34</div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function buildCompare() {
-      const container = document.getElementById('compareContainer');
-      container.innerHTML = themeKeys.map(key => {
-        const t = THEMES[key];
-        const c = t.colors;
-        const bg = t.slide.background;
-        const named = Object.entries(c).filter(([k]) => k !== 'chart_palette');
-        return `
-          <div class="compare-card">
-            <h3><span class="mini-swatch" style="background:${rgb(bg)}"></span>${t.name}</h3>
-            <div class="compare-palette-row">
-              ${c.chart_palette.map(col => `<div class="cp-cell" style="background:${rgb(col)}"></div>`).join('')}
-            </div>
-            <div class="compare-colors-list">
-              ${named.map(([name, val]) => `
-                <div class="cc-item">
-                  <div class="cc-dot" style="background:${rgb(val)}"></div>
-                  <span class="cc-name">${LABEL_MAP[name] || name}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function toggleCompare() {
-      const btn = document.getElementById('compareBtn');
-      const container = document.getElementById('compareContainer');
-      btn.classList.toggle('active');
-      container.classList.toggle('active');
-    }
-
-    // ── Init ──
-    buildTabs();
-    const panelsDiv = document.getElementById('themePanels');
-    themeKeys.forEach(key => {
-      panelsDiv.innerHTML += buildPanel(key, THEMES[key]);
+  if(activeChartType==='hbar'){
+    const vals=SD.values.slice(0,pal.length);
+    const heights=getBarHeights(vals);
+    const tot=vals.reduce((a,b)=>a+b,0);
+    const cols=getChartColors(vals,pal,'hbar');
+    chartHtml=`<div class="chart-bars">`;
+    vals.forEach((v,i)=>{
+      chartHtml+=`<div class="bar-group"><div class="bar" style="background:${rgb(cols[i])};height:${heights[i]}%"><div class="bar-val" style="color:${rgb(c.label)}">${getLabel(v,tot)}</div></div><div class="bar-cat" style="color:${rgb(c.label)}">${SD.categories[i]||''}</div></div>`;
     });
-    buildCompare();
-  </script>
+    chartHtml+=`</div>`;
+  } else if(activeChartType==='pie'){
+    const vals=SD.values.slice(0,pal.length);
+    const tot=vals.reduce((a,b)=>a+b,0);
+    let cum=0, paths='';
+    const pieCols=getChartColors(vals,pal,'pie');
+    vals.forEach((v,i)=>{
+      const pct=v/tot;
+      const a0=cum*Math.PI*2-Math.PI/2, a1=(cum+pct)*Math.PI*2-Math.PI/2;
+      const x0=50+40*Math.cos(a0),y0=50+40*Math.sin(a0);
+      const x1=50+40*Math.cos(a1),y1=50+40*Math.sin(a1);
+      paths+=`<path d="M50,50 L${x0},${y0} A40,40 0 ${pct>0.5?1:0},1 ${x1},${y1} Z" fill="${rgb(pieCols[i])}" stroke="${rgb(bg)}" stroke-width="0.5"/>`;
+      cum+=pct;
+    });
+    let legend='<div class="pie-legend">';
+    vals.forEach((v,i)=>{
+      legend+=`<div class="pie-legend-item" style="color:${rgb(c.label)}"><div class="pie-legend-dot" style="background:${rgb(pieCols[i])}"></div>${SD.categories[i]||''} ${getLabel(v,tot)}</div>`;
+    });
+    legend+=`</div>`;
+    chartHtml=`<div class="pie-container"><svg class="pie-svg" viewBox="0 0 100 100">${paths}</svg>${legend}</div>`;
+  } else if(activeChartType==='radar'){
+    const n=SD.radar_labels.length; const cx=50,cy=50,r=38;
+    let grid='';
+    for(let lv=1;lv<=4;lv++){
+      const rr=r*lv/4; let pts='';
+      for(let i=0;i<n;i++){const a=Math.PI*2*i/n-Math.PI/2;pts+=`${cx+rr*Math.cos(a)},${cy+rr*Math.sin(a)} `;}
+      grid+=`<polygon points="${pts}" fill="none" stroke="${rgb(c.axis_line)}" stroke-width="0.3"/>`;
+    }
+    for(let i=0;i<n;i++){
+      const a=Math.PI*2*i/n-Math.PI/2;
+      grid+=`<line x1="${cx}" y1="${cy}" x2="${cx+r*Math.cos(a)}" y2="${cy+r*Math.sin(a)}" stroke="${rgb(c.axis_line)}" stroke-width="0.2"/>`;
+      const lx=cx+(r+6)*Math.cos(a), ly=cy+(r+6)*Math.sin(a);
+      grid+=`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="central" fill="${rgb(c.label)}" font-size="3">${SD.radar_labels[i]}</text>`;
+    }
+    const rv=SD.radar_values;
+    let dataPts='';
+    for(let i=0;i<n;i++){const a=Math.PI*2*i/n-Math.PI/2;const rr=r*(rv[i]/100);dataPts+=`${cx+rr*Math.cos(a)},${cy+rr*Math.sin(a)} `;}
+    grid+=`<polygon points="${dataPts}" fill="${rgb(pal[0])}33" stroke="${rgb(pal[0])}" stroke-width="0.8"/>`;
+    for(let i=0;i<n;i++){
+      const a=Math.PI*2*i/n-Math.PI/2;const rr=r*(rv[i]/100);
+      grid+=`<circle cx="${cx+rr*Math.cos(a)}" cy="${cy+rr*Math.sin(a)}" r="1.2" fill="${rgb(pal[2%pal.length])}"/>`;
+      const vx=cx+(rr+4)*Math.cos(a), vy=cy+(rr+4)*Math.sin(a);
+      const rvTot=rv.reduce((a,b)=>a+b,0);
+      grid+=`<text x="${vx}" y="${vy}" text-anchor="middle" dominant-baseline="central" fill="${rgb(c.label)}" font-size="2.5">${getLabel(rv[i],rvTot)}</text>`;
+    }
+    chartHtml=`<div class="radar-container"><svg class="radar-svg" viewBox="0 0 100 100">${grid}</svg></div>`;
+  } else if(activeChartType==='stacked'){
+    const sData=SD.stacked_data;
+    const cats=SD.categories.slice(0,sData.length);
+    const sNames=SD.series_names;
+    chartHtml=`<div class="stacked-bars">`;
+    const sCols=getChartColors(SD.series_names.map((_,i)=>i),pal,'stacked');
+    sData.forEach((row,ri)=>{
+      const tot=row.reduce((a,b)=>a+b,0);
+      chartHtml+=`<div class="stacked-row-wrap"><div class="stacked-label" style="color:${rgb(c.label)}">${cats[ri]||''}</div><div class="stacked-row">`;
+      row.forEach((v,si)=>{
+        const pct=v/tot*100;
+        const disp=getLabel(v,tot);
+        const tc=contrast(sCols[si%sCols.length]);
+        chartHtml+=`<div class="stacked-segment" style="width:${pct}%;background:${rgb(sCols[si%sCols.length])}"><div class="seg-val" style="color:${tc}">${pct>8?disp:''}</div></div>`;
+      });
+      chartHtml+=`</div></div>`;
+    });
+    chartHtml+=`</div>`;
+  }
+
+  // Legend
+  const legendItems = activeChartType==='stacked' ? SD.series_names : SD.categories.slice(0,pal.length);
+  const legendVals = activeChartType==='stacked' ? SD.series_names.map((_,i)=>i) : SD.values.slice(0,pal.length);
+  const legendCols = getChartColors(legendVals,pal,activeChartType);
+  let legendHtml=`<div class="slide-legend" style="bottom:3%;left:${cL}%;color:${rgb(c.label)}">`;
+  legendItems.slice(0,pal.length).forEach((name,i)=>{legendHtml+=`<div class="legend-item"><div class="legend-dot" style="background:${rgb(legendCols[i%legendCols.length])}"></div>${name}</div>`;});
+  legendHtml+=`</div>`;
+
+  // Build
+  let h=`<div class="preview-toolbar">`;
+  CHART_TYPES.forEach(ct=>{h+=`<button class="chart-type-tab ${ct.key===activeChartType?'active':''}" onclick="activeChartType='${ct.key}';rebuild()">${ct.label}</button>`;});
+  h+=`<div class="preview-sep"></div>`;
+  h+=`<button class="data-toggle ${showValue?'active':''}" onclick="toggleData('value')">빈도값</button>`;
+  h+=`<button class="data-toggle ${showPct?'active':''}" onclick="toggleData('pct')">비율%</button>`;
+  h+=`<div class="preview-sep"></div>`;
+  h+=`<span style="font-size:0.72rem;color:var(--text-secondary)">차트</span>`;
+  [1,2,3,4].forEach(n=>{h+=`<button class="cm-btn ${chartCount===n?'active':''}" onclick="chartCount=${n};rebuild()" style="min-width:22px">${n}</button>`;});
+  h+=`</div>`;
+
+  // Chart Layout Controls (mm + alignment)
+  const ltMm={left:+(lt.chart_left*IN_TO_MM).toFixed(1),top:+(lt.chart_top*IN_TO_MM).toFixed(1),width:+(lt.chart_width*IN_TO_MM).toFixed(1),height:+(lt.chart_height*IN_TO_MM).toFixed(1)};
+  h+=`<div class="section-box" style="margin-bottom:10px"><div class="section-header open" onclick="toggleSection(this)">📐 차트 레이아웃<span class="arrow">▶</span></div><div class="section-body">`;
+  h+=`<div class="layout-grid">`;
+  h+=`<div class="layout-item"><label>좌측(X)</label><input type="number" step="0.5" value="${ltMm.left}" onchange="setChartMm('chart_left',+this.value)"><span style="font-size:0.65rem;color:var(--text-muted)">mm</span></div>`;
+  h+=`<div class="layout-item"><label>상단(Y)</label><input type="number" step="0.5" value="${ltMm.top}" onchange="setChartMm('chart_top',+this.value)"><span style="font-size:0.65rem;color:var(--text-muted)">mm</span></div>`;
+  h+=`<div class="layout-item"><label>너비</label><input type="number" step="0.5" value="${ltMm.width}" onchange="setChartMm('chart_width',+this.value)"><span style="font-size:0.65rem;color:var(--text-muted)">mm</span></div>`;
+  h+=`<div class="layout-item"><label>높이</label><input type="number" step="0.5" value="${ltMm.height}" onchange="setChartMm('chart_height',+this.value)"><span style="font-size:0.65rem;color:var(--text-muted)">mm</span></div>`;
+  h+=`</div>`;
+  h+=`<div style="display:flex;gap:10px;margin-top:6px;align-items:center;flex-wrap:wrap">`;
+  h+=`<span style="font-size:0.7rem;color:var(--text-secondary)">가로</span>`;
+  ['left','center','right'].forEach(a=>{const lb={left:'좌',center:'중',right:'우'}[a];h+=`<button class="cm-btn ${hAlign===a?'active':''}" onclick="hAlign='${a}';alignChart()">${lb}</button>`;});
+  h+=`<span style="font-size:0.7rem;color:var(--text-secondary);margin-left:8px">세로</span>`;
+  ['top','center','bottom'].forEach(a=>{const lb={top:'상',center:'중',bottom:'하'}[a];h+=`<button class="cm-btn ${vAlign===a?'active':''}" onclick="vAlign='${a}';alignChart()">${lb}</button>`;});
+  h+=`</div></div></div>`;
+
+  // Color Mode + Palette
+  const curMode=perChartColor?chartColorModes[activeChartType]:colorMode;
+  const pal2=c.chart_palette;
+  h+=`<div class="section-box" style="margin-bottom:10px"><div class="section-header open" onclick="toggleSection(this)">🎨 색상 모드 / 팔레트<span class="arrow">▶</span></div><div class="section-body">`;
+  h+=`<label class="cm-check"><input type="checkbox" ${perChartColor?'checked':''} onchange="perChartColor=this.checked;rebuild()"> 차트별 독립 색상</label>`;
+  h+=`<div class="cm-grid">`;
+  COLOR_MODES.forEach(m=>{h+=`<button class="cm-btn ${curMode===m.key?'active':''}" onclick="setColorMode('${m.key}')" title="${m.desc}">${m.label}</button>`;});
+  h+=`</div>`;
+  if(curMode==='single')h+=`<div class="cm-colors"><span class="cm-color-item">기본색<input type="color" value="${hex(pal2[0])}" onchange="gt().colors.chart_palette[0]=hexToRgb(this.value);saveR()"></span></div>`;
+  else if(curMode==='max'||curMode==='min')h+=`<div class="cm-colors"><span class="cm-color-item">기본<input type="color" value="${hex(pal2[0])}" onchange="gt().colors.chart_palette[0]=hexToRgb(this.value);saveR()"></span><span class="cm-color-item">강조<input type="color" value="${hex(pal2[1%pal2.length])}" onchange="gt().colors.chart_palette[1]=hexToRgb(this.value);saveR()"></span></div>`;
+  else if(curMode==='max_min')h+=`<div class="cm-colors"><span class="cm-color-item">그외<input type="color" value="${hex(pal2[0])}" onchange="gt().colors.chart_palette[0]=hexToRgb(this.value);saveR()"></span><span class="cm-color-item">최고<input type="color" value="${hex(pal2[1%pal2.length])}" onchange="gt().colors.chart_palette[1]=hexToRgb(this.value);saveR()"></span><span class="cm-color-item">최저<input type="color" value="${hex(pal2[2%pal2.length])}" onchange="gt().colors.chart_palette[2]=hexToRgb(this.value);saveR()"></span></div>`;
+  else if(curMode==='gradient')h+=`<div class="cm-colors"><span class="cm-color-item">기준색<input type="color" value="${hex(pal2[0])}" onchange="gt().colors.chart_palette[0]=hexToRgb(this.value);saveR()"></span></div>`;
+  else if(curMode==='custom'){h+=`<div class="cm-colors" style="flex-direction:column;gap:4px">`;const cats=activeChartType==='stacked'?SAMPLE_DATA.series_names:SAMPLE_DATA.categories.slice(0,pal2.length);cats.forEach((cat,i)=>{const cc=customColors[i]||pal2[i%pal2.length];h+=`<span class="cm-color-item">${cat}<input type="color" value="${hex(cc)}" onchange="customColors[${i}]=hexToRgb(this.value);rebuild()"></span>`;});h+=`</div>`;}
+  h+=`<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:0.7rem;color:var(--text-secondary);margin-bottom:4px">팔레트 (${pal2.length}색)</div><div class="palette-edit">`;
+  pal2.forEach((col,i)=>{h+=`<div class="pal-edit-cell" style="background:${rgb(col)}" title="${hex(col)}"><input type="color" value="${hex(col)}" style="opacity:0;position:absolute;width:100%;height:100%;cursor:pointer" onchange="gt().colors.chart_palette[${i}]=hexToRgb(this.value);saveR()"><button class="pal-del" onclick="event.stopPropagation();delPalette(${i})">✕</button></div>`;});
+  h+=`<button class="pal-add-btn" onclick="addPalette()">+</button></div>`;
+  h+=`<div class="pal-actions"><button class="pal-act-btn" onclick="resetPalette()">🔄 초기화</button><button class="pal-act-btn" onclick="savePaletteSlot()">💾 슬롯 저장</button></div>`;
+  const slots=loadPaletteSlots();if(Object.keys(slots).length){h+=`<div class="slot-list">`;Object.entries(slots).forEach(([name,colors])=>{h+=`<button class="slot-btn" onclick="loadPaletteSlot('${name}')" title="${colors.length}색">${name}<span style="margin-left:4px;color:var(--danger);cursor:pointer" onclick="event.stopPropagation();deletePaletteSlot('${name}')">✕</span></button>`;});h+=`</div>`;}
+  h+=`</div></div></div>`;
+
+  h+=`<div class="slide-frame" style="aspect-ratio:${W}/${H}"><div class="slide-inner" style="background:${rgb(bg)}">`;
+  h+=`<div class="slide-title" style="color:${rgb(c.title)};top:${titleTop}%;left:${titleLeft}%;font-size:${Math.max(f.title_size*0.55,10)}px">${th.name} — 샘플 데이터 미리보기</div>`;
+  h+=`<div class="slide-subtitle" style="color:${rgb(c.subtitle)};top:${titleTop+3.5}%;left:${titleLeft}%;font-size:${Math.max(f.subtitle_size*0.5,8)}px">지역별 생산현황 · ${f.name} · ${dataModeLabel()}</div>`;
+  h+=`<div class="chart-area" style="left:${cL}%;top:${cT}%;width:${cW}%;height:${cH}%">${chartHtml}</div>`;
+  if(activeChartType!=='pie') h+=legendHtml;
+  h+=`<div class="slide-page-num" style="color:${rgb(c.page_num)}">1 / 34</div>`;
+  h+=`</div></div>`;
+
+  const pWmm=inToMm(W), pHmm=inToMm(H);
+  const cWmm=inToMm(lt.chart_width||0), cHmm=inToMm(lt.chart_height||0);
+  h+=`<div class="preview-info">`;
+  h+=`<span>📐 ${pWmm}×${pHmm}mm</span>`;
+  h+=`<span>📊 ${cWmm}×${cHmm}mm</span>`;
+  h+=`<span>🔤 ${f.name}</span>`;
+  h+=`<span>📈 ${dataModeLabel()}</span>`;
+  h+=`</div>`;
+  document.getElementById('previewPanel').innerHTML=h;
+}
+
+// ── Actions ──
+function gt(){return themes[activeThemeKey];}
+function saveR(){isDirty=true;rebuild();}
+function manualSave(){saveThemes();isDirty=false;rebuild();alert('저장되었습니다.');}
+function rebuild(){buildToolbar();buildEditPanel();buildPreviewPanel();}
+function toggleSection(el){el.classList.toggle('open');}
+function addPalette(){const p=gt().colors.chart_palette;p.push([100+Math.floor(Math.random()*100),100+Math.floor(Math.random()*100),100+Math.floor(Math.random()*100)]);saveR();}
+function delPalette(i){const p=gt().colors.chart_palette;if(p.length<=2){alert('최소 2색은 유지해야 합니다.');return;}p.splice(i,1);saveR();}
+function setColorMode(m){
+  if(perChartColor){chartColorModes[activeChartType]=m;}else{colorMode=m;}
+  rebuild();
+}
+function setChartMm(prop,valMm){
+  if(!gt()[activeChartType])gt()[activeChartType]={};
+  gt()[activeChartType][prop]=mmToIn(valMm);saveR();
+}
+function alignChart(){
+  const t=gt(),s=t.slide,ct=t[activeChartType];
+  if(!ct)return; applyAlign(s,ct,activeChartType);saveR();
+}
+function changeSlidePreset(key){
+  const p=SLIDE_PRESETS.find(x=>x.key===key);
+  if(!p||p.key==='custom'){rebuild();return;}
+  const t=gt();
+  t.slide.width_inches=mmToIn(p.w); t.slide.height_inches=mmToIn(p.h);
+  const defs=autoLayoutDefaults(t.slide.width_inches,t.slide.height_inches);
+  CHART_TYPES.forEach(ct=>{
+    if(!t[ct.key])t[ct.key]={};
+    Object.assign(t[ct.key],{chart_left:defs.chart_left,chart_top:defs.chart_top,chart_width:defs.chart_width,chart_height:defs.chart_height});
+  });
+  saveR();
+}
+// ── Palette Slots ──
+function resetPalette(){
+  const dk=DEFAULT_THEMES[activeThemeKey];
+  if(dk){gt().colors.chart_palette=JSON.parse(JSON.stringify(dk.colors.chart_palette));}else{gt().colors.chart_palette=JSON.parse(JSON.stringify(DEFAULT_THEMES.dark_premium.colors.chart_palette));}
+  saveR();
+}
+function loadPaletteSlots(){try{return JSON.parse(localStorage.getItem('ppt_palette_slots')||'{}');}catch(e){return {};}}
+function savePaletteSlots(s){localStorage.setItem('ppt_palette_slots',JSON.stringify(s));}
+function savePaletteSlot(){
+  const name=prompt('슬롯 이름을 입력하세요:');
+  if(!name) return;
+  const slots=loadPaletteSlots();
+  slots[name]=JSON.parse(JSON.stringify(gt().colors.chart_palette));
+  savePaletteSlots(slots); rebuild();
+}
+function loadPaletteSlot(name){
+  const slots=loadPaletteSlots();
+  if(slots[name]){gt().colors.chart_palette=JSON.parse(JSON.stringify(slots[name]));saveR();}
+}
+function deletePaletteSlot(name){
+  if(!confirm(`"${name}" 슬롯을 삭제하시겠습니까?`)) return;
+  const slots=loadPaletteSlots();
+  delete slots[name]; savePaletteSlots(slots); rebuild();
+}
+
+function showNewModal(){
+  const m=document.getElementById('modal');
+  m.innerHTML=`<h3>🆕 새 테마 만들기</h3>
+    <div class="form-row"><label>테마명</label><input type="text" id="newName" placeholder="예: Navy Modern" style="flex:1"></div>
+    <div class="form-row"><label>설명</label><input type="text" id="newDesc" placeholder="예: 세련된 네이비 테마" style="flex:1"></div>
+    <div class="modal-actions"><button onclick="closeModal()">취소</button><button class="primary" onclick="createTheme()">만들기</button></div>`;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active');}
+function createTheme(){
+  const name=document.getElementById('newName').value.trim();
+  const desc=document.getElementById('newDesc').value.trim();
+  if(!name){alert('테마명을 입력하세요.');return;}
+  const id=name.replace(/[^a-zA-Z0-9\uAC00-\uD7AF]/g,'_').toLowerCase()||'theme_'+Date.now();
+  let key=id;let n=2;while(themes[key]){key=id+n;n++;}
+  themes[key]=JSON.parse(JSON.stringify(DEFAULT_THEMES.dark_premium));
+  themes[key].name=name;themes[key].description=desc;
+  activeThemeKey=key;isDirty=true;rebuild();closeModal();
+}
+function duplicateTheme(){
+  const src=gt();const nk=activeThemeKey+'_copy';
+  let key=nk,n=2;while(themes[key]){key=nk+n;n++;}
+  themes[key]=JSON.parse(JSON.stringify(src));themes[key].name=src.name+' (복사)';
+  activeThemeKey=key;isDirty=true;rebuild();
+}
+function deleteTheme(){
+  if(Object.keys(themes).length<=1){alert('최소 1개 테마는 유지해야 합니다.');return;}
+  if(!confirm(`"${gt().name}" 테마를 삭제하시겠습니까?`))return;
+  delete themes[activeThemeKey];activeThemeKey=Object.keys(themes)[0];isDirty=true;rebuild();
+}
+function exportJSON(){
+  const th=gt();const blob=new Blob([JSON.stringify(th,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=activeThemeKey+'.json';a.click();URL.revokeObjectURL(a.href);
+}
+function importJSON(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    try{const data=JSON.parse(ev.target.result);if(!data.name||!data.colors){alert('유효하지 않은 테마 파일입니다.');return;}
+    const key=file.name.replace('.json','').replace(/\s+/g,'_').toLowerCase();
+    themes[key]=data;activeThemeKey=key;isDirty=true;rebuild();}catch(err){alert('JSON 파싱 오류: '+err.message);}
+  };
+  reader.readAsText(file);e.target.value='';
+}
+
+// ── Init ──
+loadThemes(); rebuild();
+</script>
 </body>
 </html>
