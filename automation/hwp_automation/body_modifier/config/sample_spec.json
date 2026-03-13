@@ -1,0 +1,35 @@
+{
+    "_description": "수정 사양 예시: 본문 문단 뒤에 빨간색 텍스트를 삽입하는 규칙",
+    "_usage": "python run_body_mod.py --input 원본.hwpx --spec config/sample_spec.json --output 결과.hwpx",
+
+    "new_styles": [
+        {
+            "type": "charPr",
+            "base_id": "22",
+            "changes": {
+                "textColor": "#FF0000"
+            },
+            "description": "본문 기본 스타일에 빨간색만 적용"
+        }
+    ],
+
+    "target_section": "Contents/section1.xml",
+
+    "rules": [
+        {
+            "action": "insert_after",
+            "strategy": "startswith",
+            "pattern": "교육 운영 선호 기간대는 오후(13~17시)",
+            "text": "아성정밀화학은 \"화~목 오후 13~17시\", 대송컨테이너항업은 \"수목 오후 13~16시\" 등을 희망"
+        },
+        {
+            "action": "insert_after",
+            "strategy": "contains",
+            "pattern": "오후 시간대 선호",
+            "text": "한국후지필터는 \"오후 2~3시\", 디비밸리는 \"오후 3~6시\" 등 오후 시간대를 구체적으로 지정"
+        },
+        {
+            "_comment": "--- 추가 규칙을 여기에 계속 추가 ---"
+        }
+    ]
+}

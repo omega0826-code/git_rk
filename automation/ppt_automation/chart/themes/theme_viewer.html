@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPT 차트 테마 색상 뷰어</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #263348;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: #334155;
+      --accent: #60a5fa;
+      --accent-glow: rgba(96, 165, 250, 0.15);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-xs: 6px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', '맑은 고딕', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .header .path-badge {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 14px;
+      background: rgba(96, 165, 250, 0.1);
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-family: 'Consolas', monospace;
+    }
+
+    /* Tab Navigation */
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 24px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #0f172a;
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    /* Theme Card */
+    .theme-panel {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .theme-panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .theme-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding: 24px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .theme-meta .preview-bg {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .theme-meta .info h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .theme-meta .info p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .theme-meta .info .font-tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 10px;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: #a78bfa;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Color Grid */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .color-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .color-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .color-card .swatch {
+      width: 100%;
+      height: 48px;
+      border-radius: var(--radius-xs);
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .color-card .swatch::after {
+      content: 'Aa';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.1rem;
+      font-weight: 600;
+      opacity: 0.7;
+    }
+
+    .color-card .color-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+
+    .color-card .color-values {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .color-card .color-val {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: 'Consolas', monospace;
+    }
+
+    .color-card .copied-toast {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 3px 8px;
+      background: var(--accent);
+      color: #0f172a;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .color-card .copied-toast.show {
+      opacity: 1;
+    }
+
+    /* Palette Section */
+    .palette-strip {
+      display: flex;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      height: 64px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .palette-strip .pal-cell {
+      flex: 1;
+      position: relative;
+      cursor: pointer;
+      transition: flex 0.25s ease;
+    }
+
+    .palette-strip .pal-cell:hover {
+      flex: 2;
+    }
+
+    .palette-strip .pal-cell .pal-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      padding: 4px 10px;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-family: 'Consolas', monospace;
+      color: var(--text-primary);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s;
+      z-index: 10;
+    }
+
+    .palette-strip .pal-cell:hover .pal-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    .palette-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 8px;
+    }
+
+    .pal-detail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pal-detail:hover {
+      border-color: var(--accent);
+    }
+
+    .pal-detail .dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .pal-detail .pal-info {
+      font-size: 0.72rem;
+      font-family: 'Consolas', monospace;
+      color: var(--text-secondary);
+    }
+
+    .pal-detail .pal-idx {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    /* Preview Section */
+    .preview-section {
+      margin-top: 32px;
+    }
+
+    .slide-preview {
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .slide-preview .preview-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .slide-preview .preview-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .preview-chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 140px;
+    }
+
+    .preview-chart-bars .bar {
+      flex: 1;
+      border-radius: 6px 6px 0 0;
+      transition: height 0.5s ease;
+      position: relative;
+    }
+
+    .preview-chart-bars .bar .bar-label {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .preview-page-num {
+      text-align: right;
+      margin-top: 16px;
+      font-size: 0.8rem;
+    }
+
+    /* Compare View */
+    .compare-btn {
+      display: block;
+      margin: 0 auto 36px;
+      padding: 10px 28px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.25s;
+    }
+
+    .compare-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    .compare-btn.active {
+      background: rgba(96, 165, 250, 0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .compare-container {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .compare-container.active {
+      display: grid;
+    }
+
+    .compare-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .compare-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .compare-card h3 .mini-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .compare-palette-row {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .compare-palette-row .cp-cell {
+      flex: 1;
+      height: 32px;
+      border-radius: 4px;
+    }
+
+    .compare-palette-row .cp-cell:first-child {
+      border-radius: 6px 4px 4px 6px;
+    }
+
+    .compare-palette-row .cp-cell:last-child {
+      border-radius: 4px 6px 6px 4px;
+    }
+
+    .compare-colors-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .compare-colors-list .cc-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      padding: 6px 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+    }
+
+    .compare-colors-list .cc-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .compare-colors-list .cc-name {
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+      .compare-container { grid-template-columns: 1fr; }
+      .header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎨 PPT 차트 테마 색상 뷰어</h1>
+      <p>차트 자동화에 사용되는 테마 색상을 미리 확인합니다</p>
+      <div class="path-badge">📁 automation/ppt_automation/chart/themes/</div>
+    </div>
+
+    <div class="tab-nav" id="tabNav"></div>
+
+    <button class="compare-btn" id="compareBtn" onclick="toggleCompare()">⚖️ 테마 비교</button>
+
+    <div class="compare-container" id="compareContainer"></div>
+
+    <div id="themePanels"></div>
+  </div>
+
+  <script>
+    // ── Embedded Theme Data ──
+    const THEMES = {
+      "dark_premium": {
+        "name": "Dark Premium",
+        "description": "진남색 배경, 프레젠테이션용 다크 테마",
+        "slide": { "width_inches": 13.333, "height_inches": 7.5, "background": [15, 23, 42] },
+        "font": {
+          "name": "맑은 고딕",
+          "title_size": 22, "subtitle_size": 12, "label_size": 10,
+          "legend_size": 11, "page_num_size": 10, "data_label_size": 10, "stacked_label_size": 8
+        },
+        "colors": {
+          "title": [255, 255, 255], "subtitle": [148, 163, 184], "label": [226, 232, 240],
+          "axis_line": [51, 65, 85], "page_num": [148, 163, 184], "pie_label": [255, 255, 255],
+          "chart_palette": [
+            [96, 165, 250], [52, 211, 153], [251, 191, 36], [167, 139, 250], [248, 113, 113],
+            [34, 211, 238], [251, 146, 60], [244, 114, 182], [45, 212, 191], [192, 132, 252]
+          ]
+        }
+      },
+      "white_clean": {
+        "name": "White Clean",
+        "description": "흰 배경, 워드 삽입용 기본 테마",
+        "slide": { "width_inches": 13.333, "height_inches": 7.5, "background": [255, 255, 255] },
+        "font": {
+          "name": "맑은 고딕",
+          "title_size": 22, "subtitle_size": 12, "label_size": 10,
+          "legend_size": 11, "page_num_size": 10, "data_label_size": 10, "stacked_label_size": 8
+        },
+        "colors": {
+          "title": [34, 34, 34], "subtitle": [102, 102, 102], "label": [51, 51, 51],
+          "axis_line": [204, 204, 204], "page_num": [102, 102, 102], "pie_label": [255, 255, 255],
+          "chart_palette": [
+            [59, 130, 246], [16, 185, 129], [245, 158, 11], [139, 92, 246], [239, 68, 68],
+            [6, 182, 212], [249, 115, 22], [236, 72, 153], [20, 184, 166], [168, 85, 247]
+          ]
+        }
+      }
+    };
+
+    // ── Utilities ──
+    function rgb(arr) { return `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`; }
+    function hex(arr) { return '#' + arr.map(v => v.toString(16).padStart(2, '0')).join(''); }
+    function contrastColor(arr) {
+      const lum = (0.299 * arr[0] + 0.587 * arr[1] + 0.114 * arr[2]);
+      return lum > 140 ? '#1e293b' : '#f1f5f9';
+    }
+
+    const LABEL_MAP = {
+      title: '제목 (Title)', subtitle: '부제목 (Subtitle)', label: '레이블 (Label)',
+      axis_line: '축 선 (Axis Line)', page_num: '페이지 번호', pie_label: '파이 레이블'
+    };
+
+    // ── Copy to clipboard ──
+    function copyColor(text, el) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = el.querySelector('.copied-toast');
+        if (toast) {
+          toast.textContent = '복사됨!';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 1200);
+        }
+      });
+    }
+
+    // ── Build UI ──
+    const themeKeys = Object.keys(THEMES);
+    let activeTab = themeKeys[0];
+
+    function buildTabs() {
+      const nav = document.getElementById('tabNav');
+      themeKeys.forEach((key, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+        btn.textContent = THEMES[key].name;
+        btn.dataset.key = key;
+        btn.onclick = () => switchTab(key);
+        nav.appendChild(btn);
+      });
+    }
+
+    function switchTab(key) {
+      activeTab = key;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.key === key));
+      document.querySelectorAll('.theme-panel').forEach(p => p.classList.toggle('active', p.dataset.key === key));
+    }
+
+    function buildPanel(key, theme) {
+      const c = theme.colors;
+      const bg = theme.slide.background;
+      const barHeights = [85, 60, 100, 45, 72, 90, 55, 78, 65, 95];
+
+      const namedColors = Object.entries(c).filter(([k]) => k !== 'chart_palette');
+
+      return `
+        <div class="theme-panel ${key === activeTab ? 'active' : ''}" data-key="${key}">
+
+          <div class="theme-meta">
+            <div class="preview-bg" style="background:${rgb(bg)}; color:${contrastColor(bg)}">BG</div>
+            <div class="info">
+              <h2>${theme.name}</h2>
+              <p>${theme.description}</p>
+              <span class="font-tag">🔤 ${theme.font.name} · Title ${theme.font.title_size}pt</span>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">텍스트 · UI 색상</div>
+            <div class="color-grid">
+              ${namedColors.map(([name, val]) => `
+                <div class="color-card" onclick="copyColor('${hex(val)}', this)">
+                  <div class="swatch" style="background:${rgb(val)}; color:${contrastColor(val)}"></div>
+                  <div class="color-name">${LABEL_MAP[name] || name}</div>
+                  <div class="color-values">
+                    <span class="color-val">${hex(val)}</span>
+                    <span class="color-val">RGB(${val.join(', ')})</span>
+                  </div>
+                  <div class="copied-toast"></div>
+                </div>
+              `).join('')}
+              <div class="color-card" onclick="copyColor('${hex(bg)}', this)">
+                <div class="swatch" style="background:${rgb(bg)}; color:${contrastColor(bg)}; border: 2px dashed rgba(255,255,255,0.15)"></div>
+                <div class="color-name">슬라이드 배경 (Background)</div>
+                <div class="color-values">
+                  <span class="color-val">${hex(bg)}</span>
+                  <span class="color-val">RGB(${bg.join(', ')})</span>
+                </div>
+                <div class="copied-toast"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">차트 팔레트 (Chart Palette)</div>
+            <div class="palette-strip">
+              ${c.chart_palette.map((col, i) => `
+                <div class="pal-cell" style="background:${rgb(col)}" onclick="navigator.clipboard.writeText('${hex(col)}')">
+                  <div class="pal-tooltip">#${i} · ${hex(col)}</div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="palette-details">
+              ${c.chart_palette.map((col, i) => `
+                <div class="pal-detail" onclick="navigator.clipboard.writeText('${hex(col)}')">
+                  <div class="dot" style="background:${rgb(col)}"></div>
+                  <div>
+                    <div class="pal-idx">#${i}</div>
+                    <div class="pal-info">${hex(col)}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="section preview-section">
+            <div class="section-title">슬라이드 미리보기</div>
+            <div class="slide-preview" style="background:${rgb(bg)}">
+              <div class="preview-title" style="color:${rgb(c.title)}">차트 제목 예시</div>
+              <div class="preview-subtitle" style="color:${rgb(c.subtitle)}">부제목 텍스트 · ${theme.font.name}</div>
+              <div class="preview-chart-bars">
+                ${c.chart_palette.map((col, i) => `
+                  <div class="bar" style="background:${rgb(col)}; height:${barHeights[i]}%">
+                    <div class="bar-label" style="color:${rgb(c.label)}">${barHeights[i]}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="preview-page-num" style="color:${rgb(c.page_num)}">1 / 34</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildCompare() {
+      const container = document.getElementById('compareContainer');
+      container.innerHTML = themeKeys.map(key => {
+        const t = THEMES[key];
+        const c = t.colors;
+        const bg = t.slide.background;
+        const named = Object.entries(c).filter(([k]) => k !== 'chart_palette');
+        return `
+          <div class="compare-card">
+            <h3><span class="mini-swatch" style="background:${rgb(bg)}"></span>${t.name}</h3>
+            <div class="compare-palette-row">
+              ${c.chart_palette.map(col => `<div class="cp-cell" style="background:${rgb(col)}"></div>`).join('')}
+            </div>
+            <div class="compare-colors-list">
+              ${named.map(([name, val]) => `
+                <div class="cc-item">
+                  <div class="cc-dot" style="background:${rgb(val)}"></div>
+                  <span class="cc-name">${LABEL_MAP[name] || name}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleCompare() {
+      const btn = document.getElementById('compareBtn');
+      const container = document.getElementById('compareContainer');
+      btn.classList.toggle('active');
+      container.classList.toggle('active');
+    }
+
+    // ── Init ──
+    buildTabs();
+    const panelsDiv = document.getElementById('themePanels');
+    themeKeys.forEach(key => {
+      panelsDiv.innerHTML += buildPanel(key, THEMES[key]);
+    });
+    buildCompare();
+  </script>
+</body>
+</html>

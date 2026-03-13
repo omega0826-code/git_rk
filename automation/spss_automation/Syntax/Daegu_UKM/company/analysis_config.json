@@ -1,0 +1,168 @@
+{
+    "project_name": "대구한의대 RISE사업 기업체조사",
+    "version": "1.0.0",
+    "encoding": "cp949",
+    "output_name": "company_analysis",
+    "banner": {
+        "variables": [
+            "SQ1",
+            "A1",
+            "A2"
+        ],
+        "validn_label": "업체수"
+    },
+    "label_sps": "d:\\git_rk\\SPSS\\Label\\Daegu University of Korean Medicine\\Company\\company_label_short.sps",
+    "sections": [
+        {
+            "title": "Part A. 인지도 및 참여 현황",
+            "items": [
+                {
+                    "type": "freq",
+                    "var": "SQ1",
+                    "label": "SQ1. 연관 산업 분야"
+                },
+                {
+                    "type": "freq",
+                    "var": "A1",
+                    "label": "A1. RISE사업 인지 여부"
+                },
+                {
+                    "type": "freq",
+                    "var": "A1_1",
+                    "label": "A1-1. RISE사업 인지 경로",
+                    "filter": {
+                        "var": "A1",
+                        "op": "=",
+                        "val": 1
+                    }
+                },
+                {
+                    "type": "freq",
+                    "var": "A2",
+                    "label": "A2. RISE사업 참여 여부"
+                },
+                {
+                    "type": "freq",
+                    "var": "A2_1",
+                    "label": "A2-1. RISE사업 전반 만족도",
+                    "filter": {
+                        "var": "A2",
+                        "op": "=",
+                        "val": 1
+                    }
+                },
+                {
+                    "type": "freq",
+                    "var": "A2_3",
+                    "label": "A2-3. 미참여 이유",
+                    "filter": {
+                        "var": "A2",
+                        "op": "=",
+                        "val": 3
+                    }
+                },
+                {
+                    "type": "freq_each",
+                    "prefix": "A4L",
+                    "from": 1,
+                    "to": 16,
+                    "auto_label": true,
+                    "filter": {
+                        "var": "A2",
+                        "op": "=",
+                        "val": 1
+                    }
+                },
+                {
+                    "type": "mean",
+                    "prefix": "A4Rr",
+                    "from": 1,
+                    "to": 16,
+                    "label": "A4. 프로그램별 만족도(5점)",
+                    "filter": {
+                        "var": "A2",
+                        "op": "=",
+                        "val": 1
+                    }
+                },
+                {
+                    "type": "multi",
+                    "from": "A5_1",
+                    "to": "A5_6",
+                    "group": "aa",
+                    "mr_label": "만족 이유(중복)",
+                    "title": "A5. 세부프로그램 만족 이유(중복)",
+                    "filter": {
+                        "var": "A2",
+                        "op": "=",
+                        "val": 1
+                    }
+                },
+                {
+                    "type": "multi",
+                    "from": "A6_1",
+                    "to": "A6_7",
+                    "group": "ab",
+                    "mr_label": "불만족 이유(중복)",
+                    "title": "A6. 세부프로그램 불만족 이유(중복)",
+                    "filter": {
+                        "var": "A2",
+                        "op": "=",
+                        "val": 1
+                    }
+                },
+                {
+                    "type": "multi",
+                    "from": "A7_1",
+                    "to": "A7_6",
+                    "group": "ac",
+                    "mr_label": "개선사항(중복)",
+                    "title": "A7. 프로그램 개선사항(중복)",
+                    "filter": {
+                        "var": "A2",
+                        "op": "=",
+                        "val": 1
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Part B. 수요 및 개선사항",
+            "items": [
+                {
+                    "type": "freq_each",
+                    "prefix": "B1",
+                    "from": 1,
+                    "to": 16,
+                    "auto_label": true
+                },
+                {
+                    "type": "multi",
+                    "from": "B2_1",
+                    "to": "B2_6",
+                    "group": "ad",
+                    "mr_label": "중점 추진 사업(중복)",
+                    "title": "B2. 중점 추진 희망 사업(중복)"
+                },
+                {
+                    "type": "freq",
+                    "var": "B5",
+                    "label": "B5. 향후 희망 프로그램 유형"
+                },
+                {
+                    "type": "freq",
+                    "var": "B6",
+                    "label": "B6. 대학 교육 강화 분야"
+                },
+                {
+                    "type": "multi",
+                    "from": "B7_1",
+                    "to": "B7_10",
+                    "group": "ae",
+                    "mr_label": "개선 사항(중복)",
+                    "title": "B7. RISE사업 개선 사항(중복)"
+                }
+            ]
+        }
+    ]
+}

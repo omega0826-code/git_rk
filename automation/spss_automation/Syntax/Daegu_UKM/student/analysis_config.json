@@ -1,0 +1,341 @@
+{
+    "project_name": "대구한의대 RISE사업 재학생조사",
+    "version": "1.0.0",
+    "encoding": "cp949",
+    "output_name": "student_analysis",
+    "banner": {
+        "variables": [
+            "SQ1",
+            "SQ2",
+            "SQ3"
+        ],
+        "validn_label": "응답수"
+    },
+    "label_sps": "d:\\git_rk\\SPSS\\Label\\Daegu University of Korean Medicine\\Student\\student_label_short.sps",
+    "sections": [
+        {
+            "title": "Part A. RISE사업 인지도 및 만족도",
+            "items": [
+                {
+                    "type": "freq",
+                    "var": "SQ1",
+                    "label": "SQ1. 성별"
+                },
+                {
+                    "type": "freq",
+                    "var": "SQ2",
+                    "label": "SQ2. 학년"
+                },
+                {
+                    "type": "freq",
+                    "var": "SQ3",
+                    "label": "SQ3. 소속 대학"
+                },
+                {
+                    "type": "freq",
+                    "var": "SQ4",
+                    "label": "SQ4. 거주지"
+                },
+                {
+                    "type": "freq",
+                    "var": "A1",
+                    "label": "A1. RISE사업 인지 여부"
+                },
+                {
+                    "type": "freq",
+                    "var": "A1_1",
+                    "label": "A1-1. RISE사업 인지 경로",
+                    "filter": {
+                        "var": "A1",
+                        "op": "=",
+                        "val": 1
+                    }
+                },
+                {
+                    "type": "freq",
+                    "var": "A1_2",
+                    "label": "A1-2. RISE사업 비인지 이유",
+                    "filter": {
+                        "var": "A1",
+                        "op": "=",
+                        "val": 2
+                    }
+                },
+                {
+                    "type": "freq",
+                    "var": "A2",
+                    "label": "A2. RISE사업 전반 만족도"
+                },
+                {
+                    "type": "freq",
+                    "var": "A2_1",
+                    "label": "A2-1. RISE사업 만족 이유",
+                    "filter": {
+                        "var": "A2",
+                        "op": "<=",
+                        "val": 2
+                    }
+                },
+                {
+                    "type": "freq",
+                    "var": "A2_2",
+                    "label": "A2-2. RISE사업 불만족 이유",
+                    "filter": {
+                        "var": "A2",
+                        "op": ">=",
+                        "val": 4
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Part B1. 로컬 맞춤형 R&D",
+            "items": [
+                {
+                    "type": "freq_each",
+                    "prefix": "B1L",
+                    "from": 1,
+                    "to": 12,
+                    "auto_label": true
+                },
+                {
+                    "type": "mean",
+                    "prefix": "B1R",
+                    "from": 1,
+                    "to": 12,
+                    "label": "B1. 프로그램별 만족도(5점)"
+                },
+                {
+                    "type": "freq",
+                    "var": "B1_1",
+                    "label": "B1_1. 로컬 맞춤형 R&D 만족도"
+                },
+                {
+                    "type": "multi",
+                    "from": "B1_1_1_1",
+                    "to": "B1_1_1_7",
+                    "group": "ba1",
+                    "mr_label": "만족 이유(중복)",
+                    "title": "B1_1_1. 로컬R&D 만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B1_1_2_1",
+                    "to": "B1_1_2_7",
+                    "group": "ba2",
+                    "mr_label": "불만족 이유(중복)",
+                    "title": "B1_1_2. 로컬R&D 불만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B1_2_1",
+                    "to": "B1_2_8",
+                    "group": "ba3",
+                    "mr_label": "개선사항(중복)",
+                    "title": "B1_2. 로컬R&D 개선사항(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B1_3_1",
+                    "to": "B1_3_7",
+                    "group": "ba4",
+                    "mr_label": "희망 과제(중복)",
+                    "title": "B1_3. 향후 참여 희망 과제(중복)"
+                }
+            ]
+        },
+        {
+            "title": "Part B2. 대학자율 로컬 맞춤형 R&D",
+            "items": [
+                {
+                    "type": "freq",
+                    "var": "B2_1",
+                    "label": "B2_1. 대학자율 로컬R&D 만족도"
+                },
+                {
+                    "type": "multi",
+                    "from": "B2_1_1_1",
+                    "to": "B2_1_1_7",
+                    "group": "bb1",
+                    "mr_label": "만족 이유(중복)",
+                    "title": "B2_1_1. 대학자율R&D 만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B2_1_2_1",
+                    "to": "B2_1_2_7",
+                    "group": "bb2",
+                    "mr_label": "불만족 이유(중복)",
+                    "title": "B2_1_2. 대학자율R&D 불만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B2_2_1",
+                    "to": "B2_2_8",
+                    "group": "bb3",
+                    "mr_label": "개선사항(중복)",
+                    "title": "B2_2. 대학자율R&D 개선사항(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B2_3_1",
+                    "to": "B2_3_7",
+                    "group": "bb4",
+                    "mr_label": "희망 과제(중복)",
+                    "title": "B2_3. 향후 참여 희망 과제(중복)"
+                }
+            ]
+        },
+        {
+            "title": "Part B3. 현장실무형 고급인재양성",
+            "items": [
+                {
+                    "type": "freq",
+                    "var": "B3_1",
+                    "label": "B3_1. 현장실무형 인재양성 만족도"
+                },
+                {
+                    "type": "multi",
+                    "from": "B3_1_1_1",
+                    "to": "B3_1_1_7",
+                    "group": "bc1",
+                    "mr_label": "만족 이유(중복)",
+                    "title": "B3_1_1. 현장실무형 만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B3_1_2_1",
+                    "to": "B3_1_2_7",
+                    "group": "bc2",
+                    "mr_label": "불만족 이유(중복)",
+                    "title": "B3_1_2. 현장실무형 불만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B3_2_1",
+                    "to": "B3_2_8",
+                    "group": "bc3",
+                    "mr_label": "개선사항(중복)",
+                    "title": "B3_2. 현장실무형 개선사항(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B3_3_1",
+                    "to": "B3_3_7",
+                    "group": "bc4",
+                    "mr_label": "희망 과제(중복)",
+                    "title": "B3_3. 향후 참여 희망 과제(중복)"
+                }
+            ]
+        },
+        {
+            "title": "Part B4. 대학평생.직업교육 체계 구축",
+            "items": [
+                {
+                    "type": "freq",
+                    "var": "B4_1",
+                    "label": "B4_1. 대학평생.직업교육 만족도"
+                },
+                {
+                    "type": "multi",
+                    "from": "B4_1_1_1",
+                    "to": "B4_1_1_7",
+                    "group": "bd1",
+                    "mr_label": "만족 이유(중복)",
+                    "title": "B4_1_1. 평생.직업교육 만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B4_1_2_1",
+                    "to": "B4_1_2_7",
+                    "group": "bd2",
+                    "mr_label": "불만족 이유(중복)",
+                    "title": "B4_1_2. 평생.직업교육 불만족 이유(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B4_2_1",
+                    "to": "B4_2_8",
+                    "group": "bd3",
+                    "mr_label": "개선사항(중복)",
+                    "title": "B4_2. 평생.직업교육 개선사항(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B4_3_1",
+                    "to": "B4_3_7",
+                    "group": "bd4",
+                    "mr_label": "희망 과제(중복)",
+                    "title": "B4_3. 향후 참여 희망 과제(중복)"
+                }
+            ]
+        },
+        {
+            "title": "Part B5. 사회적 가치실현",
+            "items": [
+                {
+                    "type": "freq",
+                    "var": "B5_1",
+                    "label": "B5_1. 사회적 가치실현 만족도"
+                },
+                {
+                    "type": "freq",
+                    "var": "B5_1_1",
+                    "label": "B5_1_1. 사회적 가치실현 만족 이유"
+                },
+                {
+                    "type": "freq",
+                    "var": "B5_1_2",
+                    "label": "B5_1_2. 사회적 가치실현 불만족 이유"
+                },
+                {
+                    "type": "multi",
+                    "from": "B5_2_1",
+                    "to": "B5_2_8",
+                    "group": "be3",
+                    "mr_label": "개선사항(중복)",
+                    "title": "B5_2. 사회적 가치실현 개선사항(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "B5_3_1",
+                    "to": "B5_3_7",
+                    "group": "be4",
+                    "mr_label": "희망 과제(중복)",
+                    "title": "B5_3. 향후 참여 희망 과제(중복)"
+                }
+            ]
+        },
+        {
+            "title": "Part C. 수요 및 건의사항",
+            "items": [
+                {
+                    "type": "freq",
+                    "var": "C1",
+                    "label": "C1. 중점 추진 희망 사업"
+                },
+                {
+                    "type": "multi",
+                    "from": "C2_1",
+                    "to": "C2_9",
+                    "group": "ca",
+                    "mr_label": "비교과 프로그램(중복)",
+                    "title": "C2. 비교과 참여 희망 프로그램(중복)"
+                },
+                {
+                    "type": "multi",
+                    "from": "C3_1",
+                    "to": "C3_7",
+                    "group": "cb",
+                    "mr_label": "교육 프로그램(중복)",
+                    "title": "C3. 희망 교육 프로그램 유형(중복)"
+                },
+                {
+                    "type": "freq",
+                    "var": "C4",
+                    "label": "C4. 취업률 향상 지원 방안"
+                }
+            ]
+        }
+    ]
+}

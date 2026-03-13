@@ -1,0 +1,22 @@
+{
+  "name": "Dark Premium",
+  "description": "진남색 배경, 프레젠테이션용 다크 테마",
+  "slide": { "width_inches": 13.333, "height_inches": 7.5, "background": [15, 23, 42] },
+  "font": {
+    "name": "맑은 고딕",
+    "title_size": 22, "subtitle_size": 12, "label_size": 10,
+    "legend_size": 11, "page_num_size": 10, "data_label_size": 10, "stacked_label_size": 8
+  },
+  "colors": {
+    "title": [255, 255, 255], "subtitle": [148, 163, 184], "label": [226, 232, 240],
+    "axis_line": [51, 65, 85], "page_num": [148, 163, 184], "pie_label": [255, 255, 255],
+    "chart_palette": [
+      [96, 165, 250], [52, 211, 153], [251, 191, 36], [167, 139, 250], [248, 113, 113],
+      [34, 211, 238], [251, 146, 60], [244, 114, 182], [45, 212, 191], [192, 132, 252]
+    ]
+  },
+  "hbar": { "chart_left": 0.5, "chart_top": 1.0, "chart_width": 12.3, "chart_height": 5.9, "bar_color_index": 0, "label_position": "outside_end", "axis_line_width": 0.5 },
+  "pie": { "chart_left": 1.5, "chart_top": 1.2, "chart_width": 10.0, "chart_height": 5.5, "label_bold": true },
+  "radar": { "chart_left": 2.0, "chart_top": 1.2, "chart_width": 9.0, "chart_height": 5.5, "line_color_index": 0, "line_width": 2.5, "marker_color_index": 2, "marker_size": 10 },
+  "stacked": { "chart_left": 0.5, "chart_top": 1.0, "chart_width": 12.3, "chart_height": 5.9, "label_position": "center" }
+}
