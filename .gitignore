@@ -36,7 +36,6 @@ __pycache__/
 .vscode/
 .idea/
 .test/
-.agent/
 
 # 로그/프로세스
 *.log*
