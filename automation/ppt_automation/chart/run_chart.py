@@ -87,8 +87,10 @@ def generate_from_xls(input_path, theme_path, sort_mode, skip_patterns, log):
             fl, fp, ff = list(fl), list(fp), list(ff)
 
             chart_type, method = detect_chart_type(clean_title, fl, fp, ff, n)
-            getattr(builder, method)(fl, fp, ff, n, clean_title, pg, total, sort=sort_mode) if method == 'add_hbar' \
-                else getattr(builder, method)(fl, fp, ff, n, clean_title, pg, total)
+            if method in ('add_hbar', 'add_vbar'):
+                getattr(builder, method)(fl, fp, ff, n, clean_title, pg, total, sort=sort_mode)
+            else:
+                getattr(builder, method)(fl, fp, ff, n, clean_title, pg, total)
 
             log.info(f"  OK   표 {pg} {clean_title[:40]} -> {chart_type} ({len(fl)}항목)")
             ok += 1
@@ -129,8 +131,10 @@ def generate_from_md(input_path, theme_path, sort_mode, skip_patterns, log):
             fl, fp, ff = list(fl), list(fp), list(ff)
 
             chart_type, method = detect_chart_type(title, fl, fp, ff, n)
-            getattr(builder, method)(fl, fp, ff, n, title, pg, total, sort=sort_mode) if method == 'add_hbar' \
-                else getattr(builder, method)(fl, fp, ff, n, title, pg, total)
+            if method in ('add_hbar', 'add_vbar'):
+                getattr(builder, method)(fl, fp, ff, n, title, pg, total, sort=sort_mode)
+            else:
+                getattr(builder, method)(fl, fp, ff, n, title, pg, total)
 
             log.info(f"  OK   섹션 {idx} {title[:40]} -> {chart_type} ({len(fl)}항목)")
             ok += 1

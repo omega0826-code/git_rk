@@ -84,12 +84,19 @@ body{font-family:'Inter','맑은 고딕',sans-serif;background:var(--bg-primary)
 .slide-title{position:absolute;font-weight:700;}
 .slide-subtitle{position:absolute;}
 .slide-page-num{position:absolute;bottom:3%;right:4%;font-size:0.7rem;}
-/* Charts */
+/* Charts - Vertical bars (vbar) */
 .chart-bars{display:flex;align-items:flex-end;gap:2%;height:100%;padding:8% 3% 12% 3%;}
 .chart-bars .bar-group{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;min-width:0;}
 .chart-bars .bar{width:70%;border-radius:3px 3px 0 0;position:relative;min-height:2px;transition:height .3s;}
 .chart-bars .bar .bar-val{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:0.5rem;white-space:nowrap;}
 .chart-bars .bar-cat{font-size:0.42rem;margin-top:4px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+/* Charts - Horizontal bars (hbar) */
+.hbar-chart{display:flex;flex-direction:column;gap:3%;height:100%;padding:4% 3% 6% 3%;justify-content:center;}
+.hbar-chart .hbar-row{display:flex;align-items:center;gap:2%;height:auto;min-height:0;}
+.hbar-chart .hbar-label{font-size:0.42rem;width:14%;text-align:right;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hbar-chart .hbar-bar-wrap{flex:1;height:100%;display:flex;align-items:center;}
+.hbar-chart .hbar-bar{height:70%;border-radius:0 3px 3px 0;position:relative;min-width:2px;transition:width .3s;display:flex;align-items:center;}
+.hbar-chart .hbar-val{position:absolute;right:-4px;transform:translateX(100%);font-size:0.5rem;white-space:nowrap;}
 .pie-container{display:flex;align-items:center;justify-content:center;height:100%;padding:4%;gap:4%;}
 .pie-svg{width:55%;height:90%;}
 .pie-legend{display:flex;flex-direction:column;gap:3px;font-size:0.5rem;max-width:40%;}
@@ -277,6 +284,7 @@ const DEFAULT_THEMES = {
     font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
     colors:{title:[255,255,255],subtitle:[148,163,184],label:[226,232,240],axis_line:[51,65,85],page_num:[148,163,184],pie_label:[255,255,255],
       chart_palette:[[96,165,250],[52,211,153],[251,191,36],[167,139,250],[248,113,113],[34,211,238],[251,146,60],[244,114,182],[45,212,191],[192,132,252]]},
+    vbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,axis_line_width:0.5},
     hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
     pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
     radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
@@ -288,6 +296,7 @@ const DEFAULT_THEMES = {
     font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
     colors:{title:[34,34,34],subtitle:[102,102,102],label:[51,51,51],axis_line:[204,204,204],page_num:[102,102,102],pie_label:[255,255,255],
       chart_palette:[[59,130,246],[16,185,129],[245,158,11],[139,92,246],[239,68,68],[6,182,212],[249,115,22],[236,72,153],[20,184,166],[168,85,247]]},
+    vbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,axis_line_width:0.5},
     hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
     pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
     radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
@@ -299,6 +308,7 @@ const DEFAULT_THEMES = {
     font:{name:"맑은 고딕",title_size:24,subtitle_size:13,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
     colors:{title:[248,250,252],subtitle:[148,163,184],label:[203,213,225],axis_line:[51,65,85],page_num:[148,163,184],pie_label:[255,255,255],
       chart_palette:[[56,189,248],[74,222,128],[250,204,21],[196,181,253],[251,113,133],[45,212,191],[253,186,116],[249,168,212],[134,239,172],[165,180,252]]},
+    vbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,axis_line_width:0.5},
     hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
     pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
     radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
@@ -310,6 +320,7 @@ const DEFAULT_THEMES = {
     font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
     colors:{title:[41,37,36],subtitle:[120,113,108],label:[68,64,60],axis_line:[214,211,209],page_num:[120,113,108],pie_label:[255,255,255],
       chart_palette:[[217,119,6],[22,163,74],[37,99,235],[220,38,38],[147,51,234],[13,148,136],[234,88,12],[219,39,119],[202,138,4],[79,70,229]]},
+    vbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,axis_line_width:0.5},
     hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
     pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
     radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
@@ -321,6 +332,7 @@ const DEFAULT_THEMES = {
     font:{name:"맑은 고딕",title_size:22,subtitle_size:12,label_size:10,legend_size:11,page_num_size:10,data_label_size:10,stacked_label_size:8},
     colors:{title:[30,41,59],subtitle:[100,116,139],label:[51,65,85],axis_line:[203,213,225],page_num:[100,116,139],pie_label:[30,41,59],
       chart_palette:[[129,140,248],[110,231,183],[252,211,77],[196,181,253],[253,164,175],[103,232,249],[253,186,116],[249,168,212],[134,239,172],[216,180,254]]},
+    vbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,axis_line_width:0.5},
     hbar:{chart_left:0.5,chart_top:1.0,chart_width:12.3,chart_height:5.9,bar_color_index:0,label_position:"outside_end",axis_line_width:0.5},
     pie:{chart_left:1.5,chart_top:1.2,chart_width:10.0,chart_height:5.5,label_bold:true},
     radar:{chart_left:2.0,chart_top:1.2,chart_width:9.0,chart_height:5.5,line_color_index:0,line_width:2.5,marker_color_index:2,marker_size:10},
@@ -329,10 +341,10 @@ const DEFAULT_THEMES = {
 };
 
 // ── State ──
-let themes={}, activeThemeKey='', activeChartType='hbar';
+let themes={}, activeThemeKey='', activeChartType='vbar';
 let showValue=true, showPct=false, dataPrimary='value';
 let colorMode='individual', perChartColor=false;
-let chartColorModes={hbar:'individual',pie:'individual',radar:'individual',stacked:'individual'};
+let chartColorModes={vbar:'individual',hbar:'individual',pie:'individual',radar:'individual',stacked:'individual'};
 let customColors=[];
 let hAlign='center', vAlign='center';
 let chartCount=1;
@@ -365,7 +377,7 @@ function autoLayoutDefaults(wIn,hIn){
 }
 const LABEL_MAP={title:'제목',subtitle:'부제목',label:'레이블',axis_line:'축 선',page_num:'페이지 번호',pie_label:'파이 레이블'};
 const FONT_LABEL={title_size:'제목',subtitle_size:'부제목',label_size:'레이블',legend_size:'범례',page_num_size:'페이지번호',data_label_size:'데이터라벨',stacked_label_size:'누적라벨'};
-const CHART_TYPES=[{key:'hbar',label:'가로막대'},{key:'pie',label:'파이'},{key:'radar',label:'레이더'},{key:'stacked',label:'누적막대'}];
+const CHART_TYPES=[{key:'vbar',label:'세로막대'},{key:'hbar',label:'가로막대'},{key:'pie',label:'파이'},{key:'radar',label:'레이더'},{key:'stacked',label:'누적막대'}];
 
 // ── Storage ──
 function saveThemes(){localStorage.setItem('ppt_chart_themes',JSON.stringify(themes));}
@@ -439,14 +451,25 @@ function buildPreviewPanel(){
   const SD=SAMPLE_DATA;
   let chartHtml='';
 
-  if(activeChartType==='hbar'){
+  if(activeChartType==='vbar'){
     const vals=SD.values.slice(0,pal.length);
     const heights=getBarHeights(vals);
     const tot=vals.reduce((a,b)=>a+b,0);
-    const cols=getChartColors(vals,pal,'hbar');
+    const cols=getChartColors(vals,pal,'vbar');
     chartHtml=`<div class="chart-bars">`;
     vals.forEach((v,i)=>{
       chartHtml+=`<div class="bar-group"><div class="bar" style="background:${rgb(cols[i])};height:${heights[i]}%"><div class="bar-val" style="color:${rgb(c.label)}">${getLabel(v,tot)}</div></div><div class="bar-cat" style="color:${rgb(c.label)}">${SD.categories[i]||''}</div></div>`;
+    });
+    chartHtml+=`</div>`;
+  } else if(activeChartType==='hbar'){
+    const vals=SD.values.slice(0,pal.length);
+    const mx=Math.max(...vals);
+    const tot=vals.reduce((a,b)=>a+b,0);
+    const cols=getChartColors(vals,pal,'hbar');
+    chartHtml=`<div class="hbar-chart">`;
+    vals.forEach((v,i)=>{
+      const w=(v/mx)*75;
+      chartHtml+=`<div class="hbar-row"><div class="hbar-label" style="color:${rgb(c.label)}">${SD.categories[i]||''}</div><div class="hbar-bar-wrap"><div class="hbar-bar" style="background:${rgb(cols[i])};width:${w}%"><span class="hbar-val" style="color:${rgb(c.label)}">${getLabel(v,tot)}</span></div></div></div>`;
     });
     chartHtml+=`</div>`;
   } else if(activeChartType==='pie'){
@@ -553,6 +576,20 @@ function buildPreviewPanel(){
   const curMode=perChartColor?chartColorModes[activeChartType]:colorMode;
   const pal2=c.chart_palette;
   h+=`<div class="section-box" style="margin-bottom:10px"><div class="section-header open" onclick="toggleSection(this)">🎨 색상 모드 / 팔레트<span class="arrow">▶</span></div><div class="section-body">`;
+  // ── 팔레트 (상단) ──
+  h+=`<div style="margin-bottom:10px"><div style="font-size:0.7rem;color:var(--text-secondary);margin-bottom:4px">팔레트 (${pal2.length}색)</div><div class="palette-edit">`;
+  // 흰/검 고정 색상
+  h+=`<div class="pal-edit-cell" style="background:#ffffff;border:1px solid var(--border)" title="#ffffff"><input type="color" value="#ffffff" style="opacity:0;position:absolute;width:100%;height:100%;cursor:pointer" onchange="applyFixedColor([255,255,255],hexToRgb(this.value))"></div>`;
+  h+=`<div class="pal-edit-cell" style="background:#000000;border:1px solid var(--border)" title="#000000"><input type="color" value="#000000" style="opacity:0;position:absolute;width:100%;height:100%;cursor:pointer" onchange="applyFixedColor([0,0,0],hexToRgb(this.value))"></div>`;
+  h+=`<div style="width:1px;height:28px;background:var(--border);margin:0 2px"></div>`;
+  // 팔레트 색상
+  pal2.forEach((col,i)=>{h+=`<div class="pal-edit-cell" style="background:${rgb(col)}" title="${hex(col)}"><input type="color" value="${hex(col)}" style="opacity:0;position:absolute;width:100%;height:100%;cursor:pointer" onchange="gt().colors.chart_palette[${i}]=hexToRgb(this.value);saveR()"><button class="pal-del" onclick="event.stopPropagation();delPalette(${i})">✕</button></div>`;});
+  h+=`<button class="pal-add-btn" onclick="addPalette()">+</button></div>`;
+  h+=`<div class="pal-actions"><button class="pal-act-btn" onclick="resetPalette()">🔄 초기화</button><button class="pal-act-btn" onclick="savePaletteSlot()">💾 슬롯 저장</button></div>`;
+  const slots=loadPaletteSlots();if(Object.keys(slots).length){h+=`<div class="slot-list">`;Object.entries(slots).forEach(([name,colors])=>{h+=`<button class="slot-btn" onclick="loadPaletteSlot('${name}')" title="${colors.length}색">${name}<span style="margin-left:4px;color:var(--danger);cursor:pointer" onclick="event.stopPropagation();deletePaletteSlot('${name}')">✕</span></button>`;});h+=`</div>`;}
+  h+=`</div>`;
+  // ── 색상 모드 (하단) ──
+  h+=`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">`;
   h+=`<label class="cm-check"><input type="checkbox" ${perChartColor?'checked':''} onchange="perChartColor=this.checked;rebuild()"> 차트별 독립 색상</label>`;
   h+=`<div class="cm-grid">`;
   COLOR_MODES.forEach(m=>{h+=`<button class="cm-btn ${curMode===m.key?'active':''}" onclick="setColorMode('${m.key}')" title="${m.desc}">${m.label}</button>`;});
@@ -562,11 +599,6 @@ function buildPreviewPanel(){
   else if(curMode==='max_min')h+=`<div class="cm-colors"><span class="cm-color-item">그외<input type="color" value="${hex(pal2[0])}" onchange="gt().colors.chart_palette[0]=hexToRgb(this.value);saveR()"></span><span class="cm-color-item">최고<input type="color" value="${hex(pal2[1%pal2.length])}" onchange="gt().colors.chart_palette[1]=hexToRgb(this.value);saveR()"></span><span class="cm-color-item">최저<input type="color" value="${hex(pal2[2%pal2.length])}" onchange="gt().colors.chart_palette[2]=hexToRgb(this.value);saveR()"></span></div>`;
   else if(curMode==='gradient')h+=`<div class="cm-colors"><span class="cm-color-item">기준색<input type="color" value="${hex(pal2[0])}" onchange="gt().colors.chart_palette[0]=hexToRgb(this.value);saveR()"></span></div>`;
   else if(curMode==='custom'){h+=`<div class="cm-colors" style="flex-direction:column;gap:4px">`;const cats=activeChartType==='stacked'?SAMPLE_DATA.series_names:SAMPLE_DATA.categories.slice(0,pal2.length);cats.forEach((cat,i)=>{const cc=customColors[i]||pal2[i%pal2.length];h+=`<span class="cm-color-item">${cat}<input type="color" value="${hex(cc)}" onchange="customColors[${i}]=hexToRgb(this.value);rebuild()"></span>`;});h+=`</div>`;}
-  h+=`<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><div style="font-size:0.7rem;color:var(--text-secondary);margin-bottom:4px">팔레트 (${pal2.length}색)</div><div class="palette-edit">`;
-  pal2.forEach((col,i)=>{h+=`<div class="pal-edit-cell" style="background:${rgb(col)}" title="${hex(col)}"><input type="color" value="${hex(col)}" style="opacity:0;position:absolute;width:100%;height:100%;cursor:pointer" onchange="gt().colors.chart_palette[${i}]=hexToRgb(this.value);saveR()"><button class="pal-del" onclick="event.stopPropagation();delPalette(${i})">✕</button></div>`;});
-  h+=`<button class="pal-add-btn" onclick="addPalette()">+</button></div>`;
-  h+=`<div class="pal-actions"><button class="pal-act-btn" onclick="resetPalette()">🔄 초기화</button><button class="pal-act-btn" onclick="savePaletteSlot()">💾 슬롯 저장</button></div>`;
-  const slots=loadPaletteSlots();if(Object.keys(slots).length){h+=`<div class="slot-list">`;Object.entries(slots).forEach(([name,colors])=>{h+=`<button class="slot-btn" onclick="loadPaletteSlot('${name}')" title="${colors.length}색">${name}<span style="margin-left:4px;color:var(--danger);cursor:pointer" onclick="event.stopPropagation();deletePaletteSlot('${name}')">✕</span></button>`;});h+=`</div>`;}
   h+=`</div></div></div>`;
 
   h+=`<div class="slide-frame" style="aspect-ratio:${W}/${H}"><div class="slide-inner" style="background:${rgb(bg)}">`;
@@ -589,6 +621,7 @@ function buildPreviewPanel(){
 }
 
 // ── Actions ──
+function applyFixedColor(original,newColor){gt().colors.chart_palette.push(newColor);saveR();}
 function gt(){return themes[activeThemeKey];}
 function saveR(){isDirty=true;rebuild();}
 function manualSave(){saveThemes();isDirty=false;rebuild();alert('저장되었습니다.');}

@@ -18,5 +18,6 @@
   "hbar": { "chart_left": 0.5, "chart_top": 1.0, "chart_width": 12.3, "chart_height": 5.9, "bar_color_index": 0, "label_position": "outside_end", "axis_line_width": 0.5 },
   "pie": { "chart_left": 1.5, "chart_top": 1.2, "chart_width": 10.0, "chart_height": 5.5, "label_bold": true },
   "radar": { "chart_left": 2.0, "chart_top": 1.2, "chart_width": 9.0, "chart_height": 5.5, "line_color_index": 0, "line_width": 2.5, "marker_color_index": 2, "marker_size": 10 },
-  "stacked": { "chart_left": 0.5, "chart_top": 1.0, "chart_width": 12.3, "chart_height": 5.9, "label_position": "center" }
+  "stacked": { "chart_left": 0.5, "chart_top": 1.0, "chart_width": 12.3, "chart_height": 5.9, "label_position": "center" },
+  "vbar": { "chart_left": 0.5, "chart_top": 1.0, "chart_width": 12.3, "chart_height": 5.9, "bar_color_index": 0, "axis_line_width": 0.5 }
 }

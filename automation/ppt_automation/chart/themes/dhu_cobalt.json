@@ -1,0 +1,31 @@
+{
+  "name": "DHU Cobalt",
+  "description": "대구한의대 DHU COBALT 브랜드 색상 기반 테마",
+  "slide": { "width_inches": 13.333, "height_inches": 7.5, "background": [255, 255, 255] },
+  "font": {
+    "name": "돋움",
+    "title_size": 8, "subtitle_size": 8, "label_size": 8,
+    "legend_size": 8, "page_num_size": 8, "data_label_size": 8, "stacked_label_size": 8
+  },
+  "colors": {
+    "title": [0, 0, 0], "subtitle": [0, 0, 0], "label": [0, 0, 0],
+    "axis_line": [200, 200, 210], "page_num": [100, 110, 140], "pie_label": [0, 0, 0],
+    "chart_palette": [
+      [27, 45, 131],
+      [59, 130, 246],
+      [16, 185, 129],
+      [245, 158, 11],
+      [139, 92, 246],
+      [239, 68, 68],
+      [6, 182, 212],
+      [249, 115, 22],
+      [236, 72, 153],
+      [20, 184, 166]
+    ]
+  },
+  "vbar": { "chart_left": 3.753, "chart_top": 2.215, "chart_width": 5.827, "chart_height": 3.071, "bar_color_index": 0, "axis_line_width": 0.5 },
+  "hbar": { "chart_left": 3.753, "chart_top": 2.215, "chart_width": 5.827, "chart_height": 3.071, "bar_color_index": 0, "label_position": "outside_end", "axis_line_width": 0.5 },
+  "pie": { "chart_left": 3.753, "chart_top": 2.215, "chart_width": 5.827, "chart_height": 3.071, "label_bold": false },
+  "radar": { "chart_left": 3.753, "chart_top": 2.215, "chart_width": 5.827, "chart_height": 3.071, "line_color_index": 0, "line_width": 2.5, "marker_color_index": 2, "marker_size": 10 },
+  "stacked": { "chart_left": 3.753, "chart_top": 2.215, "chart_width": 5.827, "chart_height": 3.071, "label_position": "center" }
+}

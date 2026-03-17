@@ -3,7 +3,7 @@
 chart_builder.py — 공용 PPT 차트 빌더
 테마 JSON 기반으로 슬라이드/차트 생성
 """
-import json, os
+import json, os, colorsys
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -82,6 +82,14 @@ class Builder:
         va.format.line.color.rgb = RGBColor(*self.theme['slide']['background'])
         va.format.line.width = Pt(0)
 
+    def _remove_extra_series(self, chart, keep=1):
+        """차트 XML에서 keep번째 이후 시리즈 제거 (워크시트 데이터는 보존)"""
+        C = 'http://schemas.openxmlformats.org/drawingml/2006/chart'
+        plot_el = chart.plots[0]._element
+        sers = plot_el.findall(f'{{{C}}}ser')
+        for s in sers[keep:]:
+            plot_el.remove(s)
+
     # ── 차트 메서드 ────────────────────────────────────
 
     def add_hbar(self, labels, pcts, freqs, n, title, pg, tot, sort=True):
@@ -96,24 +104,29 @@ class Builder:
         s_l, s_p, s_f = [p[0] for p in pairs], [p[1] for p in pairs], [p[2] for p in pairs]
 
         h = self.theme['hbar']
-        cd = CategoryChartData(); cd.categories = s_l; cd.add_series(' ', s_p)
+        # 동적 높이: 항목수 * 8mm > 78mm 이면 항목수 * 8mm 적용
+        item_h_mm = len(s_l) * 8
+        base_h_mm = 78
+        chart_h = max(h['chart_height'], item_h_mm / 25.4) if item_h_mm > base_h_mm else h['chart_height']
+        cd = CategoryChartData(); cd.categories = s_l
+        cd.add_series(' ', s_p)
+        cd.add_series('빈도(명)', s_f)
         cf = slide.shapes.add_chart(XL_CHART_TYPE.BAR_CLUSTERED,
             Inches(h['chart_left']), Inches(h['chart_top']),
-            Inches(h['chart_width']), Inches(h['chart_height']), cd)
+            Inches(h['chart_width']), Inches(chart_h), cd)
         chart = cf.chart; chart.has_legend = False
+        self._remove_extra_series(chart)  # 빈도 시리즈 XML 제거 (워크시트 데이터는 보존)
 
         ser = chart.series[0]; ser.format.fill.solid()
         ser.format.fill.fore_color.rgb = self._palette(h['bar_color_index'])
 
-        plot = chart.plots[0]; plot.has_data_labels = True
-        dl = plot.data_labels
-        dl.font.size = self._font_sz('data_label_size')
-        dl.font.color.rgb = self._c('label'); dl.font.name = self._font_name()
-        dl.number_format = '0.0"%"'
-        dl.label_position = XL_LABEL_POSITION.OUTSIDE_END
-
+        # 첫 번째 시리즈에만 데이터 라벨 표시
+        ser.has_data_labels = True
         for i in range(len(s_l)):
-            pt_dl = ser.points[i].data_label; tf = pt_dl.text_frame; p = tf.paragraphs[0]
+            pt_dl = ser.points[i].data_label
+            pt_dl.font.size = self._font_sz('data_label_size')
+            pt_dl.font.color.rgb = self._c('label'); pt_dl.font.name = self._font_name()
+            tf = pt_dl.text_frame; p = tf.paragraphs[0]
             run = p.add_run(); run.text = f"{s_p[i]:.1f}% ({int(s_f[i])})"
             run.font.size = self._font_sz('data_label_size')
             run.font.color.rgb = self._c('label'); run.font.name = self._font_name()
@@ -125,39 +138,96 @@ class Builder:
         cax.format.line.width = Pt(h['axis_line_width'])
         self._hide_value_axis(chart); self._pgnum(slide, pg, tot)
 
+    def add_vbar(self, labels, pcts, freqs, n, title, pg, tot, sort=True):
+        slide = self._slide()
+        self._title(slide, title, f"(n={n:,})")
+        self._unit(slide, "%, 명")
+
+        if sort:
+            pairs = sorted(zip(labels, pcts, freqs), key=lambda x: x[1], reverse=True)
+        else:
+            pairs = list(zip(labels, pcts, freqs))
+        s_l, s_p, s_f = [p[0] for p in pairs], [p[1] for p in pairs], [p[2] for p in pairs]
+
+        h = self.theme.get('vbar', self.theme['hbar'])
+        cd = CategoryChartData(); cd.categories = s_l
+        cd.add_series(' ', s_p)
+        cd.add_series('빈도(명)', s_f)
+        cf = slide.shapes.add_chart(XL_CHART_TYPE.COLUMN_CLUSTERED,
+            Inches(h['chart_left']), Inches(h['chart_top']),
+            Inches(h['chart_width']), Inches(h['chart_height']), cd)
+        chart = cf.chart; chart.has_legend = False
+        self._remove_extra_series(chart)  # 빈도 시리즈 XML 제거 (워크시트 데이터는 보존)
+
+        ser = chart.series[0]; ser.format.fill.solid()
+        ser.format.fill.fore_color.rgb = self._palette(h.get('bar_color_index', 0))
+
+        # 첫 번째 시리즈에만 데이터 라벨 표시
+        ser.has_data_labels = True
+        for i in range(len(s_l)):
+            pt_dl = ser.points[i].data_label
+            pt_dl.font.size = self._font_sz('data_label_size')
+            pt_dl.font.color.rgb = self._c('label'); pt_dl.font.name = self._font_name()
+            tf = pt_dl.text_frame; p = tf.paragraphs[0]
+            run = p.add_run(); run.text = f"{s_p[i]:.1f}%\n({int(s_f[i])})"
+            run.font.size = self._font_sz('data_label_size')
+            run.font.color.rgb = self._c('label'); run.font.name = self._font_name()
+
+        cax = chart.category_axis
+        cax.tick_labels.font.size = self._font_sz('label_size')
+        cax.tick_labels.font.color.rgb = self._c('title'); cax.tick_labels.font.name = self._font_name()
+        cax.format.line.color.rgb = self._c('axis_line')
+        cax.format.line.width = Pt(h.get('axis_line_width', 0.5))
+        self._hide_value_axis(chart); self._pgnum(slide, pg, tot)
+
+    @staticmethod
+    def _lightness_variants(base_rgb, count):
+        """메인 색상의 명도를 균등하게 변화시켜 count개 색상 생성"""
+        r, g, b = base_rgb[0] / 255.0, base_rgb[1] / 255.0, base_rgb[2] / 255.0
+        h, l, s = colorsys.rgb_to_hls(r, g, b)
+        colors = []
+        # 명도를 0.3 ~ 0.85 범위에서 균등 배분 (어두운 쪽 → 밝은 쪽)
+        if count == 1:
+            return [RGBColor(base_rgb[0], base_rgb[1], base_rgb[2])]
+        for i in range(count):
+            l_new = 0.3 + (0.55 * i / (count - 1))
+            nr, ng, nb = colorsys.hls_to_rgb(h, l_new, max(s, 0.5))
+            colors.append(RGBColor(int(nr * 255), int(ng * 255), int(nb * 255)))
+        return colors
+
     def add_pie(self, labels, pcts, freqs, n, title, pg, tot, donut=False):
         slide = self._slide()
         self._title(slide, title, f"(n={n:,})")
         self._unit(slide, "%, 명")
 
         p_cfg = self.theme['pie']
-        cd = CategoryChartData(); cd.categories = labels; cd.add_series(' ', pcts)
+        cd = CategoryChartData(); cd.categories = labels
+        cd.add_series(' ', pcts)
+        cd.add_series('빈도(명)', freqs)
         ct = XL_CHART_TYPE.DOUGHNUT if donut else XL_CHART_TYPE.PIE
         cf = slide.shapes.add_chart(ct,
             Inches(p_cfg['chart_left']), Inches(p_cfg['chart_top']),
             Inches(p_cfg['chart_width']), Inches(p_cfg['chart_height']), cd)
-        chart = cf.chart; chart.has_legend = True
-        chart.legend.position = XL_LEGEND_POSITION.BOTTOM
-        chart.legend.include_in_layout = False
-        chart.legend.font.size = self._font_sz('legend_size')
-        chart.legend.font.color.rgb = self._c('title'); chart.legend.font.name = self._font_name()
+        chart = cf.chart; chart.has_legend = False
+        self._remove_extra_series(chart)  # 빈도 시리즈 XML 제거
 
-        plot = chart.plots[0]; plot.has_data_labels = True
-        dl = plot.data_labels
-        dl.font.size = self._font_sz('legend_size')
-        dl.font.color.rgb = self._c('pie_label')
-        dl.font.bold = p_cfg.get('label_bold', True); dl.font.name = self._font_name()
-        dl.number_format = '0.0"%"'
-
-        series = plot.series[0]
+        # 메인 팔레트 첫 번째 색상의 명도 차이로 파이 조각 색상 생성
+        base_col = self.theme['colors']['chart_palette'][0]
+        pie_colors = self._lightness_variants(base_col, len(labels))
+        series = chart.plots[0].series[0]
         for i, point in enumerate(series.points):
-            point.format.fill.solid(); point.format.fill.fore_color.rgb = self._palette(i)
+            point.format.fill.solid(); point.format.fill.fore_color.rgb = pie_colors[i]
+
+        # 데이터 라벨 (카테고리 비율% (빈도) 형식, 바깥쪽)
         for i in range(len(labels)):
-            pt_dl = series.points[i].data_label; tf = pt_dl.text_frame; p = tf.paragraphs[0]
-            run = p.add_run(); run.text = f"{pcts[i]:.1f}% ({int(freqs[i])})"
-            run.font.size = self._font_sz('legend_size')
+            pt_dl = series.points[i].data_label
+            pt_dl.label_position = XL_LABEL_POSITION.OUTSIDE_END
+            tf = pt_dl.text_frame; tf.clear()
+            p = tf.paragraphs[0]
+            run = p.add_run(); run.text = f"{labels[i]} {pcts[i]:.1f}% ({int(freqs[i])})"
+            run.font.size = self._font_sz('data_label_size')
             run.font.color.rgb = self._c('pie_label')
-            run.font.bold = True; run.font.name = self._font_name()
+            run.font.bold = False; run.font.name = self._font_name()
         self._pgnum(slide, pg, tot)
 
     def add_radar(self, labels, values, title, pg, tot):
