@@ -1,7 +1,35 @@
-# HWPX 도구 모음 — 변경 이력 (CHANGELOG)
+# hwp_automation — 변경 이력 (CHANGELOG)
 
-> 이 문서는 `Hwp Automation/Typo checker/` 폴더의 변경 사항을 기록합니다.  
+> 이 문서는 `hwp_automation/` 폴더의 변경 사항을 기록합니다.
 > 새로운 기능 추가, 버그 수정, 구조 변경 등을 날짜순으로 관리합니다.
+
+---
+
+## [2026-03-18] 디렉토리 구조 재편
+
+### 🔄 구조 변경
+
+- `typo_checker/` 하위 5개 폴더를 `hwp_automation/` 직속으로 이동 (번호 접두사 제거)
+  - `01_hwpx_parser/` → `hwpx_parser/`
+  - `02_typo_checker/` → `typo_checker/`
+  - `03_md_to_hwpx/` → `md_to_hwpx/`
+  - `04_proofreading/` → 기존 `proofreading/`에 병합
+  - `99_spell_checker_plan/` → `plan/spell_checker_plan/`
+- `typo_checker/` 상위 폴더 삭제 (하위 모듈 독립)
+- `README.md`·`CHANGELOG.md`를 `hwp_automation/` 전체 범위로 재작성
+
+### 📁 proofreading 정리
+
+- `docs/` 폴더 생성: 문서류(개발리포트, 검사결과 리포트) 분리
+- `output/`에는 실행 산출물만 보관
+- 중복 파일 정리 (스크립트_개발리포트.md)
+- 테스트용 HWPX 파일(~11.9MB) 삭제
+
+### 🔧 스크립트 수정
+
+- `proofreading/run_typo_check.py`: PARSER_DIR 경로 → `hwpx_parser/`
+- `typo_checker/run_parse.py`: sys.path → `hwpx_parser/`
+- `proofreading/docs/스크립트_개발리포트.md`: 경로 참조 업데이트
 
 ---
 
@@ -34,8 +62,8 @@
 
 ### ✅ 신규 기능
 
-- **`04_proofreading/run_typo_check.py`** (770줄) 추가
-  - `01_hwpx_parser` + `02_typo_checker`를 통합한 범용 HWPX 오타 검사 스크립트
+- **`proofreading/run_typo_check.py`** (770줄) 추가
+  - `hwpx_parser` + `typo_checker`를 통합한 범용 HWPX 오타 검사 스크립트
   - 5단계 파이프라인: HWPX 파싱 → 페이지 매핑 → 텍스트 검사 → 표 검증 → 리포트/CSV 생성
   - `--no-page-map` 옵션으로 한글 미설치 환경 지원
 
@@ -56,33 +84,15 @@
 | `KeyIndicator()[0]` 오류      | 인덱스 0은 bool(성공여부), 1이 페이지 | 인덱스를 1로 수정                  |
 | `visible=False` 페이지 1 고정 | 비표시 모드에서 렌더링 미수행         | `goto_page()` 역방향 매핑으로 전환 |
 
-### 📋 추가 문서
-
-- `검사결과_종합리포트_sample.md` — 검사 결과 요약 리포트 샘플
-- `스크립트_개발리포트.md` — 개발 과정, 오류 수정, 기능 업그레이드 전문
-
-### 📊 검사 결과 (HWPX_miss match_V1.10.hwpx)
-
-| 항목             | 수량                      |
-| ---------------- | ------------------------- |
-| 문서 규모        | 168페이지, 948문단, 266표 |
-| 총 이슈          | 210건                     |
-| 의심 (확인 필요) | 142건                     |
-| 정보 (참고)      | 68건                      |
-| 매핑된 문단      | 1,147개                   |
-
 ---
 
 ## [2026-02-19] 초기 구조 생성
 
 ### ✅ 폴더 정리
 
-- `01_hwpx_parser/` — HWPX 파서 (출처: 울산 프로젝트)
-- `02_typo_checker/` — 오타 검사기 (출처: 문경 프로젝트)
-- `03_md_to_hwpx/` — 마크다운→HWPX 변환기 (출처: 전통식재료 프로젝트)
-- `README.md` — 전체 구조 설명
-
----
+- `hwpx_parser/` — HWPX 파서 (출처: 울산 프로젝트)
+- `typo_checker/` — 오타 검사기 (출처: 문경 프로젝트)
+- `md_to_hwpx/` — 마크다운→HWPX 변환기 (출처: 전통식재료 프로젝트)
 
 <!--
 ## [YYYY-MM-DD] 변경 제목

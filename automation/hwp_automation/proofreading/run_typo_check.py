@@ -27,7 +27,7 @@ from typing import List, Dict, Optional, Tuple
 
 # ── hwpx_parser를 임포트하기 위해 경로 추가 ──
 SCRIPT_DIR = Path(__file__).parent
-PARSER_DIR = SCRIPT_DIR.parent / "Typo checker" / "01_hwpx_parser"
+PARSER_DIR = SCRIPT_DIR.parent / "hwpx_parser"
 if str(PARSER_DIR) not in sys.path:
     sys.path.insert(0, str(PARSER_DIR))
 

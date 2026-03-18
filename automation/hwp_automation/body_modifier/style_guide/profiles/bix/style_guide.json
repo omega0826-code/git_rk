@@ -1,0 +1,1568 @@
+{
+  "profile_name": "bix",
+  "source": "d:\\git_rk\\automation\\hwp_automation\\.test\\bix_test.hwpx",
+  "created": "2026-03-18 11:50",
+  "description": "BIX ?ъ듅吏援?蹂닿퀬???ㅽ???",
+  "fonts": {
+    "0": "굴림",
+    "1": "굴림체",
+    "2": "나눔명조",
+    "3": "나눔바른고딕",
+    "4": "돋움",
+    "5": "맑은 고딕",
+    "6": "바탕",
+    "7": "바탕체",
+    "8": "산돌고딕 M",
+    "9": "서울한강 장체 M",
+    "10": "한컴 윤고딕 250",
+    "11": "한컴 윤체 M",
+    "12": "한컴바탕",
+    "13": "함초롬돋움",
+    "14": "함초롬바탕",
+    "15": "휴먼고딕",
+    "16": "휴먼명조",
+    "17": "a고딕12",
+    "18": "HY견고딕",
+    "19": "HY중고딕",
+    "20": "HY헤드라인M",
+    "21": "KoPub돋움체 Medium",
+    "22": "신명 세나루",
+    "23": "태 가는 헤드라인T",
+    "24": "한양견고딕",
+    "25": "한양신명조",
+    "26": "한양중고딕",
+    "27": "-윤고딕230",
+    "28": "±¼¸²",
+    "29": "a아시아헤드1",
+    "30": "가는각진제목체",
+    "31": "이사만루체 Light"
+  },
+  "char_styles": {
+    "0": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "25",
+      "font_name": "한양신명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "1": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "15",
+      "font_name": "휴먼고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "2": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "14",
+      "font_name": "함초롬바탕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "3": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "13",
+      "font_name": "함초롬돋움",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "4": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "13",
+      "font_name": "함초롬돋움",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "5": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "14",
+      "font_name": "함초롬바탕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "6": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "13",
+      "font_name": "함초롬돋움",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "7": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "25",
+      "font_name": "한양신명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "8": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "26",
+      "font_name": "한양중고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "9": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "5",
+      "font_name": "맑은 고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "10": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "5",
+      "font_name": "맑은 고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "11": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "12": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "0",
+      "font_name": "굴림",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "13": {
+      "height": 1300,
+      "height_pt": 13.0,
+      "font_ref": "20",
+      "font_name": "HY헤드라인M",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "14": {
+      "height": 800,
+      "height_pt": 8.0,
+      "font_ref": "13",
+      "font_name": "함초롬돋움",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "15": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "5",
+      "font_name": "맑은 고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "16": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "12",
+      "font_name": "한컴바탕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "17": {
+      "height": 1400,
+      "height_pt": 14.0,
+      "font_ref": "27",
+      "font_name": "-윤고딕230",
+      "text_color": "#364878",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "18": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "6",
+      "font_name": "바탕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "19": {
+      "height": 850,
+      "height_pt": 8.5,
+      "font_ref": "15",
+      "font_name": "휴먼고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "20": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "5",
+      "font_name": "맑은 고딕",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "21": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "28",
+      "font_name": "±¼¸²",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "22": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "23": {
+      "height": 1300,
+      "height_pt": 13.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "24": {
+      "height": 1050,
+      "height_pt": 10.5,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "25": {
+      "height": 1600,
+      "height_pt": 16.0,
+      "font_ref": "18",
+      "font_name": "HY견고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "26": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "5",
+      "font_name": "맑은 고딕",
+      "text_color": "#F2F2F2",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "27": {
+      "height": 1300,
+      "height_pt": 13.0,
+      "font_ref": "20",
+      "font_name": "HY헤드라인M",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "28": {
+      "height": 1400,
+      "height_pt": 14.0,
+      "font_ref": "12",
+      "font_name": "한컴바탕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "29": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "26",
+      "font_name": "한양중고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "30": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "15",
+      "font_name": "휴먼고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "31": {
+      "height": 1400,
+      "height_pt": 14.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "32": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "2",
+      "font_name": "나눔명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "33": {
+      "height": 1400,
+      "height_pt": 14.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "34": {
+      "height": 1300,
+      "height_pt": 13.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "35": {
+      "height": 1050,
+      "height_pt": 10.5,
+      "font_ref": "4",
+      "font_name": "돋움",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "36": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "4",
+      "font_name": "돋움",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "37": {
+      "height": 1800,
+      "height_pt": 18.0,
+      "font_ref": "18",
+      "font_name": "HY견고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "38": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "15",
+      "font_name": "휴먼고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "39": {
+      "height": 1400,
+      "height_pt": 14.0,
+      "font_ref": "24",
+      "font_name": "한양견고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "40": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "41": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "42": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "43": {
+      "height": 850,
+      "height_pt": 8.5,
+      "font_ref": "18",
+      "font_name": "HY견고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "44": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "1",
+      "font_name": "굴림체",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "45": {
+      "height": 1800,
+      "height_pt": 18.0,
+      "font_ref": "23",
+      "font_name": "태 가는 헤드라인T",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "46": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "7",
+      "font_name": "바탕체",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "47": {
+      "height": 1700,
+      "height_pt": 17.0,
+      "font_ref": "29",
+      "font_name": "a아시아헤드1",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "48": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "15",
+      "font_name": "휴먼고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "49": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "11",
+      "font_name": "한컴 윤체 M",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "50": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "3",
+      "font_name": "나눔바른고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "51": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "5",
+      "font_name": "맑은 고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "52": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "53": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "19",
+      "font_name": "HY중고딕",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "54": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "55": {
+      "height": 1100,
+      "height_pt": 11.0,
+      "font_ref": "26",
+      "font_name": "한양중고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "56": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "26",
+      "font_name": "한양중고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "57": {
+      "height": 1300,
+      "height_pt": 13.0,
+      "font_ref": "20",
+      "font_name": "HY헤드라인M",
+      "text_color": "#000000",
+      "bold": true,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "58": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "59": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "30",
+      "font_name": "가는각진제목체",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "60": {
+      "height": 1500,
+      "height_pt": 15.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "61": {
+      "height": 800,
+      "height_pt": 8.0,
+      "font_ref": "14",
+      "font_name": "함초롬바탕",
+      "text_color": "#413D82",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "62": {
+      "height": 850,
+      "height_pt": 8.5,
+      "font_ref": "31",
+      "font_name": "이사만루체 Light",
+      "text_color": "#0E3D82",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "63": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "10",
+      "font_name": "한컴 윤고딕 250",
+      "text_color": "#315F97",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "64": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "21",
+      "font_name": "KoPub돋움체 Medium",
+      "text_color": "#404040",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "65": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "31",
+      "font_name": "이사만루체 Light",
+      "text_color": "#315F97",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "66": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "9",
+      "font_name": "서울한강 장체 M",
+      "text_color": "#404040",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "67": {
+      "height": 1050,
+      "height_pt": 10.5,
+      "font_ref": "8",
+      "font_name": "산돌고딕 M",
+      "text_color": "#595959",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "68": {
+      "height": 850,
+      "height_pt": 8.5,
+      "font_ref": "17",
+      "font_name": "a고딕12",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "69": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "26",
+      "font_name": "한양중고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "70": {
+      "height": 900,
+      "height_pt": 9.0,
+      "font_ref": "15",
+      "font_name": "휴먼고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "71": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "26",
+      "font_name": "한양중고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "72": {
+      "height": 1048,
+      "height_pt": 10.48,
+      "font_ref": "22",
+      "font_name": "신명 세나루",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "73": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "14",
+      "font_name": "함초롬바탕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "74": {
+      "height": 850,
+      "height_pt": 8.5,
+      "font_ref": "18",
+      "font_name": "HY견고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "75": {
+      "height": 850,
+      "height_pt": 8.5,
+      "font_ref": "18",
+      "font_name": "HY견고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "76": {
+      "height": 850,
+      "height_pt": 8.5,
+      "font_ref": "18",
+      "font_name": "HY견고딕",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "77": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "78": {
+      "height": 1200,
+      "height_pt": 12.0,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "79": {
+      "height": 1050,
+      "height_pt": 10.5,
+      "font_ref": "16",
+      "font_name": "휴먼명조",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    },
+    "80": {
+      "height": 1000,
+      "height_pt": 10.0,
+      "font_ref": "8",
+      "font_name": "산돌고딕 M",
+      "text_color": "#000000",
+      "bold": false,
+      "italic": false,
+      "spacing": "0",
+      "ratio": "100"
+    }
+  },
+  "para_styles": {
+    "0": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "1": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "2": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "3": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "4": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "5": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "6": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "7": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "8": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "9": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "10": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "11": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "12": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "13": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "14": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "15": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "150",
+      "line_spacing_type": "PERCENT"
+    },
+    "16": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "17": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "18": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "19": {
+      "align": "RIGHT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "20": {
+      "align": "RIGHT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "21": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "22": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "165",
+      "line_spacing_type": "PERCENT"
+    },
+    "23": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "24": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "25": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "220",
+      "line_spacing_type": "PERCENT"
+    },
+    "26": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "27": {
+      "align": "RIGHT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "150",
+      "line_spacing_type": "PERCENT"
+    },
+    "28": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "29": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "150",
+      "line_spacing_type": "PERCENT"
+    },
+    "30": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "31": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "32": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "300",
+      "line_spacing_type": "PERCENT"
+    },
+    "33": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "34": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "35": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "36": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "37": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "200",
+      "line_spacing_type": "PERCENT"
+    },
+    "38": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "39": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "110",
+      "line_spacing_type": "PERCENT"
+    },
+    "40": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "41": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "42": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "150",
+      "line_spacing_type": "PERCENT"
+    },
+    "43": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "180",
+      "line_spacing_type": "PERCENT"
+    },
+    "44": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "45": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "46": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "200",
+      "line_spacing_type": "PERCENT"
+    },
+    "47": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "48": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "49": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "50": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "180",
+      "line_spacing_type": "PERCENT"
+    },
+    "51": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "170",
+      "line_spacing_type": "PERCENT"
+    },
+    "52": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "53": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "54": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "55": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "150",
+      "line_spacing_type": "PERCENT"
+    },
+    "56": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "57": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "58": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "59": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "60": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "110",
+      "line_spacing_type": "PERCENT"
+    },
+    "61": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "120",
+      "line_spacing_type": "PERCENT"
+    },
+    "62": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "63": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "64": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "120",
+      "line_spacing_type": "PERCENT"
+    },
+    "65": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "180",
+      "line_spacing_type": "PERCENT"
+    },
+    "66": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "180",
+      "line_spacing_type": "PERCENT"
+    },
+    "67": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "68": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "110",
+      "line_spacing_type": "PERCENT"
+    },
+    "69": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "120",
+      "line_spacing_type": "PERCENT"
+    },
+    "70": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "150",
+      "line_spacing_type": "PERCENT"
+    },
+    "71": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "120",
+      "line_spacing_type": "PERCENT"
+    },
+    "72": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "140",
+      "line_spacing_type": "PERCENT"
+    },
+    "73": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "120",
+      "line_spacing_type": "PERCENT"
+    },
+    "74": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "120",
+      "line_spacing_type": "PERCENT"
+    },
+    "75": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "170",
+      "line_spacing_type": "PERCENT"
+    },
+    "76": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "200",
+      "line_spacing_type": "PERCENT"
+    },
+    "77": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "78": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "79": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    },
+    "80": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "81": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "170",
+      "line_spacing_type": "PERCENT"
+    },
+    "82": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "160",
+      "line_spacing_type": "PERCENT"
+    },
+    "83": {
+      "align": "LEFT",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "140",
+      "line_spacing_type": "PERCENT"
+    },
+    "84": {
+      "align": "JUSTIFY",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "100",
+      "line_spacing_type": "PERCENT"
+    },
+    "85": {
+      "align": "CENTER",
+      "left_margin": "0",
+      "indent": "0",
+      "line_spacing": "130",
+      "line_spacing_type": "PERCENT"
+    }
+  },
+  "role_mapping": {
+    "h1": {
+      "charPrIDRef": "37",
+      "paraPrIDRef": "62"
+    },
+    "h2": {
+      "charPrIDRef": "39",
+      "paraPrIDRef": "62"
+    },
+    "h3": {
+      "charPrIDRef": "20",
+      "paraPrIDRef": "62"
+    },
+    "body": {
+      "charPrIDRef": "54",
+      "paraPrIDRef": "56"
+    },
+    "bullet": {
+      "charPrIDRef": "54",
+      "paraPrIDRef": "56"
+    },
+    "caption": {
+      "charPrIDRef": "1",
+      "paraPrIDRef": "83"
+    },
+    "blockquote": {
+      "charPrIDRef": "1",
+      "paraPrIDRef": "83"
+    }
+  },
+  "page_setup": {}
+}

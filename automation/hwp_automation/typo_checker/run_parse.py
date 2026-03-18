@@ -7,7 +7,7 @@ if sys.stdout.encoding != 'utf-8':
 import os
 
 # hwpx_parser.py 경로 추가
-sys.path.insert(0, r"d:\git_rk\project\25_121_ulsan\HWPX")
+sys.path.insert(0, r"d:\git_rk\automation\hwp_automation\hwpx_parser")
 
 from hwpx_parser import parse_hwpx
 

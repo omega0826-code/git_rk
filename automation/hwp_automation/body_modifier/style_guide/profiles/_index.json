@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "bix": {
+      "name": "BIX ?ъ듅吏援?蹂닿퀬???ㅽ???",
+      "source": "d:\\git_rk\\automation\\hwp_automation\\.test\\bix_test.hwpx",
+      "created": "2026-03-18 11:50",
+      "description": "BIX ?ъ듅吏援?蹂닿퀬???ㅽ???"
+    }
+  },
+  "default": "bix"
+}
