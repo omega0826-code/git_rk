@@ -50,6 +50,12 @@ if sys.stdout.encoding != 'utf-8':
 
 4. `find_raw_file` 등 파일 검색 함수에는 반드시 확장자(`.csv`) 필터를 포함합니다
 
+5. 대용량 CSV(10MB+) 처리 시 `send_command_input`의 `WaitMs`를 최소 30000 이상으로 설정합니다
+
+6. `run_command`로 직접 python 실행을 시도하여 실패하면 재시도 없이 즉시 표준 절차(빈 터미널 + `send_command_input`)로 전환합니다
+
+7. 스크립트는 `Cwd`를 스크립트 디렉토리로 설정 후 상대 경로로 실행합니다 (절대경로 직접 전달 지양)
+
 ## 표준 실행 절차 (모든 Python 스크립트 실행 시)
 
 > **중요**: `run_command`의 `CommandLine` 인수는 터미널 고스팅으로 인해
