@@ -109,7 +109,17 @@ def pack_hwpx(input_dir: Path, output_path: Path) -> None:
         for rel_path in all_files:
             if rel_path == "mimetype":
                 continue
-            zf.write(input_dir / rel_path, rel_path, compress_type=ZIP_DEFLATED)
+            src = input_dir / rel_path
+            if src.suffix in ('.xml', '.hpf'):
+                try:
+                    t2 = etree.parse(str(src))
+                    data = etree.tostring(t2.getroot(), pretty_print=False, xml_declaration=True, encoding="UTF-8")
+                    data = data.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+                    zf.writestr(rel_path, data, compress_type=ZIP_DEFLATED)
+                    continue
+                except Exception:
+                    pass
+            zf.write(src, rel_path, compress_type=ZIP_DEFLATED)
 
 
 def validate_hwpx(hwpx_path: Path) -> list[str]:

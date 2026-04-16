@@ -5,21 +5,29 @@ HWPX 범용 오타 검사 스크립트
 HWPX 파일을 파싱하고, 텍스트/표 검증을 수행하여 Markdown 리포트를 생성한다.
 
 사용법:
-    python run_typo_check.py <hwpx_파일_경로> [--output-dir DIR]
+    python run_typo_check.py <hwpx_파일_경로> [--output-dir DIR] [--no-spell-check]
 
 단계:
-    Step 1: HWPX 파싱 (텍스트, 표, 제목, 이미지 추출)
-    Step 2: 텍스트 오타 검사 (A단계)
-    Step 3: 표 데이터 검증 (B단계)
-    Step 4: Markdown 리포트 생성 (C단계)
+    Step 1:   HWPX 파싱 (텍스트, 표, 제목, 이미지 추출)
+    Step 1.5: 페이지 매핑 (pyhwpx COM)
+    Step 2:   텍스트 오타 검사 (A단계)
+    Step 2.5: kiwi 맞춤법 검사 (A-2단계) -- 띄어쓰기 교정, 미등록어 탐지
+    Step 3:   표 데이터 검증 (B단계)
+    Step 4-5: Markdown 리포트 + CSV 생성
 """
 
+import io
 import os
 import re
 import sys
 import csv
 import json
 import argparse
+
+# ── UTF-8 출력 래퍼 (Windows cmd 인코딩 오류 방지) ──
+if sys.stdout is not None and getattr(sys.stdout, 'encoding', 'utf-8') != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 from datetime import datetime
 from pathlib import Path
 from dataclasses import dataclass
@@ -230,6 +238,18 @@ class TextChecker:
 
     # ── 율/률 혼용 검사 ──
     YUL_PATTERN = re.compile(r'([가-힣])(율|률)')
+    # ── 최종본에 남으면 안 되는 편집 메모/플레이스홀더 ──
+    EDITORIAL_PATTERNS = [
+        (r'워딩을 수정합니다\.?', '편집 메모 잔존', '삭제 후 본문만 유지'),
+        (r'워딩을 수정하였습니다\.?', '편집 메모 잔존', '삭제 후 본문만 유지'),
+        (r'워딩을 명확하게 수정합니다\.?', '편집 메모 잔존', '삭제 후 본문만 유지'),
+        (r'전체 합계를 다시 맞추었습니다\.?', '편집 메모 잔존', '삭제 후 최종 수치만 유지'),
+        (r'연도별,\s*항목별로 구분하여 수치를 통일하였습니다\.?', '편집 메모 잔존', '삭제 후 표 본문만 유지'),
+        (r'연차별 투입금액임으로 관련 내용을 수정하였습니다\.?', '편집 메모 잔존', '삭제 후 표 본문만 유지'),
+        (r'\d{4}~\d{4}년으로 테이블 수정 완료하였습니다\.?', '편집 메모 잔존', '삭제 후 본문만 유지'),
+        (r'재산정하였습니다\.?', '편집 메모 잔존', '삭제 후 본문만 유지'),
+        (r'페이지 번호 추후에 수정', '목차 플레이스홀더 잔존', '최종 페이지 번호 반영 또는 문구 삭제'),
+    ]
 
     def __init__(self, lines: List[str]):
         self.lines = lines
@@ -237,6 +257,7 @@ class TextChecker:
 
     def check_all(self) -> List[Issue]:
         self._check_known_typos()
+        self._check_editorial_markers()
         self._check_duplicate_chars()
         self._check_incomplete_sentences()
         self._check_yul_ryul()
@@ -250,6 +271,23 @@ class TextChecker:
             for pattern, desc, suggestion in self.KNOWN_TYPOS:
                 for m in re.finditer(pattern, line):
                     context = line[max(0, m.start()-15):m.end()+15]
+                    self.issues.append(Issue(
+                        category='text', severity='오타',
+                        location=f'줄 {idx}',
+                        original=f'...{context}...',
+                        description=desc,
+                        suggestion=suggestion
+                    ))
+
+    def _check_editorial_markers(self):
+        """최종 송부본에 남으면 안 되는 편집 메모/플레이스홀더 검출"""
+        for idx, line in enumerate(self.lines, 1):
+            stripped = line.strip()
+            if not stripped:
+                continue
+            for pattern, desc, suggestion in self.EDITORIAL_PATTERNS:
+                for m in re.finditer(pattern, stripped):
+                    context = stripped[max(0, m.start()-20):m.end()+40]
                     self.issues.append(Issue(
                         category='text', severity='오타',
                         location=f'줄 {idx}',
@@ -308,7 +346,8 @@ class TextChecker:
                         description=f'"{prev_char}률" → 받침 없으므로 "{prev_char}율"이 표준',
                         suggestion=f'{prev_char}율'
                     ))
-                elif jongseong != 0 and jongseong != 8 and suffix == '율':
+                # ㄴ(4), ㄹ(8) 받침 뒤에는 '율'을 허용한다. 예: 할인율, 선율
+                elif jongseong != 0 and jongseong not in (4, 8) and suffix == '율':
                     context = line[max(0, m.start()-10):m.end()+10]
                     self.issues.append(Issue(
                         category='text', severity='의심',
@@ -464,6 +503,75 @@ class TextChecker:
 
 
 # ══════════════════════════════════════════════
+#  A-2단계: SpellChecker — kiwi 기반 맞춤법 검사
+# ══════════════════════════════════════════════
+try:
+    from kiwipiepy import Kiwi
+    _KIWI_AVAILABLE = True
+except ImportError:
+    _KIWI_AVAILABLE = False
+
+
+class SpellChecker:
+    """kiwi(kiwipiepy) 기반 띄어쓰기 교정 + 미등록어 탐지 (A-2단계)"""
+
+    def __init__(self, lines: List[str]):
+        self.kiwi = Kiwi()
+        self.lines = lines
+        self.issues: List[Issue] = []
+
+    def check_all(self) -> List[Issue]:
+        self._check_spacing()
+        self._check_unknown_words()
+        return self.issues
+
+    # ── 띄어쓰기 교정 ──
+    def _check_spacing(self):
+        """kiwi.space()로 원문과 교정문을 비교하여 띄어쓰기 오류를 탐지한다."""
+        for idx, line in enumerate(self.lines, 1):
+            stripped = line.strip()
+            if len(stripped) < 10:
+                continue
+            try:
+                corrected = self.kiwi.space(stripped)
+            except Exception:
+                continue
+            if corrected != stripped:
+                # diff 범위 축약
+                orig_preview = stripped[:80]
+                corr_preview = corrected[:80]
+                self.issues.append(Issue(
+                    category='text', severity='의심',
+                    location=f'줄 {idx}',
+                    original=orig_preview,
+                    description='띄어쓰기 오류 (kiwi)',
+                    suggestion=corr_preview
+                ))
+
+    # ── 미등록어 탐지 ──
+    def _check_unknown_words(self):
+        """kiwi.tokenize()로 형태소 분석 실패 토큰(UN 태그)을 탐지한다."""
+        seen_unknowns = set()  # 문서 내 중복 보고 방지
+        for idx, line in enumerate(self.lines, 1):
+            stripped = line.strip()
+            if len(stripped) < 5:
+                continue
+            try:
+                tokens = self.kiwi.tokenize(stripped)
+            except Exception:
+                continue
+            for tok in tokens:
+                if tok.tag == 'UN' and len(tok.form) >= 2 and tok.form not in seen_unknowns:
+                    seen_unknowns.add(tok.form)
+                    self.issues.append(Issue(
+                        category='text', severity='정보',
+                        location=f'줄 {idx}',
+                        original=tok.form,
+                        description='미등록어 (형태소 분석 실패)',
+                    ))
+
+
+# ══════════════════════════════════════════════
 #  B단계: TableChecker — 범용 표 데이터 검증
 # ══════════════════════════════════════════════
 class TableChecker:
@@ -575,21 +683,79 @@ class TableChecker:
 class ReportWriter:
     """검사 결과를 Markdown 리포트로 출력"""
 
-    def __init__(self, output_path: Path, hwpx_filename: str, parse_info: dict):
+    def __init__(self, output_path: Path, hwpx_filename: str, parse_info: dict,
+                 page_boundaries: Optional[Dict[int, int]] = None):
         self.output_path = output_path
         self.hwpx_filename = hwpx_filename
         self.parse_info = parse_info
+        # {페이지번호: 해당 페이지 시작 줄 번호} — 페이지 내 상대 줄 계산용
+        self.page_boundaries = page_boundaries or {}
+
+    # ── category → 유형 라벨 ──
+    CATEGORY_LABELS = {
+        'text': '본문', 'spell': '맞춤법',
+        'table': '표', 'cross': '교차검증',
+    }
+
+    # ── 위치 라벨 생성: "00페이지 00줄" ──
+    @staticmethod
+    def _get_location_label(issue: 'Issue') -> str:
+        """이슈의 page와 location을 '00페이지 00줄' 형태로 조합"""
+        page_str = issue.page if issue.page else '?'
+        # location에서 줄 번호 추출
+        m = re.match(r'줄\s*(\d+)', issue.location)
+        if m:
+            line_str = m.group(1)
+        else:
+            line_str = issue.location
+        return f'{page_str}페이지 {line_str}줄'
+
+    # ── 페이지 그룹 키 생성 (항상 페이지 단위) ──
+    @staticmethod
+    def _get_page_group_key(issue: 'Issue') -> Tuple[int, str]:
+        """정렬/그룹핑용 (정렬키, 표시라벨) 반환 — 항상 페이지 번호 기준"""
+        if issue.page and issue.page != '?':
+            try:
+                page_num = int(issue.page)
+                return (page_num, f'{page_num}페이지')
+            except ValueError:
+                pass
+        # 페이지 정보가 없으면 '?페이지'로 통합
+        return (99999, '?페이지')
+
+    # ── 페이지 내 상대 줄 번호 (Section 3 위치 열용) ──
+    def _get_relative_line_label(self, issue: 'Issue') -> str:
+        """페이지 내 몇 번째 줄인지 계산하여 반환"""
+        m = re.match(r'줄\s*(\d+)', issue.location)
+        if not m:
+            return issue.location
+        abs_line = int(m.group(1))
+        # 페이지 경계 정보가 있으면 상대 줄 번호 계산
+        if issue.page and issue.page != '?' and self.page_boundaries:
+            try:
+                page_num = int(issue.page)
+                page_start = self.page_boundaries.get(page_num)
+                if page_start is not None:
+                    rel_line = abs_line - page_start + 1
+                    return f'{rel_line}줄'
+            except (ValueError, TypeError):
+                pass
+        # 페이지 경계 없으면 절대 줄 번호 유지
+        return f'{abs_line}줄'
 
     def write(self, text_issues: List[Issue], table_issues: List[Issue]) -> Path:
+        from collections import Counter, defaultdict
+
         all_issues = text_issues + table_issues
         errors = [i for i in all_issues if i.severity == '오타']
         warnings = [i for i in all_issues if i.severity == '의심']
         infos = [i for i in all_issues if i.severity == '정보']
 
-        has_page = any(i.page for i in all_issues)
         lines = []
 
-        # 제목
+        # ════════════════════════════════════════
+        #  제목
+        # ════════════════════════════════════════
         lines.append(f'# 오타 검사 결과 리포트\n')
         lines.append(f'> **대상 파일**: `{self.hwpx_filename}`  ')
         lines.append(f'> **검사일**: {datetime.now().strftime("%Y-%m-%d %H:%M")}  ')
@@ -599,10 +765,15 @@ class ReportWriter:
                       f'제목 {self.parse_info.get("headings", 0)}개, '
                       f'이미지 {self.parse_info.get("images", 0)}개'
                       f'{total_pages_str}\n')
-        lines.append('---\n')
 
-        # 요약
-        lines.append('## 검사 결과 요약\n')
+        # ════════════════════════════════════════
+        #  Section 1: 검사 결과 요약
+        # ════════════════════════════════════════
+        lines.append('---\n')
+        lines.append('## 1. 검사 결과 요약\n')
+
+        # 심각도별 건수
+        lines.append('### 심각도별 현황\n')
         lines.append('| 심각도 | 건수 |')
         lines.append('| --- | --- |')
         lines.append(f'| 🔴 오타 (확정) | **{len(errors)}건** |')
@@ -611,67 +782,13 @@ class ReportWriter:
         lines.append(f'| **합계** | **{len(all_issues)}건** |')
         lines.append('')
 
-        # 오타 (확정)
-        if errors:
-            lines.append('---\n')
-            lines.append('## 🔴 오타 (확정)\n')
-            if has_page:
-                lines.append('| # | 페이지 | 위치 | 원문 | 설명 | 수정 제안 |')
-                lines.append('| --- | --- | --- | --- | --- | --- |')
-                for i, issue in enumerate(errors, 1):
-                    orig = issue.original.replace('|', '\\|')
-                    lines.append(f'| {i} | {issue.page} | {issue.location} | {orig} | {issue.description} | {issue.suggestion} |')
-            else:
-                lines.append('| # | 위치 | 원문 | 설명 | 수정 제안 |')
-                lines.append('| --- | --- | --- | --- | --- |')
-                for i, issue in enumerate(errors, 1):
-                    orig = issue.original.replace('|', '\\|')
-                    lines.append(f'| {i} | {issue.location} | {orig} | {issue.description} | {issue.suggestion} |')
-            lines.append('')
-
-        # 의심 (확인 필요)
-        if warnings:
-            lines.append('---\n')
-            lines.append('## 🟡 의심 (확인 필요)\n')
-            if has_page:
-                lines.append('| # | 페이지 | 위치 | 원문 | 설명 | 수정 제안 |')
-                lines.append('| --- | --- | --- | --- | --- | --- |')
-                for i, issue in enumerate(warnings, 1):
-                    orig = issue.original.replace('|', '\\|')
-                    lines.append(f'| {i} | {issue.page} | {issue.location} | {orig} | {issue.description} | {issue.suggestion} |')
-            else:
-                lines.append('| # | 위치 | 원문 | 설명 | 수정 제안 |')
-                lines.append('| --- | --- | --- | --- | --- |')
-                for i, issue in enumerate(warnings, 1):
-                    orig = issue.original.replace('|', '\\|')
-                    lines.append(f'| {i} | {issue.location} | {orig} | {issue.description} | {issue.suggestion} |')
-            lines.append('')
-
-        # 정보 (참고)
-        if infos:
-            lines.append('---\n')
-            lines.append('## 🔵 정보 (참고)\n')
-            if has_page:
-                lines.append('| # | 페이지 | 위치 | 내용 | 설명 |')
-                lines.append('| --- | --- | --- | --- | --- |')
-                for i, issue in enumerate(infos, 1):
-                    orig = issue.original.replace('|', '\\|')
-                    lines.append(f'| {i} | {issue.page} | {issue.location} | {orig} | {issue.description} |')
-            else:
-                lines.append('| # | 위치 | 내용 | 설명 |')
-                lines.append('| --- | --- | --- | --- |')
-                for i, issue in enumerate(infos, 1):
-                    orig = issue.original.replace('|', '\\|')
-                    lines.append(f'| {i} | {issue.location} | {orig} | {issue.description} |')
-            lines.append('')
-
         # 검사 항목별 통계
-        lines.append('---\n')
-        lines.append('## 검사 항목별 통계\n')
         cats = {}
         for issue in all_issues:
             cats[issue.category] = cats.get(issue.category, 0) + 1
-        cat_names = {'text': '텍스트 검사 (A단계)', 'table': '표 검증 (B단계)', 'cross': '교차 검증'}
+        cat_names = {'text': '텍스트 검사 (A단계)', 'spell': '맞춤법 검사 (A-2단계)',
+                     'table': '표 검증 (B단계)', 'cross': '교차 검증'}
+        lines.append('### 검사 항목별 현황\n')
         lines.append('| 검사 항목 | 건수 |')
         lines.append('| --- | --- |')
         for cat, name in cat_names.items():
@@ -680,8 +797,7 @@ class ReportWriter:
         lines.append('')
 
         # 파싱 상세 정보
-        lines.append('---\n')
-        lines.append('## 파싱 상세 정보\n')
+        lines.append('### 파싱 정보\n')
         lines.append(f'- 입력 파일: `{self.hwpx_filename}`')
         lines.append(f'- 문단 수: {self.parse_info.get("paragraphs", 0)}')
         lines.append(f'- 표 수: {self.parse_info.get("tables", 0)}')
@@ -691,10 +807,100 @@ class ReportWriter:
             lines.append(f'- 전체 페이지: {self.parse_info["total_pages"]}페이지')
         lines.append(f'- 파싱 소요: {self.parse_info.get("elapsed", 0):.1f}초')
         if self.parse_info.get("errors"):
-            lines.append(f'\n### 파싱 오류')
+            lines.append(f'\n**파싱 오류:**')
             for e in self.parse_info["errors"]:
                 lines.append(f'- {e}')
         lines.append('')
+
+        # ════════════════════════════════════════
+        #  Section 2: 주요 오타 내용
+        # ════════════════════════════════════════
+        lines.append('---\n')
+        lines.append('## 2. 주요 오타 내용\n')
+
+        # 2-1. 확정 오타
+        lines.append('### 2-1. 🔴 확정 오타 (반드시 수정 필요)\n')
+        if errors:
+            lines.append('| # | 위치 | 유형 | 원문 | 설명 | 수정 제안 |')
+            lines.append('| --- | --- | --- | --- | --- | --- |')
+            for i, issue in enumerate(errors, 1):
+                loc = self._get_location_label(issue)
+                cat_label = self.CATEGORY_LABELS.get(issue.category, issue.category)
+                orig = issue.original.replace('|', '\\|')
+                lines.append(f'| {i} | {loc} | {cat_label} | {orig} | {issue.description} | {issue.suggestion} |')
+        else:
+            lines.append('> 확정 오타가 발견되지 않았습니다.\n')
+        lines.append('')
+
+        # 2-2. 반복 빈도 높은 이슈
+        lines.append('### 2-2. 반복 빈도 높은 이슈\n')
+        desc_counter = Counter(i.description for i in all_issues)
+        frequent = [(desc, cnt) for desc, cnt in desc_counter.most_common() if cnt >= 3]
+
+        if frequent:
+            lines.append('| # | 이슈 유형 | 건수 | 대표 사례 (최대 3건) |')
+            lines.append('| --- | --- | --- | --- |')
+            for idx, (desc, cnt) in enumerate(frequent, 1):
+                samples = [i for i in all_issues if i.description == desc][:3]
+                sample_strs = []
+                for s in samples:
+                    loc = self._get_location_label(s)
+                    sample_strs.append(f'{loc}')
+                samples_text = ', '.join(sample_strs)
+                lines.append(f'| {idx} | {desc} | {cnt}건 | {samples_text} |')
+        else:
+            lines.append('> 3건 이상 반복되는 이슈가 없습니다.\n')
+        lines.append('')
+
+        # 2-3. 기타 주요 텍스트 이슈 (비반복 의심 이슈)
+        non_frequent_descs = {d for d, c in desc_counter.items() if c < 3}
+        non_frequent_warnings = [i for i in warnings if i.description in non_frequent_descs]
+        if non_frequent_warnings:
+            lines.append('### 2-3. 기타 의심 이슈 (개별 확인 필요)\n')
+            lines.append('| # | 위치 | 유형 | 원문 | 설명 | 수정 제안 |')
+            lines.append('| --- | --- | --- | --- | --- | --- |')
+            for i, issue in enumerate(non_frequent_warnings, 1):
+                loc = self._get_location_label(issue)
+                cat_label = self.CATEGORY_LABELS.get(issue.category, issue.category)
+                orig = issue.original.replace('|', '\\|')[:80]
+                lines.append(f'| {i} | {loc} | {cat_label} | {orig} | {issue.description} | {issue.suggestion} |')
+            lines.append('')
+
+        # ════════════════════════════════════════
+        #  Section 3: 페이지별 오타 검사 결과
+        # ════════════════════════════════════════
+        lines.append('---\n')
+        lines.append('## 3. 페이지별 오타 검사 결과\n')
+
+        # 페이지/구간별 그룹핑
+        page_groups = defaultdict(list)
+        for issue in all_issues:
+            key = self._get_page_group_key(issue)
+            page_groups[key].append(issue)
+
+        # 정렬키 기준 오름차순
+        sorted_keys = sorted(page_groups.keys(), key=lambda x: x[0])
+
+        for sort_key, label in sorted_keys:
+            group_issues = page_groups[(sort_key, label)]
+            lines.append(f'### {label} ({len(group_issues)}건)\n')
+
+            # 동일 패턴 건수 계산 (같은 페이지 내 동일 description)
+            pattern_counter = Counter(i.description for i in group_issues)
+
+            lines.append('| # | 심각도 | 위치 | 유형 | 원문 | 설명 | 수정 제안 | 비고 |')
+            lines.append('| --- | --- | --- | --- | --- | --- | --- | --- |')
+            for i, issue in enumerate(group_issues, 1):
+                sev_icon = {'오타': '🔴', '의심': '🟡', '정보': '🔵'}.get(issue.severity, '')
+                loc = self._get_relative_line_label(issue)
+                cat_label = self.CATEGORY_LABELS.get(issue.category, issue.category)
+                orig = issue.original.replace('|', '\\|')[:80]
+                sug = issue.suggestion.replace('|', '\\|') if issue.suggestion else ''
+                # 비고: 동일 패턴이 2건 이상이면 표시
+                pat_cnt = pattern_counter.get(issue.description, 0)
+                note = f'동일패턴({pat_cnt}건)' if pat_cnt >= 2 else ''
+                lines.append(f'| {i} | {sev_icon} {issue.severity} | {loc} | {cat_label} | {orig} | {issue.description} | {sug} | {note} |')
+            lines.append('')
 
         with open(self.output_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
@@ -705,15 +911,35 @@ class ReportWriter:
 # ══════════════════════════════════════════════
 #  CSV 출력
 # ══════════════════════════════════════════════
-def write_issues_csv(csv_path: Path, issues: List[Issue]):
+def _get_relative_location(issue: Issue, page_boundaries: Optional[Dict[int, int]] = None) -> str:
+    """페이지 시작 줄 번호 기준 상대 위치 문자열 반환"""
+    page_boundaries = page_boundaries or {}
+    m = re.match(r'줄\s*(\d+)', issue.location)
+    if not m:
+        return issue.location
+    abs_line = int(m.group(1))
+    if issue.page and issue.page != '?':
+        try:
+            page_num = int(issue.page)
+            page_start = page_boundaries.get(page_num)
+            if page_start is not None:
+                return f'줄 {abs_line - page_start + 1}'
+        except (ValueError, TypeError):
+            pass
+    return issue.location
+
+
+def write_issues_csv(csv_path: Path, issues: List[Issue],
+                     page_boundaries: Optional[Dict[int, int]] = None):
     """오타 검사 상세 내용을 CSV로 저장한다."""
     with open(csv_path, 'w', encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['번호', '페이지', '심각도', '카테고리', '위치', '원문', '설명', '수정제안'])
+        writer.writerow(['번호', '페이지', '페이지내위치', '심각도', '카테고리', '위치', '원문', '설명', '수정제안'])
         for i, issue in enumerate(issues, 1):
             writer.writerow([
                 i,
                 issue.page,
+                _get_relative_location(issue, page_boundaries),
                 issue.severity,
                 issue.category,
                 issue.location,
@@ -737,6 +963,8 @@ def main():
                         help='산출물 저장 디렉토리 (기본: 같은 폴더/output)')
     parser.add_argument('--no-page-map', action='store_true',
                         help='페이지 매핑 건너뛰기')
+    parser.add_argument('--no-spell-check', action='store_true',
+                        help='kiwi 맞춤법 검사 건너뛰기')
     args = parser.parse_args()
 
     hwpx_path = Path(args.hwpx_file)
@@ -814,6 +1042,29 @@ def main():
     print(f"  -> 텍스트 이슈: {len(text_issues)}건 (오타: {err_cnt}, 의심: {warn_cnt}, 정보: {info_cnt})")
     sys.stdout.flush()
 
+    # ── Step 2.5: kiwi 맞춤법 검사 (A-2단계) ──
+    if not args.no_spell_check and _KIWI_AVAILABLE:
+        print("\n[Step 2.5] kiwi 맞춤법 검사 (A-2단계)...")
+        sys.stdout.flush()
+        spell_checker = SpellChecker(result['paragraphs'])
+        spell_issues = spell_checker.check_all()
+
+        # 페이지 번호 매핑
+        if page_mapper:
+            for issue in spell_issues:
+                m = re.match(r'줄\s*(\d+)', issue.location)
+                if m:
+                    issue.page = page_mapper.get_page_str(int(m.group(1)))
+
+        sp_warn = sum(1 for i in spell_issues if i.severity == '의심')
+        sp_info = sum(1 for i in spell_issues if i.severity == '정보')
+        print(f"  -> kiwi 이슈: {len(spell_issues)}건 (띄어쓰기: {sp_warn}, 미등록어: {sp_info})")
+        sys.stdout.flush()
+        text_issues.extend(spell_issues)
+    elif not _KIWI_AVAILABLE and not args.no_spell_check:
+        print("\n[Step 2.5] kiwi unavailable (kiwipiepy not installed). Skipping.")
+        sys.stdout.flush()
+
     # ── Step 3: 표 데이터 검증 (B단계) ──
     print("\n[Step 3] 표 데이터 검증 (B단계)...")
     sys.stdout.flush()
@@ -827,7 +1078,15 @@ def main():
     print("\n[Step 4] 리포트 생성 (C단계)...")
     sys.stdout.flush()
     report_path = output_dir / "typo_check_report.md"
-    writer = ReportWriter(report_path, hwpx_path.name, parse_info)
+    # 페이지 경계 정보 구축 (페이지번호: 시작줄)
+    page_boundaries = {}
+    if page_mapper and page_mapper._page_map:
+        from collections import defaultdict as _dd
+        page_lines = _dd(list)
+        for line_num, page_num in page_mapper._page_map.items():
+            page_lines[page_num].append(line_num)
+        page_boundaries = {p: min(ls) for p, ls in page_lines.items()}
+    writer = ReportWriter(report_path, hwpx_path.name, parse_info, page_boundaries)
     writer.write(text_issues, table_issues)
     print(f"  -> 리포트: {report_path}")
 
@@ -836,7 +1095,7 @@ def main():
     sys.stdout.flush()
     all_issues = text_issues + table_issues
     csv_path = output_dir / "typo_check_detail.csv"
-    write_issues_csv(csv_path, all_issues)
+    write_issues_csv(csv_path, all_issues, page_boundaries)
     print(f"  -> CSV: {csv_path} ({len(all_issues)}건)")
 
     total = len(all_issues)

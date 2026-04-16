@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.hwpx-agent/schemas/document_asset.schema.json",
+  "title": "HWPX Document Asset",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "document_id",
+    "source_file_name",
+    "created_at",
+    "package",
+    "counts",
+    "asset_files",
+    "page_summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "document_id": {
+      "type": "string"
+    },
+    "source_file_name": {
+      "type": "string"
+    },
+    "source_file_sha1": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "package": {
+      "type": "object",
+      "required": [
+        "entry_count",
+        "section_count",
+        "masterpage_count",
+        "bindata_count"
+      ]
+    },
+    "counts": {
+      "type": "object"
+    },
+    "page_summary": {
+      "type": "object"
+    },
+    "asset_files": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,703 @@
+{
+  "schema_version": "1.0.0",
+  "entry_count": 116,
+  "bindata_count": 84,
+  "entries": [
+    {
+      "name": "mimetype",
+      "file_size": 19,
+      "compress_size": 19,
+      "crc": 1195503746
+    },
+    {
+      "name": "version.xml",
+      "file_size": 310,
+      "compress_size": 310,
+      "crc": 512020481
+    },
+    {
+      "name": "Contents/header.xml",
+      "file_size": 1333661,
+      "compress_size": 56754,
+      "crc": 1754495771
+    },
+    {
+      "name": "BinData/image1.bmp",
+      "file_size": 115974,
+      "compress_size": 650,
+      "crc": 1474885830
+    },
+    {
+      "name": "BinData/image2.bmp",
+      "file_size": 108246,
+      "compress_size": 665,
+      "crc": 1704853673
+    },
+    {
+      "name": "Contents/masterpage0.xml",
+      "file_size": 4518,
+      "compress_size": 1454,
+      "crc": 808261981
+    },
+    {
+      "name": "Contents/masterpage1.xml",
+      "file_size": 4517,
+      "compress_size": 1449,
+      "crc": 2910471845
+    },
+    {
+      "name": "BinData/image3.jpg",
+      "file_size": 2121131,
+      "compress_size": 2121131,
+      "crc": 1349718573
+    },
+    {
+      "name": "BinData/image4.jpg",
+      "file_size": 69649,
+      "compress_size": 69649,
+      "crc": 3581709050
+    },
+    {
+      "name": "BinData/image5.png",
+      "file_size": 31350,
+      "compress_size": 31350,
+      "crc": 825799033
+    },
+    {
+      "name": "BinData/image6.png",
+      "file_size": 7255,
+      "compress_size": 7255,
+      "crc": 3975793221
+    },
+    {
+      "name": "BinData/image7.bmp",
+      "file_size": 842562,
+      "compress_size": 31687,
+      "crc": 219961573
+    },
+    {
+      "name": "BinData/image8.bmp",
+      "file_size": 527190,
+      "compress_size": 27140,
+      "crc": 247176664
+    },
+    {
+      "name": "BinData/image9.bmp",
+      "file_size": 323922,
+      "compress_size": 7207,
+      "crc": 3742633465
+    },
+    {
+      "name": "BinData/image10.bmp",
+      "file_size": 210450,
+      "compress_size": 5980,
+      "crc": 655490375
+    },
+    {
+      "name": "BinData/image11.bmp",
+      "file_size": 209934,
+      "compress_size": 7224,
+      "crc": 634024597
+    },
+    {
+      "name": "BinData/image12.bmp",
+      "file_size": 174990,
+      "compress_size": 7155,
+      "crc": 3937170389
+    },
+    {
+      "name": "BinData/image13.bmp",
+      "file_size": 230150,
+      "compress_size": 6758,
+      "crc": 3167526082
+    },
+    {
+      "name": "BinData/image14.bmp",
+      "file_size": 321558,
+      "compress_size": 8056,
+      "crc": 4007970406
+    },
+    {
+      "name": "BinData/image15.bmp",
+      "file_size": 207030,
+      "compress_size": 8082,
+      "crc": 778057897
+    },
+    {
+      "name": "BinData/image16.bmp",
+      "file_size": 226610,
+      "compress_size": 9335,
+      "crc": 2179199331
+    },
+    {
+      "name": "BinData/image17.bmp",
+      "file_size": 223398,
+      "compress_size": 6976,
+      "crc": 913940560
+    },
+    {
+      "name": "BinData/image18.bmp",
+      "file_size": 228150,
+      "compress_size": 7746,
+      "crc": 1031645202
+    },
+    {
+      "name": "BinData/image19.bmp",
+      "file_size": 2533494,
+      "compress_size": 68485,
+      "crc": 523314906
+    },
+    {
+      "name": "BinData/image20.bmp",
+      "file_size": 136502,
+      "compress_size": 5631,
+      "crc": 3429650020
+    },
+    {
+      "name": "BinData/image21.bmp",
+      "file_size": 201110,
+      "compress_size": 8364,
+      "crc": 1403493090
+    },
+    {
+      "name": "BinData/image22.bmp",
+      "file_size": 171446,
+      "compress_size": 7659,
+      "crc": 1824377636
+    },
+    {
+      "name": "BinData/image23.bmp",
+      "file_size": 171446,
+      "compress_size": 7919,
+      "crc": 1067227953
+    },
+    {
+      "name": "BinData/image24.bmp",
+      "file_size": 360090,
+      "compress_size": 10987,
+      "crc": 1537793985
+    },
+    {
+      "name": "BinData/image25.bmp",
+      "file_size": 360090,
+      "compress_size": 10750,
+      "crc": 3011786528
+    },
+    {
+      "name": "BinData/image26.bmp",
+      "file_size": 410898,
+      "compress_size": 12403,
+      "crc": 757620750
+    },
+    {
+      "name": "BinData/image27.bmp",
+      "file_size": 152562,
+      "compress_size": 8048,
+      "crc": 4049282808
+    },
+    {
+      "name": "BinData/image28.bmp",
+      "file_size": 197718,
+      "compress_size": 8421,
+      "crc": 3622136267
+    },
+    {
+      "name": "BinData/image29.bmp",
+      "file_size": 358446,
+      "compress_size": 10574,
+      "crc": 4039046144
+    },
+    {
+      "name": "BinData/image30.bmp",
+      "file_size": 360090,
+      "compress_size": 12098,
+      "crc": 3889991629
+    },
+    {
+      "name": "BinData/image31.bmp",
+      "file_size": 354198,
+      "compress_size": 9472,
+      "crc": 4130857912
+    },
+    {
+      "name": "BinData/image32.bmp",
+      "file_size": 396630,
+      "compress_size": 13867,
+      "crc": 1204237206
+    },
+    {
+      "name": "BinData/image33.bmp",
+      "file_size": 398262,
+      "compress_size": 14476,
+      "crc": 3943596642
+    },
+    {
+      "name": "BinData/image34.bmp",
+      "file_size": 321558,
+      "compress_size": 7278,
+      "crc": 4190567968
+    },
+    {
+      "name": "BinData/image35.bmp",
+      "file_size": 331350,
+      "compress_size": 9671,
+      "crc": 1654361199
+    },
+    {
+      "name": "BinData/image36.bmp",
+      "file_size": 365022,
+      "compress_size": 20506,
+      "crc": 4015413226
+    },
+    {
+      "name": "BinData/image37.bmp",
+      "file_size": 143006,
+      "compress_size": 8055,
+      "crc": 896640259
+    },
+    {
+      "name": "BinData/image38.bmp",
+      "file_size": 206118,
+      "compress_size": 7986,
+      "crc": 1920017294
+    },
+    {
+      "name": "BinData/image39.bmp",
+      "file_size": 142338,
+      "compress_size": 7133,
+      "crc": 2783124870
+    },
+    {
+      "name": "BinData/image40.bmp",
+      "file_size": 205146,
+      "compress_size": 6582,
+      "crc": 1398770279
+    },
+    {
+      "name": "BinData/image41.bmp",
+      "file_size": 142338,
+      "compress_size": 7284,
+      "crc": 3204596335
+    },
+    {
+      "name": "BinData/image42.bmp",
+      "file_size": 206118,
+      "compress_size": 7410,
+      "crc": 1846172701
+    },
+    {
+      "name": "BinData/image43.bmp",
+      "file_size": 410690,
+      "compress_size": 15280,
+      "crc": 2445507701
+    },
+    {
+      "name": "BinData/image44.bmp",
+      "file_size": 134366,
+      "compress_size": 5998,
+      "crc": 34851392
+    },
+    {
+      "name": "BinData/image45.bmp",
+      "file_size": 198342,
+      "compress_size": 7768,
+      "crc": 2439770315
+    },
+    {
+      "name": "BinData/image46.bmp",
+      "file_size": 168154,
+      "compress_size": 7676,
+      "crc": 3525399228
+    },
+    {
+      "name": "BinData/image47.bmp",
+      "file_size": 168154,
+      "compress_size": 6589,
+      "crc": 1233279252
+    },
+    {
+      "name": "BinData/image48.bmp",
+      "file_size": 346886,
+      "compress_size": 10629,
+      "crc": 1036425910
+    },
+    {
+      "name": "BinData/image49.bmp",
+      "file_size": 348522,
+      "compress_size": 12074,
+      "crc": 2987778189
+    },
+    {
+      "name": "BinData/image50.bmp",
+      "file_size": 439062,
+      "compress_size": 12155,
+      "crc": 2210951949
+    },
+    {
+      "name": "BinData/image51.bmp",
+      "file_size": 437934,
+      "compress_size": 12876,
+      "crc": 2294346589
+    },
+    {
+      "name": "BinData/image52.bmp",
+      "file_size": 337894,
+      "compress_size": 9960,
+      "crc": 2547107859
+    },
+    {
+      "name": "BinData/image53.bmp",
+      "file_size": 336254,
+      "compress_size": 12116,
+      "crc": 117555486
+    },
+    {
+      "name": "BinData/image54.bmp",
+      "file_size": 396934,
+      "compress_size": 14276,
+      "crc": 4240194788
+    },
+    {
+      "name": "BinData/image55.bmp",
+      "file_size": 326414,
+      "compress_size": 5958,
+      "crc": 2651278156
+    },
+    {
+      "name": "BinData/image56.bmp",
+      "file_size": 336254,
+      "compress_size": 9770,
+      "crc": 4068610949
+    },
+    {
+      "name": "BinData/image57.bmp",
+      "file_size": 333758,
+      "compress_size": 9628,
+      "crc": 1002919302
+    },
+    {
+      "name": "BinData/image58.bmp",
+      "file_size": 336182,
+      "compress_size": 10711,
+      "crc": 4147599073
+    },
+    {
+      "name": "BinData/image59.bmp",
+      "file_size": 435714,
+      "compress_size": 17723,
+      "crc": 1890008667
+    },
+    {
+      "name": "BinData/image60.bmp",
+      "file_size": 435714,
+      "compress_size": 20486,
+      "crc": 78307226
+    },
+    {
+      "name": "BinData/image61.bmp",
+      "file_size": 435714,
+      "compress_size": 19884,
+      "crc": 1637125381
+    },
+    {
+      "name": "BinData/image62.bmp",
+      "file_size": 435714,
+      "compress_size": 20908,
+      "crc": 784579630
+    },
+    {
+      "name": "BinData/image63.bmp",
+      "file_size": 435714,
+      "compress_size": 16869,
+      "crc": 4047796165
+    },
+    {
+      "name": "BinData/image64.bmp",
+      "file_size": 435714,
+      "compress_size": 18499,
+      "crc": 3554843784
+    },
+    {
+      "name": "BinData/image65.bmp",
+      "file_size": 434070,
+      "compress_size": 18783,
+      "crc": 596257139
+    },
+    {
+      "name": "BinData/image66.bmp",
+      "file_size": 360966,
+      "compress_size": 9551,
+      "crc": 583824685
+    },
+    {
+      "name": "BinData/image67.bmp",
+      "file_size": 334518,
+      "compress_size": 19219,
+      "crc": 2075880402
+    },
+    {
+      "name": "BinData/image68.bmp",
+      "file_size": 435714,
+      "compress_size": 18916,
+      "crc": 2926885670
+    },
+    {
+      "name": "BinData/image69.bmp",
+      "file_size": 435714,
+      "compress_size": 18757,
+      "crc": 3647074478
+    },
+    {
+      "name": "BinData/image70.bmp",
+      "file_size": 435714,
+      "compress_size": 18181,
+      "crc": 2026555777
+    },
+    {
+      "name": "BinData/image71.bmp",
+      "file_size": 435714,
+      "compress_size": 17918,
+      "crc": 1876462346
+    },
+    {
+      "name": "BinData/image72.bmp",
+      "file_size": 527190,
+      "compress_size": 27140,
+      "crc": 247176664
+    },
+    {
+      "name": "BinData/image73.bmp",
+      "file_size": 323922,
+      "compress_size": 7341,
+      "crc": 898211387
+    },
+    {
+      "name": "BinData/image74.bmp",
+      "file_size": 322346,
+      "compress_size": 8474,
+      "crc": 2271737585
+    },
+    {
+      "name": "BinData/image75.bmp",
+      "file_size": 322346,
+      "compress_size": 7344,
+      "crc": 3795955736
+    },
+    {
+      "name": "BinData/image76.bmp",
+      "file_size": 320710,
+      "compress_size": 9308,
+      "crc": 2793618647
+    },
+    {
+      "name": "BinData/image77.bmp",
+      "file_size": 330498,
+      "compress_size": 10420,
+      "crc": 2830705601
+    },
+    {
+      "name": "BinData/image78.bmp",
+      "file_size": 323190,
+      "compress_size": 8455,
+      "crc": 2605951126
+    },
+    {
+      "name": "BinData/image79.bmp",
+      "file_size": 323190,
+      "compress_size": 9071,
+      "crc": 1191048898
+    },
+    {
+      "name": "BinData/image80.jpg",
+      "file_size": 33994,
+      "compress_size": 33994,
+      "crc": 3601722162
+    },
+    {
+      "name": "BinData/image81.png",
+      "file_size": 17472,
+      "compress_size": 17472,
+      "crc": 1955163310
+    },
+    {
+      "name": "BinData/image82.bmp",
+      "file_size": 817254,
+      "compress_size": 33220,
+      "crc": 3763505467
+    },
+    {
+      "name": "Contents/section0.xml",
+      "file_size": 9350747,
+      "compress_size": 422460,
+      "crc": 1424968637
+    },
+    {
+      "name": "Contents/section1.xml",
+      "file_size": 6728151,
+      "compress_size": 197882,
+      "crc": 1519863460
+    },
+    {
+      "name": "BinData/image83.bmp",
+      "file_size": 131838,
+      "compress_size": 710,
+      "crc": 3247678970
+    },
+    {
+      "name": "BinData/image84.bmp",
+      "file_size": 77494,
+      "compress_size": 583,
+      "crc": 3376452888
+    },
+    {
+      "name": "Contents/masterpage2.xml",
+      "file_size": 4522,
+      "compress_size": 1487,
+      "crc": 489472123
+    },
+    {
+      "name": "Contents/masterpage3.xml",
+      "file_size": 4521,
+      "compress_size": 1479,
+      "crc": 2309305590
+    },
+    {
+      "name": "Contents/section2.xml",
+      "file_size": 12717063,
+      "compress_size": 307485,
+      "crc": 3012468444
+    },
+    {
+      "name": "Contents/masterpage4.xml",
+      "file_size": 4518,
+      "compress_size": 1456,
+      "crc": 1003515946
+    },
+    {
+      "name": "Contents/masterpage5.xml",
+      "file_size": 4517,
+      "compress_size": 1446,
+      "crc": 4124048957
+    },
+    {
+      "name": "Contents/section3.xml",
+      "file_size": 5415868,
+      "compress_size": 162255,
+      "crc": 692376461
+    },
+    {
+      "name": "Contents/masterpage6.xml",
+      "file_size": 4522,
+      "compress_size": 1484,
+      "crc": 1946985466
+    },
+    {
+      "name": "Contents/masterpage7.xml",
+      "file_size": 4521,
+      "compress_size": 1479,
+      "crc": 1181022189
+    },
+    {
+      "name": "Contents/section4.xml",
+      "file_size": 2488244,
+      "compress_size": 68032,
+      "crc": 953210198
+    },
+    {
+      "name": "Contents/masterpage8.xml",
+      "file_size": 4518,
+      "compress_size": 1450,
+      "crc": 30580785
+    },
+    {
+      "name": "Contents/masterpage9.xml",
+      "file_size": 4517,
+      "compress_size": 1449,
+      "crc": 4079778904
+    },
+    {
+      "name": "Contents/section5.xml",
+      "file_size": 1880018,
+      "compress_size": 62804,
+      "crc": 4285433019
+    },
+    {
+      "name": "Contents/masterpage10.xml",
+      "file_size": 4523,
+      "compress_size": 1485,
+      "crc": 1172793023
+    },
+    {
+      "name": "Contents/masterpage11.xml",
+      "file_size": 4522,
+      "compress_size": 1476,
+      "crc": 1754778499
+    },
+    {
+      "name": "Contents/section6.xml",
+      "file_size": 4064516,
+      "compress_size": 95582,
+      "crc": 2362359852
+    },
+    {
+      "name": "Contents/masterpage12.xml",
+      "file_size": 4519,
+      "compress_size": 1452,
+      "crc": 188138982
+    },
+    {
+      "name": "Contents/masterpage13.xml",
+      "file_size": 4518,
+      "compress_size": 1448,
+      "crc": 2755270754
+    },
+    {
+      "name": "Contents/section7.xml",
+      "file_size": 3914121,
+      "compress_size": 110533,
+      "crc": 1824988874
+    },
+    {
+      "name": "Preview/PrvText.txt",
+      "file_size": 1827,
+      "compress_size": 916,
+      "crc": 2401535801
+    },
+    {
+      "name": "settings.xml",
+      "file_size": 958,
+      "compress_size": 339,
+      "crc": 601626642
+    },
+    {
+      "name": "Preview/PrvImage.png",
+      "file_size": 384456,
+      "compress_size": 384456,
+      "crc": 3545617252
+    },
+    {
+      "name": "META-INF/container.rdf",
+      "file_size": 3016,
+      "compress_size": 332,
+      "crc": 3590224753
+    },
+    {
+      "name": "Contents/content.hpf",
+      "file_size": 11394,
+      "compress_size": 1518,
+      "crc": 4187377285
+    },
+    {
+      "name": "META-INF/container.xml",
+      "file_size": 475,
+      "compress_size": 265,
+      "crc": 3559233567
+    },
+    {
+      "name": "META-INF/manifest.xml",
+      "file_size": 134,
+      "compress_size": 113,
+      "crc": 1558195055
+    }
+  ]
+}

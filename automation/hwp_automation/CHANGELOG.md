@@ -5,6 +5,49 @@
 
 ---
 
+## [2026-03-25] 리포트 형식 재설계 (Phase 2)
+
+### ✅ 신규 기능
+
+- **3단계 리포트 구조** — `ReportWriter.write()` 전면 리팩토링
+  1. **검사 결과 요약** — 심각도별 + 항목별(A/A-2/B단계) + 파싱 정보
+  2. **주요 오타 내용** — 확정 오타 → 반복 빈도 높은 이슈(3건+) → 기타 의심 이슈
+  3. **페이지별 오타 검사 결과** — 페이지 단위 그룹핑 + 테이블 출력
+- **유형 열 추가** — `CATEGORY_LABELS` 딕셔너리로 category → 한글 유형 매핑
+  - `text` → 본문, `spell` → 맞춤법, `table` → 표, `cross` → 교차검증
+- **비고 열 + 동일패턴 표시** — 같은 페이지 내 동일 description ≥ 2건 시 `동일패턴(N건)` 표시
+- **페이지 내 상대 줄 번호** — `page_boundaries` 기반 위치를 페이지 내 N줄로 변환
+- **반복 이슈 그룹핑** — Section 2에서 3건+ 반복 이슈를 대표 3건 + 전체 건수로 요약
+
+### 🔄 변경 사항
+
+- `ReportWriter.__init__()`: `page_boundaries` 파라미터 추가
+- `_get_location_label()`: "00페이지 00줄" 형태 라벨 생성
+- `_get_page_group_key()`: 줄 범위 폴백 제거, 항상 페이지 단위
+- `_get_relative_line_label()`: 페이지 경계 기반 상대 줄 번호 계산
+- `main()`: PageMapper에서 페이지 경계 정보 구축 후 ReportWriter에 전달
+- Section 2-1/2-3/Section 3 테이블에 유형 열 삽입 (위치↔원문 사이)
+- `pyhwpx` 의존성 추가 (pip install pyhwpx)
+
+---
+
+## [2026-03-25] kiwi 기반 맞춤법 검사 추가 (Step 2.5)
+
+### ✅ 신규 기능
+
+- **`SpellChecker` 클래스** — kiwi(kiwipiepy) 기반 띄어쓰기 교정 + 미등록어 탐지
+  - `kiwi.space()`: 원문 vs 교정문 diff 비교로 띄어쓰기 오류 탐지
+  - `kiwi.tokenize()`: UN 태그 토큰으로 미등록어 탐지 (중복 보고 방지)
+- **`--no-spell-check` CLI 옵션** — kiwi 검사 건너뛰기
+- **UTF-8 출력 래퍼** — Windows cmd 인코딩 오류 방지
+
+### 🔄 변경 사항
+
+- 파이프라인: 5단계 → **6단계** (Step 2.5 추가)
+- 기존 검사 항목(TextChecker, TableChecker)에 영향 없음
+- kiwipiepy 미설치 환경에서는 자동 건너뛰기 (try/except)
+
+---
 ## [2026-03-18] 디렉토리 구조 재편
 
 ### 🔄 구조 변경

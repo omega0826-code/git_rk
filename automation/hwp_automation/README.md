@@ -71,25 +71,40 @@ python hwpx_parser.py <hwpx_파일> [--text-only] [--count-tables] [--extract-ta
 
 ## 📁 proofreading — HWPX 범용 교정 도구 (v2)
 
-`hwpx_parser`와 `typo_checker`를 통합하여 **임의의 HWPX 파일**에 대해 파싱 → 오타 검사 → 리포트 생성을 자동 수행.
+`hwpx_parser`와 `typo_checker`를 통합하여 **임의의 HWPX 파일**에 대해 파싱 → 오타 검사 → kiwi 맞춤법 검사 → 리포트 생성을 자동 수행.
 
 | 파일/폴더 | 설명 |
 |-----------|------|
-| `run_typo_check.py` | 범용 오타 검사 스크립트 (770줄) — 5단계 파이프라인 |
+| `run_typo_check.py` | 범용 오타 검사 스크립트 — 6단계 파이프라인 |
 | `docs/` | 스크립트 개발리포트, 검사결과 종합리포트 |
 | `output/` | 실행 산출물 (파싱 결과, CSV, Markdown 리포트) |
 
 ```bash
-python run_typo_check.py <hwpx_파일> [--output-dir DIR] [--no-page-map]
+python run_typo_check.py <hwpx_파일> [--output-dir DIR] [--no-page-map] [--no-spell-check]
 ```
+
+### 리포트 구조 (3단계)
+
+| Section | 내용 |
+|---------|------|
+| **1. 검사 결과 요약** | 심각도별/항목별 건수 + 파싱 정보 |
+| **2. 주요 오타 내용** | 확정 오타 → 반복 빈도 높은 이슈 → 기타 의심 이슈 |
+| **3. 페이지별 오타 검사 결과** | 페이지 단위 그룹핑 + 유형/비고 열 포함 |
+
+- **유형 열**: 본문 / 맞춤법 / 표 / 교차검증
+- **비고 열**: 동일 패턴 ≥ 2건 시 `동일패턴(N건)` 표시
+- **페이지 내 상대 줄 번호**: pyhwpx 페이지 경계 기반
 
 ### typo_checker와의 차이
 
 | 항목 | typo_checker (v1) | proofreading (v2) |
-|------|--------------------|--------------------|
+|------|--------------------|---------------------|
 | 대상 | 문경 프로젝트 전용 | **범용** (임의 HWPX) |
 | 페이지 매핑 | XML pageBreak (부정확) | **pyhwpx goto_page()** (정확) |
+| 맞춤법 검사 | 없음 | **kiwi (띄어쓰기 + 미등록어)** |
 | 출력 형식 | Markdown만 | **Markdown + CSV** |
+| 리포트 구조 | 심각도별 단순 나열 | **3단계 (요약→주요→페이지별)** |
+| 이슈 분류 | 없음 | **유형 열 (본문/표/맞춤법)** |
 
 ---
 

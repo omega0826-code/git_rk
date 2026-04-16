@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "run_name": "2023_mei_workforce_20260416_131312",
+  "created_at": "2026-04-16T13:13:31",
+  "notes": [
+    "pyhwpx 실측 페이지 수와 XML pageBreak 추정 페이지 수가 다릅니다. 문단별 page_no는 현재 XML 추정값만 기록했습니다."
+  ]
+}

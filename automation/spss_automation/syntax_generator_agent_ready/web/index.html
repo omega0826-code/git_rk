@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPSS Syntax 자동 생성 도구</title>
+<style>
+:root{--bg:#f6f4ef;--panel:rgba(255,255,255,.84);--line:rgba(45,61,87,.14);--text:#1f2a3b;--muted:#5f6c82;--brand:#1967d2;--brand2:#114ea5;--brand-soft:#deebff;--ok:#0f9f6e;--ok-bg:#ddf8ee;--err:#c0394f;--err-bg:#fde8ec;--wait:#35517b;--wait-bg:#eef3fa;--warn:#c45b14;--warn-bg:#fff1e7;--code:#0c1727;--code-text:#d6f5ea;--shadow:0 18px 50px rgba(20,35,62,.1)}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:"Bahnschrift","Malgun Gothic",sans-serif;color:var(--text);background:radial-gradient(circle at top left,rgba(25,103,210,.14),transparent 30%),radial-gradient(circle at top right,rgba(244,163,76,.12),transparent 24%),linear-gradient(180deg,#faf7f1 0%,#f1f5fb 55%,#eef3ff 100%)}a{color:inherit}.shell{width:min(1160px,calc(100% - 24px));margin:18px auto 36px}.hero,.card{border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.hero{padding:26px;background:linear-gradient(135deg,rgba(18,48,101,.96),rgba(27,83,171,.92));color:#fff;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-50px;top:-30px;width:200px;height:200px;border-radius:999px;background:rgba(255,255,255,.08)}.badge{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.13);font-size:12px;font-weight:800;letter-spacing:.06em}.hero h1{margin:14px 0 10px;font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.03em}.hero p{margin:0;max-width:760px;color:rgba(255,255,255,.88);font-size:15px;line-height:1.72}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}.meta div{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.12)}.meta strong{display:block;font-size:12px;color:rgba(255,255,255,.72);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase}.layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:20px;margin-top:20px}.stack{display:grid;gap:20px}.card{background:var(--panel);backdrop-filter:blur(12px)}.card-inner,.panel{padding:20px}.card h2,.panel h2{margin:0 0 8px;letter-spacing:-.03em}.copy{margin:0;color:var(--muted);font-size:14px;line-height:1.7}.steps{display:grid;gap:14px;margin-top:16px}.step{display:grid;grid-template-columns:34px 1fr;gap:12px}.num{width:34px;height:34px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#edf4ff,#dce8ff);color:var(--brand);font-weight:800}.step strong{display:block;font-size:14px;margin-bottom:4px}.step span{font-size:13px;color:var(--muted);line-height:1.58}.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.link{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:14px;border:1px solid #d5e3ff;background:#f7fbff;color:var(--brand);text-decoration:none;font-size:13px;font-weight:800}.link:hover{background:var(--brand);border-color:var(--brand);color:#fff}.note{margin-top:14px;padding:12px 14px;border-radius:16px;background:#fff8ee;border:1px solid #f0dbc1;color:#85501a;font-size:13px;line-height:1.62}.tabs{display:flex;flex-wrap:wrap;gap:10px;padding:16px 16px 0}.tab{border:1px solid #d7deea;background:rgba(255,255,255,.74);color:var(--muted);padding:11px 14px;border-radius:15px;cursor:pointer;font-size:13px;font-weight:800}.tab.active{background:linear-gradient(135deg,var(--brand),var(--brand2));border-color:transparent;color:#fff;box-shadow:0 10px 20px rgba(25,103,210,.22)}.panel{display:none}.panel.active{display:block}.head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.tag{padding:9px 12px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-size:12px;font-weight:800}.section{border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.68)}.section+.section{margin-top:12px}.label{margin:0 0 6px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.desc{margin:0 0 12px;font-size:13px;color:var(--muted);line-height:1.62}.upload-grid,.form-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.upload{position:relative;min-height:138px;padding:16px;border:2px dashed #cfd8e5;border-radius:18px;background:linear-gradient(180deg,#fafcff,#f4f8ff);transition:.15s}.upload:hover,.upload.drag{border-color:#7ba7f6;background:linear-gradient(180deg,#f4f8ff,#edf3ff)}.upload.has{border-color:#6bc79e;background:linear-gradient(180deg,#f4fdf8,#edf9f3)}.upload input{position:absolute;inset:0;opacity:0;cursor:pointer}.icon{width:38px;height:38px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(25,103,210,.12);color:var(--brand);font-size:20px;font-weight:900}.upload.has .icon{background:rgba(15,159,110,.12);color:var(--ok)}.upload strong{display:block;margin:12px 0 6px;font-size:15px}.upload p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.fname{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.84);font-size:13px;font-weight:700;word-break:break-all;color:var(--text)}.field{display:grid;gap:6px}.field label{font-size:13px;font-weight:800;color:var(--muted)}.field input[type=text],.field select{width:100%;padding:12px 14px;border:1px solid #d7deea;border-radius:14px;background:#fff;font-size:14px;color:var(--text);outline:none}.field input[type=text]:focus,.field select:focus{border-color:#7aa6f6;box-shadow:0 0 0 4px rgba(25,103,210,.1)}.check{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 14px;border:1px solid #d7deea;border-radius:14px;background:#fff;font-size:14px;font-weight:700}.check input{width:16px;height:16px;accent-color:var(--brand)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.run{border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:16px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-size:14px;font-weight:800}.run:disabled{opacity:.56;cursor:not-allowed}.run.loading .ico{display:none}.spin{display:none;width:15px;height:15px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:999px;animation:spin .8s linear infinite}.run.loading .spin{display:inline-block}@keyframes spin{to{transform:rotate(360deg)}}.result{display:none;margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:18px;background:#fff}.result.show{display:block}.result-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}.result-title{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.status{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800}.status.ok{background:var(--ok-bg);color:var(--ok)}.status.err{background:var(--err-bg);color:var(--err)}.status.wait{background:var(--wait-bg);color:var(--wait)}.log{margin-top:12px;padding:16px;border-radius:16px;background:var(--code);color:var(--code-text);font-family:"Cascadia Code","Consolas",monospace;font-size:12px;line-height:1.65;white-space:pre-wrap;word-break:break-word;max-height:250px;overflow:auto}.files{display:none;margin-top:14px}.files.show{display:block}.file-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.file-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:14px;text-decoration:none;font-size:13px;font-weight:800;border:1px solid transparent}.file-link.sps{background:var(--warn-bg);color:var(--warn);border-color:#f1cfb1}.file-link.md{background:var(--ok-bg);color:var(--ok);border-color:#b8e8d2}.file-link.other{background:#eef3fa;color:#35517b;border-color:#d4dce8}.tip{margin-top:12px;padding:12px 14px;border-radius:16px;background:#f6f9ff;border:1px solid #dbe6ff;color:#4d6380;font-size:13px;line-height:1.62}@media (max-width:980px){.layout{grid-template-columns:1fr}}@media (max-width:720px){.shell{width:min(100% - 16px,1160px);margin-top:12px}.hero,.card{border-radius:20px}.card-inner,.panel{padding:16px}.tabs{padding:12px 12px 0}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <section class="hero">
+    <div class="badge"><span>SPSS</span><span>WEB UI</span><span>v1.0.1</span></div>
+    <h1>브라우저에서 바로 실행하는 SPSS 자동화</h1>
+    <p>`start.bat` 또는 `launch_web_ui.hta`로 서버를 띄우면, 이 화면에서 라벨 생성, 분석 Syntax 생성, 매크로 생성, SPS↔MD 변환까지 한 번에 처리할 수 있습니다.</p>
+    <div class="meta">
+      <div><strong>실행 방식</strong><span>브라우저 UI + 로컬 Python 처리</span></div>
+      <div><strong>결과 위치</strong><span>`web_output/세션ID/` 폴더</span></div>
+      <div><strong>주의</strong><span>순수 HTML만으로는 로컬 Python을 직접 실행할 수 없습니다.</span></div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <aside class="stack">
+      <section class="card"><div class="card-inner">
+        <h2>사용 순서</h2>
+        <p class="copy">일반 사용자가 바로 쓸 수 있게 핵심 단계만 남겼습니다.</p>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><div><strong>실행기 열기</strong><span>`start.bat` 또는 `launch_web_ui.hta`를 실행하면 브라우저가 자동으로 열립니다.</span></div></div>
+          <div class="step"><div class="num">2</div><div><strong>입력 파일 업로드</strong><span>필수 파일을 클릭하거나 끌어다 놓으세요. 샘플 파일도 바로 받을 수 있습니다.</span></div></div>
+          <div class="step"><div class="num">3</div><div><strong>결과 다운로드</strong><span>실행 후 생성된 `.sps`/`.md` 링크가 즉시 나타납니다.</span></div></div>
+        </div>
+      </div></section>
+
+      <section class="card"><div class="card-inner">
+        <h2>샘플 파일</h2>
+        <p class="copy">처음 테스트할 때 바로 사용할 수 있는 예시입니다.</p>
+        <div class="links">
+          <a class="link" href="/samples/guideline_sample.csv" download>⬇ CSV 샘플</a>
+          <a class="link" href="/samples/short_labels_sample.json" download>⬇ short_labels 샘플</a>
+          <a class="link" href="/samples/analysis_config_sample.json" download>⬇ analysis_config 샘플</a>
+          <a class="link" href="/samples/banner_config_sample.json" download>⬇ banner_config 샘플</a>
+        </div>
+        <div class="note">분석 Syntax 생성에서는 `analysis_config.json`만 올리면 내부 `label_sps` 경로가 어긋날 수 있습니다. 웹 UI에서는 `label.sps` 또는 `label_short.sps`를 함께 업로드하는 방식을 권장합니다.</div>
+      </div></section>
+    </aside>
+
+    <section class="card">
+      <div class="tabs">
+        <button class="tab active" type="button" data-panel="p1">1. 라벨 SPS 생성</button>
+        <button class="tab" type="button" data-panel="p2">2. 분석 Syntax 생성</button>
+        <button class="tab" type="button" data-panel="p3">3. 매크로 생성</button>
+        <button class="tab" type="button" data-panel="p4">4. SPS ↔ MD 변환</button>
+      </div>
+
+      <div class="panel active" id="p1">
+        <div class="head"><div><h2>라벨 SPS 생성</h2><p class="copy">변수 가이드라인 CSV를 SPSS VARIABLE/VALUE LABELS 구문으로 변환합니다.</p></div><div class="tag">CSV → SPS</div></div>
+        <div class="section">
+          <div class="label">입력 파일</div><p class="desc">CSV는 필수입니다. short_labels JSON은 통계표용 간략 라벨이 필요할 때만 추가하세요.</p>
+          <div class="upload-grid">
+            <label class="upload" id="ua1a"><input type="file" id="f1_csv" accept=".csv"><div class="icon">＋</div><strong>CSV 파일</strong><p>클릭하거나 파일을 끌어다 놓으세요.</p><div class="fname" id="fn1a">선택된 파일 없음</div></label>
+            <label class="upload" id="ua1b"><input type="file" id="f1_short" accept=".json"><div class="icon">＋</div><strong>간략 라벨 JSON</strong><p>선택 사항입니다. 없으면 원본 라벨을 그대로 씁니다.</p><div class="fname" id="fn1b">선택된 파일 없음</div></label>
+          </div>
+        </div>
+        <div class="section">
+          <div class="label">옵션</div>
+          <div class="form-grid">
+            <div class="field"><label for="f1_enc">인코딩</label><select id="f1_enc"><option value="cp949" selected>CP949 (SPSS 25.0 한국어)</option><option value="utf-8">UTF-8</option></select></div>
+            <div class="field"><label for="f1_out">출력 파일명</label><input type="text" id="f1_out" value="label" placeholder="label"></div>
+            <div class="field"><label for="f1_sout">간략 라벨 파일명</label><input type="text" id="f1_sout" value="label_short" placeholder="label_short"></div>
+            <div class="field"><label for="f1_title">제목</label><input type="text" id="f1_title" placeholder="예: 학생 설문조사"></div>
+          </div>
+          <div class="actions"><button class="run" id="btn1" type="button" onclick="runLabel()"><span class="ico">▶</span><span class="spin"></span><span>라벨 SPS 생성</span></button></div>
+        </div>
+        <div class="result" id="res1"><div class="result-head"><span class="result-title">실행 결과</span><span class="status" id="status1"></span></div><div class="log" id="log1"></div><div class="files" id="files1"><div class="result-title">생성된 파일</div><div class="file-list" id="list1"></div></div></div>
+      </div>
+
+      <div class="panel" id="p2">
+        <div class="head"><div><h2>분석 Syntax 생성</h2><p class="copy">analysis_config.json을 바탕으로 분석용 `.sps`와 `.md`를 함께 생성합니다.</p></div><div class="tag">JSON → SPS + MD</div></div>
+        <div class="section">
+          <div class="label">입력 파일</div><p class="desc">`analysis_config.json`은 필수입니다. `label_sps` 파일을 같이 넣으면 경로 문제를 줄일 수 있습니다.</p>
+          <div class="upload-grid">
+            <label class="upload" id="ua2a"><input type="file" id="f2_cfg" accept=".json"><div class="icon">＋</div><strong>analysis_config.json</strong><p>분석 설정 JSON 파일</p><div class="fname" id="fn2a">선택된 파일 없음</div></label>
+            <label class="upload" id="ua2b"><input type="file" id="f2_lbl" accept=".sps"><div class="icon">＋</div><strong>label SPS 파일</strong><p>label.sps 또는 label_short.sps를 권장합니다.</p><div class="fname" id="fn2b">선택된 파일 없음</div></label>
+          </div>
+          <div class="tip">config 내부 경로를 그대로 신뢰하기 어려운 경우가 많아서, 웹 UI에서는 라벨 파일 동봉 방식이 가장 안정적입니다.</div>
+          <div class="actions"><button class="run" id="btn2" type="button" onclick="runSyntax()"><span class="ico">▶</span><span class="spin"></span><span>분석 Syntax 생성</span></button></div>
+        </div>
+        <div class="result" id="res2"><div class="result-head"><span class="result-title">실행 결과</span><span class="status" id="status2"></span></div><div class="log" id="log2"></div><div class="files" id="files2"><div class="result-title">생성된 파일</div><div class="file-list" id="list2"></div></div></div>
+      </div>
+
+      <div class="panel" id="p3">
+        <div class="head"><div><h2>매크로 생성</h2><p class="copy">banner_config.json 설정값을 공통 매크로 템플릿에 반영해 프로젝트용 매크로를 생성합니다.</p></div><div class="tag">JSON → Macro SPS</div></div>
+        <div class="section">
+          <div class="label">입력 파일</div>
+          <div class="upload-grid">
+            <label class="upload" id="ua3"><input type="file" id="f3_cfg" accept=".json"><div class="icon">＋</div><strong>banner_config.json</strong><p>배너 설정 JSON 파일</p><div class="fname" id="fn3">선택된 파일 없음</div></label>
+          </div>
+        </div>
+        <div class="section">
+          <div class="label">옵션</div>
+          <div class="form-grid">
+            <div class="field"><label for="f3_enc">인코딩</label><select id="f3_enc"><option value="utf-8" selected>UTF-8</option><option value="cp949">CP949</option></select></div>
+            <div class="field"><label for="f3_out">출력 파일명</label><input type="text" id="f3_out" value="macros" placeholder="macros"></div>
+          </div>
+          <div class="actions"><button class="run" id="btn3" type="button" onclick="runMacro()"><span class="ico">▶</span><span class="spin"></span><span>매크로 생성</span></button></div>
+        </div>
+        <div class="result" id="res3"><div class="result-head"><span class="result-title">실행 결과</span><span class="status" id="status3"></span></div><div class="log" id="log3"></div><div class="files" id="files3"><div class="result-title">생성된 파일</div><div class="file-list" id="list3"></div></div></div>
+      </div>
+
+      <div class="panel" id="p4">
+        <div class="head"><div><h2>SPS ↔ MD 변환</h2><p class="copy">SPSS 구문과 Markdown 사이를 오가며 버전 관리와 공유용 텍스트를 정리합니다.</p></div><div class="tag">Round Trip</div></div>
+        <div class="section">
+          <div class="label">SPS → MD</div>
+          <div class="upload-grid">
+            <label class="upload" id="ua4a"><input type="file" id="f4_sps" accept=".sps"><div class="icon">＋</div><strong>SPS 파일</strong><p>구문 파일을 Markdown으로 변환합니다.</p><div class="fname" id="fn4a">선택된 파일 없음</div></label>
+          </div>
+          <div class="actions"><button class="run" id="btn4a" type="button" onclick="runSpsToMd()"><span class="ico">▶</span><span class="spin"></span><span>SPS → MD 변환</span></button></div>
+        </div>
+        <div class="section">
+          <div class="label">MD → SPS</div>
+          <div class="upload-grid">
+            <label class="upload" id="ua4b"><input type="file" id="f4_md" accept=".md"><div class="icon">＋</div><strong>MD 파일</strong><p>Markdown을 다시 SPS로 복원합니다.</p><div class="fname" id="fn4b">선택된 파일 없음</div></label>
+          </div>
+          <div class="form-grid" style="margin-top:12px">
+            <div class="field"><label for="f4_enc">출력 인코딩</label><select id="f4_enc"><option value="">자동 (메타 정보 참조)</option><option value="cp949">CP949</option><option value="utf-8">UTF-8</option></select></div>
+            <label class="check" for="f4_strip"><input type="checkbox" id="f4_strip"><span>DEFINE 내부 빈줄 제거</span></label>
+          </div>
+          <div class="actions"><button class="run" id="btn4b" type="button" onclick="runMdToSps()"><span class="ico">▶</span><span class="spin"></span><span>MD → SPS 변환</span></button></div>
+        </div>
+        <div class="result" id="res4a"><div class="result-head"><span class="result-title">SPS → MD 결과</span><span class="status" id="status4a"></span></div><div class="log" id="log4a"></div><div class="files" id="files4a"><div class="result-title">생성된 파일</div><div class="file-list" id="list4a"></div></div></div>
+        <div class="result" id="res4b"><div class="result-head"><span class="result-title">MD → SPS 결과</span><span class="status" id="status4b"></span></div><div class="log" id="log4b"></div><div class="files" id="files4b"><div class="result-title">생성된 파일</div><div class="file-list" id="list4b"></div></div></div>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+function panel(id){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.panel===id));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id))}document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>panel(b.dataset.panel)));
+function bind(areaId,inputId,nameId){const area=document.getElementById(areaId),input=document.getElementById(inputId),name=document.getElementById(nameId);const render=()=>{const file=input.files&&input.files[0];area.classList.toggle('has',!!file);name.textContent=file?'✓ '+file.name:'선택된 파일 없음'};input.addEventListener('change',render);area.addEventListener('dragover',e=>{e.preventDefault();area.classList.add('drag')});area.addEventListener('dragleave',()=>area.classList.remove('drag'));area.addEventListener('drop',e=>{e.preventDefault();area.classList.remove('drag');if(!e.dataTransfer.files.length)return;try{const dt=new DataTransfer();dt.items.add(e.dataTransfer.files[0]);input.files=dt.files;input.dispatchEvent(new Event('change'))}catch(_){render()}});render()}
+[['ua1a','f1_csv','fn1a'],['ua1b','f1_short','fn1b'],['ua2a','f2_cfg','fn2a'],['ua2b','f2_lbl','fn2b'],['ua3','f3_cfg','fn3'],['ua4a','f4_sps','fn4a'],['ua4b','f4_md','fn4b']].forEach(args=>bind(...args));
+function loading(id,on){const btn=document.getElementById(id);btn.disabled=on;btn.classList.toggle('loading',on)}
+function show(resultId,statusId,logId,filesId,listId,data){const result=document.getElementById(resultId),status=document.getElementById(statusId),log=document.getElementById(logId),files=document.getElementById(filesId),list=document.getElementById(listId);result.classList.add('show');status.textContent=data.pending?'처리 중':data.success?'성공':'실패';status.className='status '+(data.pending?'wait':data.success?'ok':'err');log.textContent=data.log||'(출력 없음)';list.innerHTML='';if(data.files&&data.files.length){data.files.forEach(file=>{const ext=file.name.split('.').pop().toLowerCase();const cls=ext==='sps'?'sps':ext==='md'?'md':'other';const link=document.createElement('a');link.className='file-link '+cls;link.href=file.url;link.download=file.name;link.textContent=(ext==='sps'?'⬇ SPS':ext==='md'?'⬇ MD':'⬇ FILE')+' '+file.name;list.appendChild(link)});files.classList.add('show')}else{files.classList.remove('show')}log.scrollTop=log.scrollHeight}
+async function callApi(url,form,ids){loading(ids.button,true);show(ids.result,ids.status,ids.log,ids.files,ids.list,{pending:true,success:false,log:'⏳ 처리 중...',files:[]});try{const res=await fetch(url,{method:'POST',body:form});const type=res.headers.get('content-type')||'';let data;if(type.includes('application/json')){data=await res.json()}else{data={success:res.ok,log:(await res.text())||'서버 응답을 읽지 못했습니다.',files:[]}}if(data.success===undefined)data.success=res.ok;if(!Array.isArray(data.files))data.files=[];show(ids.result,ids.status,ids.log,ids.files,ids.list,data)}catch(err){show(ids.result,ids.status,ids.log,ids.files,ids.list,{success:false,log:'네트워크 오류: '+err.message,files:[]})}finally{loading(ids.button,false)}}
+function req(id,msg){const file=document.getElementById(id).files[0];if(!file){alert(msg);return null}return file}
+function runLabel(){const csv=req('f1_csv','CSV 파일을 선택해주세요.');if(!csv)return;const f=new FormData();f.append('csv_file',csv);const short=document.getElementById('f1_short').files[0];if(short)f.append('short_labels',short);f.append('encoding',document.getElementById('f1_enc').value);f.append('title',document.getElementById('f1_title').value);f.append('output_name',document.getElementById('f1_out').value);f.append('short_output_name',document.getElementById('f1_sout').value);callApi('/api/guideline-to-sps',f,{button:'btn1',result:'res1',status:'status1',log:'log1',files:'files1',list:'list1'})}
+function runSyntax(){const cfg=req('f2_cfg','analysis_config.json 파일을 선택해주세요.');if(!cfg)return;const f=new FormData();f.append('config_json',cfg);const label=document.getElementById('f2_lbl').files[0];if(label)f.append('label_sps',label);callApi('/api/generate-syntax',f,{button:'btn2',result:'res2',status:'status2',log:'log2',files:'files2',list:'list2'})}
+function runMacro(){const cfg=req('f3_cfg','banner_config.json 파일을 선택해주세요.');if(!cfg)return;const f=new FormData();f.append('config_json',cfg);f.append('encoding',document.getElementById('f3_enc').value);f.append('output_name',document.getElementById('f3_out').value);callApi('/api/generate-macros',f,{button:'btn3',result:'res3',status:'status3',log:'log3',files:'files3',list:'list3'})}
+function runSpsToMd(){const sps=req('f4_sps','SPS 파일을 선택해주세요.');if(!sps)return;const f=new FormData();f.append('sps_file',sps);callApi('/api/sps-to-md',f,{button:'btn4a',result:'res4a',status:'status4a',log:'log4a',files:'files4a',list:'list4a'})}
+function runMdToSps(){const md=req('f4_md','MD 파일을 선택해주세요.');if(!md)return;const f=new FormData();f.append('md_file',md);f.append('encoding',document.getElementById('f4_enc').value);f.append('strip_define_blanks',document.getElementById('f4_strip').checked?'true':'false');callApi('/api/md-to-sps',f,{button:'btn4b',result:'res4b',status:'status4b',log:'log4b',files:'files4b',list:'list4b'})}
+</script>
+</body>
+</html>

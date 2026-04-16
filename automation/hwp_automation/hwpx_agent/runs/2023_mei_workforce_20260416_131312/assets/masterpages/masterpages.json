@@ -1,0 +1,310 @@
+[
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage0",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage0.xml",
+      "xml_path": "Contents/masterpage0.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 0,
+    "attributes": {
+      "id": "masterpage0",
+      "type": "EVEN",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00001",
+      "imgocc_mp00002"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage1",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage1.xml",
+      "xml_path": "Contents/masterpage1.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 1,
+    "attributes": {
+      "id": "masterpage1",
+      "type": "ODD",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00003",
+      "imgocc_mp00004"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage10",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage10.xml",
+      "xml_path": "Contents/masterpage10.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 2,
+    "attributes": {
+      "id": "masterpage10",
+      "type": "EVEN",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00005",
+      "imgocc_mp00006"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage11",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage11.xml",
+      "xml_path": "Contents/masterpage11.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 3,
+    "attributes": {
+      "id": "masterpage11",
+      "type": "ODD",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00007",
+      "imgocc_mp00008"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage12",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage12.xml",
+      "xml_path": "Contents/masterpage12.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 4,
+    "attributes": {
+      "id": "masterpage12",
+      "type": "EVEN",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00009",
+      "imgocc_mp00010"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage13",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage13.xml",
+      "xml_path": "Contents/masterpage13.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 5,
+    "attributes": {
+      "id": "masterpage13",
+      "type": "ODD",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00011",
+      "imgocc_mp00012"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage2",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage2.xml",
+      "xml_path": "Contents/masterpage2.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 6,
+    "attributes": {
+      "id": "masterpage2",
+      "type": "EVEN",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00013",
+      "imgocc_mp00014"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage3",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage3.xml",
+      "xml_path": "Contents/masterpage3.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 7,
+    "attributes": {
+      "id": "masterpage3",
+      "type": "ODD",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00015",
+      "imgocc_mp00016"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage4",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage4.xml",
+      "xml_path": "Contents/masterpage4.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 8,
+    "attributes": {
+      "id": "masterpage4",
+      "type": "EVEN",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00017",
+      "imgocc_mp00018"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage5",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage5.xml",
+      "xml_path": "Contents/masterpage5.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 9,
+    "attributes": {
+      "id": "masterpage5",
+      "type": "ODD",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00019",
+      "imgocc_mp00020"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage6",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage6.xml",
+      "xml_path": "Contents/masterpage6.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 10,
+    "attributes": {
+      "id": "masterpage6",
+      "type": "EVEN",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00021",
+      "imgocc_mp00022"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage7",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage7.xml",
+      "xml_path": "Contents/masterpage7.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 11,
+    "attributes": {
+      "id": "masterpage7",
+      "type": "ODD",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00023",
+      "imgocc_mp00024"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage8",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage8.xml",
+      "xml_path": "Contents/masterpage8.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 12,
+    "attributes": {
+      "id": "masterpage8",
+      "type": "EVEN",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00025",
+      "imgocc_mp00026"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "masterpage9",
+    "asset_type": "masterpage",
+    "source_ref": {
+      "package_entry": "Contents/masterpage9.xml",
+      "xml_path": "Contents/masterpage9.xml#/masterPage",
+      "parent_asset_id": null
+    },
+    "masterpage_index": 13,
+    "attributes": {
+      "id": "masterpage9",
+      "type": "ODD",
+      "pageNumber": "0",
+      "pageDuplicate": "0",
+      "pageFront": "0"
+    },
+    "image_occurrence_ids": [
+      "imgocc_mp00027",
+      "imgocc_mp00028"
+    ]
+  }
+]

@@ -28,6 +28,8 @@ clean_company_mod = import_module("04_clean_company_name")
 clean_industry_mod = import_module("05_clean_industry")
 split_deleted_mod = import_module("06_split_deleted")
 quality_check_mod = import_module("07_quality_check")
+check_dup_mod   = import_module("08_check_duplicates")
+remove_dup_mod  = import_module("09_remove_duplicates")
 
 # ──────────────────────────────────────────
 # 경로 설정 (v1.3 디렉토리 구조)
@@ -135,7 +137,7 @@ def step_industry(df: pd.DataFrame) -> tuple:
 
 def step_split(df: pd.DataFrame) -> tuple:
     """Step 6: 삭제 데이터 분리"""
-    print(f"\n[7/7] 삭제 데이터 분리")
+    print(f"\n[7/9] 삭제 데이터 분리")
     normal_df, deleted_df, split_stats = split_deleted_mod.split_deleted(df)
     print(f"       → 정상 데이터: {split_stats['정상']}건")
     print(f"       → 주소결함 삭제: {split_stats['주소결함_삭제']}건")
@@ -146,6 +148,42 @@ def step_split(df: pd.DataFrame) -> tuple:
     total_deleted = split_stats['주소결함_삭제'] + split_stats['전화번호결함_삭제'] + split_stats['업종결함_삭제'] + split_stats.get('회사명결함_삭제', 0) + split_stats['복합결함_삭제']
     print(f"       → 총 삭제: {total_deleted}건")
     return normal_df, deleted_df, split_stats
+
+
+def step_check_duplicates(df: pd.DataFrame) -> tuple:
+    """Step 7: 중복업체 탐지 (08_check_duplicates)"""
+    print(f"\n[8/9] 중복업체 탐지")
+    result_df, dup_stats = check_dup_mod.check_duplicates(
+        df,
+        name_col  = '회사명_정규화' if '회사명_정규화' in df.columns else '회사명',
+        phone_col = '전화번호',
+        addr_col  = '공장주소',
+        nid_col   = 'nid',
+    )
+    print(f"       → 중복_확정: {dup_stats['중복_확정']}건")
+    print(f"       → 중복_예상: {dup_stats['중복_예상']}건")
+    print(f"       → 중복_확인필요: {dup_stats['중복_확인필요']}건")
+    print(f"       → 정상: {dup_stats['정상']}건")
+    return result_df, dup_stats
+
+
+def step_remove_duplicates(df: pd.DataFrame) -> tuple:
+    """Step 8: 중복업체 삭제 (09_remove_duplicates, 모드: 확정+예상)"""
+    print(f"\n[9/9] 중복업체 삭제 (확정+예상 모드)")
+    normal_df, dup_del_df, rm_stats = remove_dup_mod.remove_duplicates(
+        df,
+        dup_type_col = '중복판정',
+        group_col    = '중복_그룹',
+        source_col   = '원천자료',
+        name_col     = '회사명_정규화' if '회사명_정규화' in df.columns else '회사명',
+        phone_col    = '전화번호',
+        addr_col     = '공장주소',
+        nid_col      = 'nid',
+    )
+    print(f"       → 삭제 후 기업수: {rm_stats['삭제_후_기업수']}건")
+    print(f"       → 중복 삭제: {rm_stats['삭제_건수']}건")
+    print(f"       → 기존자료 충돌 그룹: {rm_stats['기존자료_충돌_그룹']}개")
+    return normal_df, dup_del_df, rm_stats
 
 
 def reorder_columns(df: pd.DataFrame) -> pd.DataFrame:
@@ -200,22 +238,29 @@ def reorder_columns(df: pd.DataFrame) -> pd.DataFrame:
     return df[cols]
 
 
-def save_results(normal_df: pd.DataFrame, deleted_df: pd.DataFrame):
-    """정제 결과 CSV 저장"""
+def save_results(normal_df: pd.DataFrame, deleted_df: pd.DataFrame, dup_del_df: pd.DataFrame = None):
+    """정제 결과 CSV 저장 (중복삭제 이력 포함)"""
     # 컬럼 재배치
-    normal_df = reorder_columns(normal_df)
+    normal_df  = reorder_columns(normal_df)
     deleted_df = reorder_columns(deleted_df)
 
-    prefix_name = "factory" if FILE_PREFIX == "cleaned" else "company"
+    prefix_name  = "factory" if FILE_PREFIX == "cleaned" else "company"
     cleaned_path = os.path.join(OUTPUT_DIR, f"{prefix_name}_cleaned_{TIMESTAMP}.csv")
     deleted_path = os.path.join(OUTPUT_DIR, f"{prefix_name}_deleted_{TIMESTAMP}.csv")
 
-    normal_df.to_csv(cleaned_path, index=False, encoding="utf-8-sig")
+    normal_df.to_csv(cleaned_path,  index=False, encoding="utf-8-sig")
     deleted_df.to_csv(deleted_path, index=False, encoding="utf-8-sig")
+
+    dup_del_path = None
+    if dup_del_df is not None and len(dup_del_df) > 0:
+        dup_del_path = os.path.join(OUTPUT_DIR, f"{prefix_name}_deleted_dup_{TIMESTAMP}.csv")
+        dup_del_df.to_csv(dup_del_path, index=False, encoding="utf-8-sig")
 
     print(f"\n=== 파일 저장 완료 ===")
     print(f"  정제 데이터: {cleaned_path} ({len(normal_df)}행)")
     print(f"  삭제 데이터: {deleted_path} ({len(deleted_df)}행)")
+    if dup_del_path:
+        print(f"  중복삭제 이력: {dup_del_path} ({len(dup_del_df)}행)")
 
     return cleaned_path, deleted_path
 
@@ -608,11 +653,11 @@ def generate_report(
 
 
 def main():
-    """메인 파이프라인 실행 (v1.6)"""
+    """메인 파이프라인 실행 (v1.7 - 중복업체 탐지·삭제 추가)"""
     start_time = time.time()
 
     print("=" * 60)
-    print("  데이터 정제 파이프라인 (v1.6)")
+    print("  데이터 정제 파이프라인 (v1.7)")
     print(f"  타임스탬프: {TIMESTAMP}")
     print("=" * 60)
 
@@ -638,16 +683,22 @@ def main():
     # 6. 업종(KSIC) 정제
     df, ind_stats = step_industry(df)
 
-    # 7. 삭제 데이터 분리
+    # 7. 삭제 데이터 분리 (결함)
     normal_df, deleted_df, split_stats = step_split(df)
 
-    # 8. 저장
-    cleaned_path, deleted_path = save_results(normal_df, deleted_df)
+    # 8. 중복업체 탐지
+    normal_df, dup_stats = step_check_duplicates(normal_df)
 
-    # 9. 리포트 생성
+    # 9. 중복업체 삭제 (확정+예상)
+    normal_df, dup_del_df, rm_stats = step_remove_duplicates(normal_df)
+
+    # 10. 저장
+    cleaned_path, deleted_path = save_results(normal_df, deleted_df, dup_del_df)
+
+    # 11. 리포트 생성
     print(f"\n[통계] 통합 리포트 생성 중...")
 
-    # 9-1. 품질 분석 (v1.6)
+    # 11-1. 품질 분석 (v1.6)
     print(f"  품질 분석 중...")
     quality_stats = quality_check_mod.check_quality(normal_df)
     sec_quality = quality_check_mod.generate_quality_section(quality_stats, len(normal_df))
@@ -665,9 +716,13 @@ def main():
     # 검증
     print(f"\n=== 검증 ===")
     print(f"  원본: {total_rows}행")
-    print(f"  정상+삭제: {len(normal_df) + len(deleted_df)}행")
-    assert len(normal_df) + len(deleted_df) == total_rows, "행 수 불일치!"
+    total_out = len(normal_df) + len(deleted_df) + len(dup_del_df)
+    print(f"  정상+결함삭제+중복삭제: {total_out}행")
+    assert total_out == total_rows, "행 수 불일치!"
     print(f"  [OK] 행 수 보존 검증 통과")
+    print(f"  최종 정상 기업수: {len(normal_df)}건")
+    print(f"  결함 삭제: {len(deleted_df)}건")
+    print(f"  중복 삭제: {len(dup_del_df)}건")
 
     elapsed = time.time() - start_time
     print(f"\n=== 완료 (소요시간: {elapsed:.1f}초) ===")

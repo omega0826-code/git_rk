@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "document_id": "2023_mei_workforce",
+  "source_file_name": "2023_mei_workforce.hwpx",
+  "source_file_sha1": "324e5612e434365a8029da0ecac4282b49ecb42d",
+  "created_at": "2026-04-16T13:13:31",
+  "package": {
+    "entry_count": 116,
+    "section_count": 8,
+    "masterpage_count": 14,
+    "bindata_count": 84
+  },
+  "counts": {
+    "paragraphs": 1305,
+    "tables": 292,
+    "image_binaries": 84,
+    "image_occurrences": 161,
+    "sections": 8,
+    "masterpages": 14,
+    "char_styles": 353,
+    "para_styles": 324,
+    "named_styles": 314
+  },
+  "page_summary": {
+    "schema_version": "1.0.0",
+    "xml_page_map": {
+      "method": "xml_pagebreak_estimate",
+      "estimated_total_pages": 215,
+      "mapped_paragraphs": 1305
+    },
+    "pyhwpx": {
+      "available": true,
+      "page_count": 239,
+      "error": null
+    },
+    "notes": [
+      "pyhwpx 실측 페이지 수와 XML pageBreak 추정 페이지 수가 다릅니다. 문단별 page_no는 현재 XML 추정값만 기록했습니다."
+    ]
+  },
+  "asset_files": {
+    "document": "assets/document.json",
+    "paragraphs": "assets/blocks/paragraphs.json",
+    "tables": "assets/tables/tables.json",
+    "image_binaries": "assets/images/binaries.json",
+    "image_occurrences": "assets/images/occurrences.json",
+    "sections": "assets/sections/sections.json",
+    "masterpages": "assets/masterpages/masterpages.json",
+    "page_summary": "assets/pages/page_summary.json"
+  },
+  "notes": [
+    "pyhwpx 실측 페이지 수와 XML pageBreak 추정 페이지 수가 다릅니다. 문단별 page_no는 현재 XML 추정값만 기록했습니다."
+  ]
+}

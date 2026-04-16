@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <title>SPSS Syntax 자동 생성 도구</title>
+  <hta:application
+    id="SPSSSyntaxLauncher"
+    applicationname="SPSS Syntax Launcher"
+    border="thin"
+    caption="yes"
+    maximizebutton="no"
+    minimizebutton="yes"
+    scroll="no"
+    showintaskbar="yes"
+    singleinstance="yes"
+    sysmenu="yes"
+    windowstate="normal"
+  />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Malgun Gothic", sans-serif;
+      color: #1f2a3b;
+      background: linear-gradient(180deg, #f4f7fc 0%, #edf2fb 100%);
+    }
+    .card {
+      border: 1px solid #d8e0ee;
+      border-radius: 20px;
+      background: #ffffff;
+      padding: 22px;
+      box-shadow: 0 18px 36px rgba(24, 39, 69, 0.10);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+    p {
+      margin: 0 0 12px;
+      line-height: 1.7;
+      color: #5f6c82;
+      font-size: 14px;
+    }
+    .tip {
+      margin: 16px 0 18px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #dbe6ff;
+      background: #f6f9ff;
+      color: #48617e;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .buttons {
+      margin-top: 18px;
+    }
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1967d2, #114ea5);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button.alt {
+      background: #eef3fa;
+      color: #35517b;
+    }
+    .foot {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #6b7890;
+    }
+  </style>
+  <script language="javascript">
+    function appDir() {
+      var path = decodeURIComponent(window.location.pathname).replace(/\//g, "\\");
+      if (/^\\[A-Za-z]:\\/.test(path)) {
+        path = path.substring(1);
+      }
+      return path.replace(/\\[^\\]+$/, "");
+    }
+
+    function runCommand(command) {
+      var shell = new ActiveXObject("WScript.Shell");
+      shell.Run(command, 1, false);
+    }
+
+    function startUi() {
+      runCommand('"' + appDir() + '\\start.bat"');
+      window.close();
+    }
+
+    function openFolder() {
+      runCommand('explorer.exe "' + appDir() + '"');
+    }
+
+    function openReadme() {
+      runCommand('notepad.exe "' + appDir() + '\\README.md"');
+    }
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h1>SPSS Syntax 자동 생성 도구</h1>
+    <p>HTML 기반 실행기입니다. 아래 버튼을 누르면 `start.bat`를 실행하고 브라우저 웹 UI를 엽니다.</p>
+    <div class="tip">
+      일반 브라우저의 순수 `.html` 파일은 보안상 로컬 Python을 직접 실행할 수 없습니다.
+      그래서 이 실행기는 Windows HTA 형식으로 `start.bat`를 호출하도록 구성했습니다.
+    </div>
+    <div class="buttons">
+      <button onclick="startUi()">웹 UI 시작</button>
+      <button class="alt" onclick="openFolder()">도구 폴더 열기</button>
+      <button class="alt" onclick="openReadme()">README 열기</button>
+    </div>
+    <div class="foot">HTA 실행이 차단된 환경이면 `start.bat`를 직접 실행하면 됩니다.</div>
+  </div>
+</body>
+</html>

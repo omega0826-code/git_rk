@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.hwpx-agent/schemas/proofread_issue.schema.json",
+  "title": "HWPX Proofread Issue",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "issue_id",
+    "origin_id",
+    "source_location",
+    "original_text",
+    "suggested_fix",
+    "reason"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "issue_id": {
+      "type": "string"
+    },
+    "origin_id": {
+      "type": "string"
+    },
+    "source_location": {
+      "type": "string"
+    },
+    "original_text": {
+      "type": "string"
+    },
+    "suggested_fix": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "memo": {
+      "type": "string"
+    }
+  }
+}

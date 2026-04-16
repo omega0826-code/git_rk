@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "xml_page_map": {
+    "method": "xml_pagebreak_estimate",
+    "estimated_total_pages": 215,
+    "mapped_paragraphs": 1305
+  },
+  "pyhwpx": {
+    "available": true,
+    "page_count": 239,
+    "error": null
+  },
+  "notes": [
+    "pyhwpx 실측 페이지 수와 XML pageBreak 추정 페이지 수가 다릅니다. 문단별 page_no는 현재 XML 추정값만 기록했습니다."
+  ]
+}

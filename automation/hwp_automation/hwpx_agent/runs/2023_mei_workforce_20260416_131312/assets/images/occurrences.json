@@ -1,0 +1,4349 @@
+[
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00001",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[1]/pic[1]",
+      "parent_asset_id": "sec0000.p00001"
+    },
+    "page_no": 1,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image3",
+    "binary_package_entry": "BinData/image3.jpg",
+    "media_type": "image/jpg",
+    "comment": "그림입니다. 원본 그림의 이름: 2024.02.15 리서치코리아 2023년 제조장비산업 교육훈련 수요조사 표지,2023년 제조장비산업 인력실태 조사 표지 2종2.jpg 원본 그림의 크기: 가로 5079pixel, 세로 3508pixel",
+    "current_size": {
+      "width": "59558",
+      "height": "84217"
+    },
+    "original_size": {
+      "width": "121980",
+      "height": "84180"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00002",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[19]/pic[1]",
+      "parent_asset_id": "sec0000.p00019"
+    },
+    "page_no": 2,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image4",
+    "binary_package_entry": "BinData/image4.jpg",
+    "media_type": "image/jpg",
+    "comment": "그림입니다. 원본 그림의 이름: 첨단공구가공사업단 로고.jpg 원본 그림의 크기: 가로 1110pixel, 세로 272pixel 사진 찍은 날짜: 2022년 10월 19일 오후 10:46 프로그램 이름 : Adobe Photoshop CS6 (Windows) 색 대표 : sRGB",
+    "current_size": {
+      "width": "13889",
+      "height": "4250"
+    },
+    "original_size": {
+      "width": "111000",
+      "height": "27180"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00003",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[19]/pic[2]",
+      "parent_asset_id": "sec0000.p00019"
+    },
+    "page_no": 2,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image5",
+    "binary_package_entry": "BinData/image5.png",
+    "media_type": "image/png",
+    "comment": "",
+    "current_size": {
+      "width": "14173",
+      "height": "4251"
+    },
+    "original_size": {
+      "width": "32340",
+      "height": "8040"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00004",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[19]/pic[3]",
+      "parent_asset_id": "sec0000.p00019"
+    },
+    "page_no": 2,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image6",
+    "binary_package_entry": "BinData/image6.png",
+    "media_type": "image/png",
+    "comment": "",
+    "current_size": {
+      "width": "14173",
+      "height": "4251"
+    },
+    "original_size": {
+      "width": "27780",
+      "height": "6780"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00005",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[144]/pic[1]",
+      "parent_asset_id": "sec0000.p00144"
+    },
+    "page_no": 12,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image7",
+    "binary_package_entry": "BinData/image7.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다.",
+    "current_size": {
+      "width": "42520",
+      "height": "11532"
+    },
+    "original_size": {
+      "width": "80700",
+      "height": "19560"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00006",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[223]/pic[1]",
+      "parent_asset_id": "sec0000.p00223"
+    },
+    "page_no": 22,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image8",
+    "binary_package_entry": "BinData/image8.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40001.bmp 원본 그림의 크기: 가로 543pixel, 세로 323pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40740",
+      "height": "24240"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00007",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[227]/pic[1]",
+      "parent_asset_id": "sec0000.p00227"
+    },
+    "page_no": 23,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image9",
+    "binary_package_entry": "BinData/image9.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40013.bmp 원본 그림의 크기: 가로 547pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00008",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[232]/pic[1]",
+      "parent_asset_id": "sec0000.p00232"
+    },
+    "page_no": 23,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image10",
+    "binary_package_entry": "BinData/image10.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002d.bmp 원본 그림의 크기: 가로 356pixel, 세로 197pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "13379"
+    },
+    "original_size": {
+      "width": "26700",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00009",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[232]/pic[2]",
+      "parent_asset_id": "sec0000.p00232"
+    },
+    "page_no": 23,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image11",
+    "binary_package_entry": "BinData/image11.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002e.bmp 원본 그림의 크기: 가로 353pixel, 세로 198pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "13591"
+    },
+    "original_size": {
+      "width": "26460",
+      "height": "14880"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00010",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[237]/pic[1]",
+      "parent_asset_id": "sec0000.p00237"
+    },
+    "page_no": 24,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image12",
+    "binary_package_entry": "BinData/image12.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40016.bmp 원본 그림의 크기: 가로 295pixel, 세로 197pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "14701"
+    },
+    "original_size": {
+      "width": "22140",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00011",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[237]/pic[2]",
+      "parent_asset_id": "sec0000.p00237"
+    },
+    "page_no": 24,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image13",
+    "binary_package_entry": "BinData/image13.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40017.bmp 원본 그림의 크기: 가로 389pixel, 세로 197pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "14191"
+    },
+    "original_size": {
+      "width": "29160",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00012",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[243]/pic[1]",
+      "parent_asset_id": "sec0000.p00243"
+    },
+    "page_no": 24,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image14",
+    "binary_package_entry": "BinData/image14.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40019.bmp 원본 그림의 크기: 가로 544pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00013",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[248]/pic[1]",
+      "parent_asset_id": "sec0000.p00248"
+    },
+    "page_no": 25,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image15",
+    "binary_package_entry": "BinData/image15.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002f.bmp 원본 그림의 크기: 가로 351pixel, 세로 196pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "13947"
+    },
+    "original_size": {
+      "width": "26340",
+      "height": "14700"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00014",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[248]/pic[2]",
+      "parent_asset_id": "sec0000.p00248"
+    },
+    "page_no": 25,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image16",
+    "binary_package_entry": "BinData/image16.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0030.bmp 원본 그림의 크기: 가로 361pixel, 세로 209pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "14398"
+    },
+    "original_size": {
+      "width": "27060",
+      "height": "15660"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00015",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[253]/pic[1]",
+      "parent_asset_id": "sec0000.p00253"
+    },
+    "page_no": 25,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image17",
+    "binary_package_entry": "BinData/image17.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0032.bmp 원본 그림의 크기: 가로 376pixel, 세로 198pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "13997"
+    },
+    "original_size": {
+      "width": "28200",
+      "height": "14880"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00016",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[253]/pic[2]",
+      "parent_asset_id": "sec0000.p00253"
+    },
+    "page_no": 25,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image18",
+    "binary_package_entry": "BinData/image18.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0033.bmp 원본 그림의 크기: 가로 383pixel, 세로 198pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "13774"
+    },
+    "original_size": {
+      "width": "28740",
+      "height": "14880"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00017",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[260]/pic[1]",
+      "parent_asset_id": "sec0000.p00260"
+    },
+    "page_no": 25,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image19",
+    "binary_package_entry": "BinData/image19.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4001f.bmp 원본 그림의 크기: 가로 1213pixel, 세로 696pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "25377"
+    },
+    "original_size": {
+      "width": "90960",
+      "height": "52200"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00018",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[267]/pic[1]",
+      "parent_asset_id": "sec0000.p00267"
+    },
+    "page_no": 26,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image20",
+    "binary_package_entry": "BinData/image20.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40020.bmp 원본 그림의 크기: 가로 218pixel, 세로 208pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16380",
+      "height": "15600"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00019",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[267]/pic[2]",
+      "parent_asset_id": "sec0000.p00267"
+    },
+    "page_no": 26,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image21",
+    "binary_package_entry": "BinData/image21.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40021.bmp 원본 그림의 크기: 가로 325pixel, 세로 206pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24360",
+      "height": "15480"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00020",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[272]/pic[1]",
+      "parent_asset_id": "sec0000.p00272"
+    },
+    "page_no": 26,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image22",
+    "binary_package_entry": "BinData/image22.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40022.bmp 원본 그림의 크기: 가로 274pixel, 세로 208pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20580",
+      "height": "15600"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00021",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[272]/pic[2]",
+      "parent_asset_id": "sec0000.p00272"
+    },
+    "page_no": 26,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image23",
+    "binary_package_entry": "BinData/image23.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40023.bmp 원본 그림의 크기: 가로 274pixel, 세로 208pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20580",
+      "height": "15600"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00022",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[276]/pic[1]",
+      "parent_asset_id": "sec0000.p00276"
+    },
+    "page_no": 27,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image24",
+    "binary_package_entry": "BinData/image24.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40026.bmp 원본 그림의 크기: 가로 547pixel, 세로 219pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00023",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[280]/pic[1]",
+      "parent_asset_id": "sec0000.p00280"
+    },
+    "page_no": 27,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image25",
+    "binary_package_entry": "BinData/image25.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40028.bmp 원본 그림의 크기: 가로 547pixel, 세로 219pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00024",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[284]/pic[1]",
+      "parent_asset_id": "sec0000.p00284"
+    },
+    "page_no": 28,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image26",
+    "binary_package_entry": "BinData/image26.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40029.bmp 원본 그림의 크기: 가로 625pixel, 세로 219pixel",
+    "current_size": {
+      "width": "43803",
+      "height": "15364"
+    },
+    "original_size": {
+      "width": "46860",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00025",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[289]/pic[1]",
+      "parent_asset_id": "sec0000.p00289"
+    },
+    "page_no": 28,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image27",
+    "binary_package_entry": "BinData/image27.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0026.bmp 원본 그림의 크기: 가로 238pixel, 세로 213pixel",
+    "current_size": {
+      "width": "16949",
+      "height": "15128"
+    },
+    "original_size": {
+      "width": "17880",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00026",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[289]/pic[2]",
+      "parent_asset_id": "sec0000.p00289"
+    },
+    "page_no": 28,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image28",
+    "binary_package_entry": "BinData/image28.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0025.bmp 원본 그림의 크기: 가로 309pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "23160",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00027",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[293]/pic[1]",
+      "parent_asset_id": "sec0000.p00293"
+    },
+    "page_no": 29,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image29",
+    "binary_package_entry": "BinData/image29.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4002c.bmp 원본 그림의 크기: 가로 547pixel, 세로 218pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16380"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00028",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[297]/pic[1]",
+      "parent_asset_id": "sec0000.p00297"
+    },
+    "page_no": 29,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image30",
+    "binary_package_entry": "BinData/image30.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4002d.bmp 원본 그림의 크기: 가로 547pixel, 세로 219pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00029",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[302]/pic[1]",
+      "parent_asset_id": "sec0000.p00302"
+    },
+    "page_no": 30,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image31",
+    "binary_package_entry": "BinData/image31.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4002e.bmp 원본 그림의 크기: 가로 544pixel, 세로 217pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "16260"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00030",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[306]/pic[1]",
+      "parent_asset_id": "sec0000.p00306"
+    },
+    "page_no": 30,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image32",
+    "binary_package_entry": "BinData/image32.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0027.bmp 원본 그림의 크기: 가로 544pixel, 세로 243pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "18240"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00031",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[310]/pic[1]",
+      "parent_asset_id": "sec0000.p00310"
+    },
+    "page_no": 31,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image33",
+    "binary_package_entry": "BinData/image33.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0028.bmp 원본 그림의 크기: 가로 544pixel, 세로 244pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "18300"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00032",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[314]/pic[1]",
+      "parent_asset_id": "sec0000.p00314"
+    },
+    "page_no": 31,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image34",
+    "binary_package_entry": "BinData/image34.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40031.bmp 원본 그림의 크기: 가로 544pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00033",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[319]/pic[1]",
+      "parent_asset_id": "sec0000.p00319"
+    },
+    "page_no": 32,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image35",
+    "binary_package_entry": "BinData/image35.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40032.bmp 원본 그림의 크기: 가로 544pixel, 세로 203pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "15240"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00034",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[323]/pic[1]",
+      "parent_asset_id": "sec0000.p00323"
+    },
+    "page_no": 32,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image36",
+    "binary_package_entry": "BinData/image36.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002a.bmp 원본 그림의 크기: 가로 547pixel, 세로 222pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16680"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00035",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[329]/pic[1]",
+      "parent_asset_id": "sec0000.p00329"
+    },
+    "page_no": 33,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image37",
+    "binary_package_entry": "BinData/image37.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40034.bmp 원본 그림의 크기: 가로 222pixel, 세로 214pixel",
+    "current_size": {
+      "width": "0",
+      "height": "14974"
+    },
+    "original_size": {
+      "width": "16680",
+      "height": "16080"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00036",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[329]/pic[2]",
+      "parent_asset_id": "sec0000.p00329"
+    },
+    "page_no": 33,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image38",
+    "binary_package_entry": "BinData/image38.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40035.bmp 원본 그림의 크기: 가로 324pixel, 세로 212pixel",
+    "current_size": {
+      "width": "0",
+      "height": "14794"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15900"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00037",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[333]/pic[1]",
+      "parent_asset_id": "sec0000.p00333"
+    },
+    "page_no": 33,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image39",
+    "binary_package_entry": "BinData/image39.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40036.bmp 원본 그림의 크기: 가로 222pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16680",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00038",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[333]/pic[2]",
+      "parent_asset_id": "sec0000.p00333"
+    },
+    "page_no": 33,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image40",
+    "binary_package_entry": "BinData/image40.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40037.bmp 원본 그림의 크기: 가로 324pixel, 세로 211pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15840"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00039",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[337]/pic[1]",
+      "parent_asset_id": "sec0000.p00337"
+    },
+    "page_no": 33,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image41",
+    "binary_package_entry": "BinData/image41.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40038.bmp 원본 그림의 크기: 가로 222pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16680",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00040",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[337]/pic[2]",
+      "parent_asset_id": "sec0000.p00337"
+    },
+    "page_no": 33,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image42",
+    "binary_package_entry": "BinData/image42.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40039.bmp 원본 그림의 크기: 가로 324pixel, 세로 212pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15900"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00041",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[342]/pic[1]",
+      "parent_asset_id": "sec0000.p00342"
+    },
+    "page_no": 33,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image43",
+    "binary_package_entry": "BinData/image43.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002b.bmp 원본 그림의 크기: 가로 545pixel, 세로 251pixel",
+    "current_size": {
+      "width": "0",
+      "height": "17643"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "18840"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00042",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[347]/pic[1]",
+      "parent_asset_id": "sec0000.p00347"
+    },
+    "page_no": 34,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image44",
+    "binary_package_entry": "BinData/image44.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003b.bmp 원본 그림의 크기: 가로 217pixel, 세로 206pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16260",
+      "height": "15480"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00043",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[347]/pic[2]",
+      "parent_asset_id": "sec0000.p00347"
+    },
+    "page_no": 34,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image45",
+    "binary_package_entry": "BinData/image45.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003c.bmp 원본 그림의 크기: 가로 324pixel, 세로 204pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15300"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00044",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[351]/pic[1]",
+      "parent_asset_id": "sec0000.p00351"
+    },
+    "page_no": 34,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image46",
+    "binary_package_entry": "BinData/image46.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003d.bmp 원본 그림의 크기: 가로 273pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20460",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00045",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[351]/pic[2]",
+      "parent_asset_id": "sec0000.p00351"
+    },
+    "page_no": 34,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image47",
+    "binary_package_entry": "BinData/image47.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003e.bmp 원본 그림의 크기: 가로 273pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20460",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00046",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[355]/pic[1]",
+      "parent_asset_id": "sec0000.p00355"
+    },
+    "page_no": 35,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image48",
+    "binary_package_entry": "BinData/image48.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003f.bmp 원본 그림의 크기: 가로 545pixel, 세로 212pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "15900"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00047",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[359]/pic[1]",
+      "parent_asset_id": "sec0000.p00359"
+    },
+    "page_no": 35,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image49",
+    "binary_package_entry": "BinData/image49.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002c.bmp 원본 그림의 크기: 가로 545pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00048",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[364]/pic[1]",
+      "parent_asset_id": "sec0000.p00364"
+    },
+    "page_no": 36,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image50",
+    "binary_package_entry": "BinData/image50.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40041.bmp 원본 그림의 크기: 가로 543pixel, 세로 269pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40740",
+      "height": "20160"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00049",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[370]/pic[1]",
+      "parent_asset_id": "sec0000.p00370"
+    },
+    "page_no": 37,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image51",
+    "binary_package_entry": "BinData/image51.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40042.bmp 원본 그림의 크기: 가로 546pixel, 세로 267pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "20040"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00050",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[375]/pic[1]",
+      "parent_asset_id": "sec0000.p00375"
+    },
+    "page_no": 37,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image52",
+    "binary_package_entry": "BinData/image52.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40043.bmp 원본 그림의 크기: 가로 546pixel, 세로 206pixel",
+    "current_size": {
+      "width": "0",
+      "height": "13581"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "15480"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00051",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[379]/pic[1]",
+      "parent_asset_id": "sec0000.p00379"
+    },
+    "page_no": 38,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image53",
+    "binary_package_entry": "BinData/image53.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40044.bmp 원본 그림의 크기: 가로 546pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00052",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[383]/pic[1]",
+      "parent_asset_id": "sec0000.p00383"
+    },
+    "page_no": 38,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image54",
+    "binary_package_entry": "BinData/image54.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40045.bmp 원본 그림의 크기: 가로 546pixel, 세로 242pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "18180"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00053",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[387]/pic[1]",
+      "parent_asset_id": "sec0000.p00387"
+    },
+    "page_no": 39,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image55",
+    "binary_package_entry": "BinData/image55.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40046.bmp 원본 그림의 크기: 가로 546pixel, 세로 199pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "14940"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00054",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[392]/pic[1]",
+      "parent_asset_id": "sec0000.p00392"
+    },
+    "page_no": 39,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image56",
+    "binary_package_entry": "BinData/image56.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40047.bmp 원본 그림의 크기: 가로 546pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00055",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[407]/pic[1]",
+      "parent_asset_id": "sec0000.p00407"
+    },
+    "page_no": 43,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image57",
+    "binary_package_entry": "BinData/image57.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40002.bmp 원본 그림의 크기: 가로 550pixel, 세로 202pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41280",
+      "height": "15180"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00056",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[414]/pic[1]",
+      "parent_asset_id": "sec0000.p00414"
+    },
+    "page_no": 44,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image58",
+    "binary_package_entry": "BinData/image58.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40003.bmp 원본 그림의 크기: 가로 554pixel, 세로 202pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41580",
+      "height": "15180"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00057",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[423]/pic[1]",
+      "parent_asset_id": "sec0000.p00423"
+    },
+    "page_no": 45,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image59",
+    "binary_package_entry": "BinData/image59.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40004.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00058",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[429]/pic[1]",
+      "parent_asset_id": "sec0000.p00429"
+    },
+    "page_no": 46,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image60",
+    "binary_package_entry": "BinData/image60.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40005.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00059",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[435]/pic[1]",
+      "parent_asset_id": "sec0000.p00435"
+    },
+    "page_no": 47,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image61",
+    "binary_package_entry": "BinData/image61.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40006.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00060",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[441]/pic[1]",
+      "parent_asset_id": "sec0000.p00441"
+    },
+    "page_no": 48,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image62",
+    "binary_package_entry": "BinData/image62.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40007.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00061",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[447]/pic[1]",
+      "parent_asset_id": "sec0000.p00447"
+    },
+    "page_no": 49,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image63",
+    "binary_package_entry": "BinData/image63.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40008.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00062",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[453]/pic[1]",
+      "parent_asset_id": "sec0000.p00453"
+    },
+    "page_no": 50,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image64",
+    "binary_package_entry": "BinData/image64.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40009.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00063",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[459]/pic[1]",
+      "parent_asset_id": "sec0000.p00459"
+    },
+    "page_no": 51,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image65",
+    "binary_package_entry": "BinData/image65.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4000a.bmp 원본 그림의 크기: 가로 547pixel, 세로 264pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19800"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00064",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[466]/pic[1]",
+      "parent_asset_id": "sec0000.p00466"
+    },
+    "page_no": 52,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image66",
+    "binary_package_entry": "BinData/image66.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4000b.bmp 원본 그림의 크기: 가로 549pixel, 세로 219pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41160",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00065",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[472]/pic[1]",
+      "parent_asset_id": "sec0000.p00472"
+    },
+    "page_no": 53,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image67",
+    "binary_package_entry": "BinData/image67.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4000c.bmp 원본 그림의 크기: 가로 535pixel, 세로 208pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40140",
+      "height": "15600"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00066",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[479]/pic[1]",
+      "parent_asset_id": "sec0000.p00479"
+    },
+    "page_no": 54,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image68",
+    "binary_package_entry": "BinData/image68.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4000d.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00067",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[486]/pic[1]",
+      "parent_asset_id": "sec0000.p00486"
+    },
+    "page_no": 55,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image69",
+    "binary_package_entry": "BinData/image69.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4000e.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00068",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[492]/pic[1]",
+      "parent_asset_id": "sec0000.p00492"
+    },
+    "page_no": 56,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image70",
+    "binary_package_entry": "BinData/image70.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4000f.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00069",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[498]/pic[1]",
+      "parent_asset_id": "sec0000.p00498"
+    },
+    "page_no": 57,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image71",
+    "binary_package_entry": "BinData/image71.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40010.bmp 원본 그림의 크기: 가로 547pixel, 세로 265pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "19860"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00070",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[516]/pic[1]",
+      "parent_asset_id": "sec0000.p00516"
+    },
+    "page_no": 61,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image72",
+    "binary_package_entry": "BinData/image72.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40012.bmp 원본 그림의 크기: 가로 543pixel, 세로 323pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40740",
+      "height": "24240"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00071",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[520]/pic[1]",
+      "parent_asset_id": "sec0000.p00520"
+    },
+    "page_no": 62,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image9",
+    "binary_package_entry": "BinData/image9.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40013.bmp 원본 그림의 크기: 가로 547pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00072",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[526]/pic[1]",
+      "parent_asset_id": "sec0000.p00526"
+    },
+    "page_no": 62,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image73",
+    "binary_package_entry": "BinData/image73.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40014.bmp 원본 그림의 크기: 가로 547pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00073",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[530]/pic[1]",
+      "parent_asset_id": "sec0000.p00530"
+    },
+    "page_no": 63,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image74",
+    "binary_package_entry": "BinData/image74.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40015.bmp 원본 그림의 크기: 가로 545pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00074",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[537]/pic[1]",
+      "parent_asset_id": "sec0000.p00537"
+    },
+    "page_no": 63,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image12",
+    "binary_package_entry": "BinData/image12.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40016.bmp 원본 그림의 크기: 가로 295pixel, 세로 197pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "14701"
+    },
+    "original_size": {
+      "width": "22140",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00075",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[537]/pic[2]",
+      "parent_asset_id": "sec0000.p00537"
+    },
+    "page_no": 63,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image13",
+    "binary_package_entry": "BinData/image13.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40017.bmp 원본 그림의 크기: 가로 389pixel, 세로 197pixel",
+    "current_size": {
+      "width": "22043",
+      "height": "14191"
+    },
+    "original_size": {
+      "width": "29160",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00076",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[541]/pic[1]",
+      "parent_asset_id": "sec0000.p00541"
+    },
+    "page_no": 64,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image75",
+    "binary_package_entry": "BinData/image75.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40018.bmp 원본 그림의 크기: 가로 545pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00077",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[548]/pic[1]",
+      "parent_asset_id": "sec0000.p00548"
+    },
+    "page_no": 64,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image14",
+    "binary_package_entry": "BinData/image14.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40019.bmp 원본 그림의 크기: 가로 544pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00078",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[552]/pic[1]",
+      "parent_asset_id": "sec0000.p00552"
+    },
+    "page_no": 65,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image76",
+    "binary_package_entry": "BinData/image76.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4001a.bmp 원본 그림의 크기: 가로 545pixel, 세로 196pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "14700"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00079",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[558]/pic[1]",
+      "parent_asset_id": "sec0000.p00558"
+    },
+    "page_no": 65,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image77",
+    "binary_package_entry": "BinData/image77.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0024.bmp 원본 그림의 크기: 가로 547pixel, 세로 201pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "15060"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00080",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[562]/pic[1]",
+      "parent_asset_id": "sec0000.p00562"
+    },
+    "page_no": 65,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image78",
+    "binary_package_entry": "BinData/image78.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4001c.bmp 원본 그림의 크기: 가로 543pixel, 세로 198pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40740",
+      "height": "14880"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00081",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[567]/pic[1]",
+      "parent_asset_id": "sec0000.p00567"
+    },
+    "page_no": 65,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image79",
+    "binary_package_entry": "BinData/image79.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4001d.bmp 원본 그림의 크기: 가로 543pixel, 세로 198pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40740",
+      "height": "14880"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00082",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[583]/pic[1]",
+      "parent_asset_id": "sec0000.p00583"
+    },
+    "page_no": 68,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image19",
+    "binary_package_entry": "BinData/image19.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4001f.bmp 원본 그림의 크기: 가로 1213pixel, 세로 696pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "25377"
+    },
+    "original_size": {
+      "width": "90960",
+      "height": "52200"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00083",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[591]/pic[1]",
+      "parent_asset_id": "sec0000.p00591"
+    },
+    "page_no": 69,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image20",
+    "binary_package_entry": "BinData/image20.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40020.bmp 원본 그림의 크기: 가로 218pixel, 세로 208pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16380",
+      "height": "15600"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00084",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[591]/pic[2]",
+      "parent_asset_id": "sec0000.p00591"
+    },
+    "page_no": 69,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image21",
+    "binary_package_entry": "BinData/image21.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40021.bmp 원본 그림의 크기: 가로 325pixel, 세로 206pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24360",
+      "height": "15480"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00085",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[601]/pic[1]",
+      "parent_asset_id": "sec0000.p00601"
+    },
+    "page_no": 70,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image22",
+    "binary_package_entry": "BinData/image22.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40022.bmp 원본 그림의 크기: 가로 274pixel, 세로 208pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20580",
+      "height": "15600"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00086",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[601]/pic[2]",
+      "parent_asset_id": "sec0000.p00601"
+    },
+    "page_no": 70,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image23",
+    "binary_package_entry": "BinData/image23.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40023.bmp 원본 그림의 크기: 가로 274pixel, 세로 208pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20580",
+      "height": "15600"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00087",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[608]/pic[1]",
+      "parent_asset_id": "sec0000.p00608"
+    },
+    "page_no": 71,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image24",
+    "binary_package_entry": "BinData/image24.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40026.bmp 원본 그림의 크기: 가로 547pixel, 세로 219pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00088",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[615]/pic[1]",
+      "parent_asset_id": "sec0000.p00615"
+    },
+    "page_no": 71,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image25",
+    "binary_package_entry": "BinData/image25.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40028.bmp 원본 그림의 크기: 가로 547pixel, 세로 219pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00089",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[622]/pic[1]",
+      "parent_asset_id": "sec0000.p00622"
+    },
+    "page_no": 72,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image26",
+    "binary_package_entry": "BinData/image26.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40029.bmp 원본 그림의 크기: 가로 625pixel, 세로 219pixel",
+    "current_size": {
+      "width": "43803",
+      "height": "15364"
+    },
+    "original_size": {
+      "width": "46860",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00090",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[630]/pic[1]",
+      "parent_asset_id": "sec0000.p00630"
+    },
+    "page_no": 73,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image27",
+    "binary_package_entry": "BinData/image27.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0026.bmp 원본 그림의 크기: 가로 238pixel, 세로 213pixel",
+    "current_size": {
+      "width": "16949",
+      "height": "15128"
+    },
+    "original_size": {
+      "width": "17880",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00091",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[630]/pic[2]",
+      "parent_asset_id": "sec0000.p00630"
+    },
+    "page_no": 73,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image28",
+    "binary_package_entry": "BinData/image28.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0025.bmp 원본 그림의 크기: 가로 309pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "23160",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00092",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[641]/pic[1]",
+      "parent_asset_id": "sec0000.p00641"
+    },
+    "page_no": 75,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image29",
+    "binary_package_entry": "BinData/image29.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4002c.bmp 원본 그림의 크기: 가로 547pixel, 세로 218pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16380"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00093",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[648]/pic[1]",
+      "parent_asset_id": "sec0000.p00648"
+    },
+    "page_no": 76,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image30",
+    "binary_package_entry": "BinData/image30.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4002d.bmp 원본 그림의 크기: 가로 547pixel, 세로 219pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16440"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00094",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[660]/pic[1]",
+      "parent_asset_id": "sec0000.p00660"
+    },
+    "page_no": 77,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image31",
+    "binary_package_entry": "BinData/image31.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4002e.bmp 원본 그림의 크기: 가로 544pixel, 세로 217pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "16260"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00095",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[669]/pic[1]",
+      "parent_asset_id": "sec0000.p00669"
+    },
+    "page_no": 78,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image32",
+    "binary_package_entry": "BinData/image32.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0027.bmp 원본 그림의 크기: 가로 544pixel, 세로 243pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "18240"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00096",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[678]/pic[1]",
+      "parent_asset_id": "sec0000.p00678"
+    },
+    "page_no": 79,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image33",
+    "binary_package_entry": "BinData/image33.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c0028.bmp 원본 그림의 크기: 가로 544pixel, 세로 244pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "18300"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00097",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[684]/pic[1]",
+      "parent_asset_id": "sec0000.p00684"
+    },
+    "page_no": 80,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image34",
+    "binary_package_entry": "BinData/image34.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40031.bmp 원본 그림의 크기: 가로 544pixel, 세로 197pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "14760"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00098",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[697]/pic[1]",
+      "parent_asset_id": "sec0000.p00697"
+    },
+    "page_no": 81,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image35",
+    "binary_package_entry": "BinData/image35.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40032.bmp 원본 그림의 크기: 가로 544pixel, 세로 203pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40800",
+      "height": "15240"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00099",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[711]/pic[1]",
+      "parent_asset_id": "sec0000.p00711"
+    },
+    "page_no": 83,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image36",
+    "binary_package_entry": "BinData/image36.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002a.bmp 원본 그림의 크기: 가로 547pixel, 세로 222pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "41040",
+      "height": "16680"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00100",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[729]/pic[1]",
+      "parent_asset_id": "sec0000.p00729"
+    },
+    "page_no": 87,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image37",
+    "binary_package_entry": "BinData/image37.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40034.bmp 원본 그림의 크기: 가로 222pixel, 세로 214pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16680",
+      "height": "16080"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00101",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[729]/pic[2]",
+      "parent_asset_id": "sec0000.p00729"
+    },
+    "page_no": 87,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image38",
+    "binary_package_entry": "BinData/image38.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40035.bmp 원본 그림의 크기: 가로 324pixel, 세로 212pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15900"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00102",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[741]/pic[1]",
+      "parent_asset_id": "sec0000.p00741"
+    },
+    "page_no": 88,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image39",
+    "binary_package_entry": "BinData/image39.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40036.bmp 원본 그림의 크기: 가로 222pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16680",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00103",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[741]/pic[2]",
+      "parent_asset_id": "sec0000.p00741"
+    },
+    "page_no": 88,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image40",
+    "binary_package_entry": "BinData/image40.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40037.bmp 원본 그림의 크기: 가로 324pixel, 세로 211pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15840"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00104",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[753]/pic[1]",
+      "parent_asset_id": "sec0000.p00753"
+    },
+    "page_no": 90,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image41",
+    "binary_package_entry": "BinData/image41.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40038.bmp 원본 그림의 크기: 가로 222pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16680",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00105",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[753]/pic[2]",
+      "parent_asset_id": "sec0000.p00753"
+    },
+    "page_no": 90,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image42",
+    "binary_package_entry": "BinData/image42.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40039.bmp 원본 그림의 크기: 가로 324pixel, 세로 212pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15900"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00106",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[766]/pic[1]",
+      "parent_asset_id": "sec0000.p00766"
+    },
+    "page_no": 92,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image43",
+    "binary_package_entry": "BinData/image43.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002b.bmp 원본 그림의 크기: 가로 545pixel, 세로 251pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "18840"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00107",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[779]/pic[1]",
+      "parent_asset_id": "sec0000.p00779"
+    },
+    "page_no": 94,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image44",
+    "binary_package_entry": "BinData/image44.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003b.bmp 원본 그림의 크기: 가로 217pixel, 세로 206pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "16260",
+      "height": "15480"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00108",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[779]/pic[2]",
+      "parent_asset_id": "sec0000.p00779"
+    },
+    "page_no": 94,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image45",
+    "binary_package_entry": "BinData/image45.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003c.bmp 원본 그림의 크기: 가로 324pixel, 세로 204pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "24300",
+      "height": "15300"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00109",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[788]/pic[1]",
+      "parent_asset_id": "sec0000.p00788"
+    },
+    "page_no": 96,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image46",
+    "binary_package_entry": "BinData/image46.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003d.bmp 원본 그림의 크기: 가로 273pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20460",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00110",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[788]/pic[2]",
+      "parent_asset_id": "sec0000.p00788"
+    },
+    "page_no": 96,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image47",
+    "binary_package_entry": "BinData/image47.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003e.bmp 원본 그림의 크기: 가로 273pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "20460",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00111",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[801]/pic[1]",
+      "parent_asset_id": "sec0000.p00801"
+    },
+    "page_no": 96,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image48",
+    "binary_package_entry": "BinData/image48.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d4003f.bmp 원본 그림의 크기: 가로 545pixel, 세로 212pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "15900"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00112",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[809]/pic[1]",
+      "parent_asset_id": "sec0000.p00809"
+    },
+    "page_no": 98,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image49",
+    "binary_package_entry": "BinData/image49.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP0000052c002c.bmp 원본 그림의 크기: 가로 545pixel, 세로 213pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40860",
+      "height": "15960"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00113",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[821]/pic[1]",
+      "parent_asset_id": "sec0000.p00821"
+    },
+    "page_no": 100,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image50",
+    "binary_package_entry": "BinData/image50.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40041.bmp 원본 그림의 크기: 가로 543pixel, 세로 269pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40740",
+      "height": "20160"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00114",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[831]/pic[1]",
+      "parent_asset_id": "sec0000.p00831"
+    },
+    "page_no": 101,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image51",
+    "binary_package_entry": "BinData/image51.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40042.bmp 원본 그림의 크기: 가로 546pixel, 세로 267pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "20040"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00115",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[838]/pic[1]",
+      "parent_asset_id": "sec0000.p00838"
+    },
+    "page_no": 102,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image52",
+    "binary_package_entry": "BinData/image52.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40043.bmp 원본 그림의 크기: 가로 546pixel, 세로 206pixel",
+    "current_size": {
+      "width": "0",
+      "height": "13581"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "15480"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00116",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[848]/pic[1]",
+      "parent_asset_id": "sec0000.p00848"
+    },
+    "page_no": 102,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image53",
+    "binary_package_entry": "BinData/image53.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40044.bmp 원본 그림의 크기: 가로 546pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00117",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[859]/pic[1]",
+      "parent_asset_id": "sec0000.p00859"
+    },
+    "page_no": 103,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image54",
+    "binary_package_entry": "BinData/image54.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40045.bmp 원본 그림의 크기: 가로 546pixel, 세로 242pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "18180"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00118",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[865]/pic[1]",
+      "parent_asset_id": "sec0000.p00865"
+    },
+    "page_no": 104,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image55",
+    "binary_package_entry": "BinData/image55.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40046.bmp 원본 그림의 크기: 가로 546pixel, 세로 199pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "14940"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00119",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[873]/pic[1]",
+      "parent_asset_id": "sec0000.p00873"
+    },
+    "page_no": 105,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image56",
+    "binary_package_entry": "BinData/image56.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000024d40047.bmp 원본 그림의 크기: 가로 546pixel, 세로 205pixel",
+    "current_size": {
+      "width": "0",
+      "height": "0"
+    },
+    "original_size": {
+      "width": "40980",
+      "height": "15360"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00120",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[927]/pic[1]",
+      "parent_asset_id": "sec0000.p00927"
+    },
+    "page_no": 112,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00121",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[927]/pic[2]",
+      "parent_asset_id": "sec0000.p00927"
+    },
+    "page_no": 112,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00122",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[927]/pic[3]",
+      "parent_asset_id": "sec0000.p00927"
+    },
+    "page_no": 112,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00123",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[927]/pic[4]",
+      "parent_asset_id": "sec0000.p00927"
+    },
+    "page_no": 112,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00124",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[927]/pic[5]",
+      "parent_asset_id": "sec0000.p00927"
+    },
+    "page_no": 112,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00125",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[931]/pic[1]",
+      "parent_asset_id": "sec0000.p00931"
+    },
+    "page_no": 114,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image4",
+    "binary_package_entry": "BinData/image4.jpg",
+    "media_type": "image/jpg",
+    "comment": "그림입니다. 원본 그림의 이름: 첨단공구가공사업단 로고.jpg 원본 그림의 크기: 가로 1110pixel, 세로 272pixel 사진 찍은 날짜: 2022년 10월 19일 오후 10:46 프로그램 이름 : Adobe Photoshop CS6 (Windows) 색 대표 : sRGB",
+    "current_size": {
+      "width": "12188",
+      "height": "3117"
+    },
+    "original_size": {
+      "width": "111000",
+      "height": "27180"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00126",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[931]/pic[2]",
+      "parent_asset_id": "sec0000.p00931"
+    },
+    "page_no": 114,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image81",
+    "binary_package_entry": "BinData/image81.png",
+    "media_type": "image/png",
+    "comment": "",
+    "current_size": {
+      "width": "12188",
+      "height": "3118"
+    },
+    "original_size": {
+      "width": "26340",
+      "height": "3780"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00127",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[931]/pic[3]",
+      "parent_asset_id": "sec0000.p00931"
+    },
+    "page_no": 114,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image6",
+    "binary_package_entry": "BinData/image6.png",
+    "media_type": "image/png",
+    "comment": "",
+    "current_size": {
+      "width": "12188",
+      "height": "3118"
+    },
+    "original_size": {
+      "width": "27780",
+      "height": "6780"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00128",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[940]/pic[1]",
+      "parent_asset_id": "sec0000.p00940"
+    },
+    "page_no": 115,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image82",
+    "binary_package_entry": "BinData/image82.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP00000cf00acd.bmp 원본 그림의 크기: 가로 599pixel, 세로 454pixel",
+    "current_size": {
+      "width": "22684",
+      "height": "16152"
+    },
+    "original_size": {
+      "width": "44940",
+      "height": "34080"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00129",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[1013]/pic[1]",
+      "parent_asset_id": "sec0000.p01013"
+    },
+    "page_no": 122,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00130",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[1013]/pic[2]",
+      "parent_asset_id": "sec0000.p01013"
+    },
+    "page_no": 122,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00131",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[1013]/pic[3]",
+      "parent_asset_id": "sec0000.p01013"
+    },
+    "page_no": 122,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00132",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[1013]/pic[4]",
+      "parent_asset_id": "sec0000.p01013"
+    },
+    "page_no": 122,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc00133",
+    "asset_type": "image_occurrence",
+    "section_id": "sec0000",
+    "owner_type": "section",
+    "owner_id": "sec0000",
+    "source_ref": {
+      "package_entry": "Contents/section0.xml",
+      "xml_path": "Contents/section0.xml#/body/p[1013]/pic[5]",
+      "parent_asset_id": "sec0000.p01013"
+    },
+    "page_no": 122,
+    "page_source": "xml_pagebreak_estimate",
+    "binary_item_id_ref": "image80",
+    "binary_package_entry": "BinData/image80.jpg",
+    "media_type": "image/jpg",
+    "comment": "",
+    "current_size": {
+      "width": "42264",
+      "height": "5335"
+    },
+    "original_size": {
+      "width": "42187",
+      "height": "5325"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00001",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage0",
+    "source_ref": {
+      "package_entry": "Contents/masterpage0.xml",
+      "xml_path": "Contents/masterpage0.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00002",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage0",
+    "source_ref": {
+      "package_entry": "Contents/masterpage0.xml",
+      "xml_path": "Contents/masterpage0.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00003",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage1",
+    "source_ref": {
+      "package_entry": "Contents/masterpage1.xml",
+      "xml_path": "Contents/masterpage1.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00004",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage1",
+    "source_ref": {
+      "package_entry": "Contents/masterpage1.xml",
+      "xml_path": "Contents/masterpage1.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00005",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage10",
+    "source_ref": {
+      "package_entry": "Contents/masterpage10.xml",
+      "xml_path": "Contents/masterpage10.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image83",
+    "binary_package_entry": "BinData/image83.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580007.bmp 원본 그림의 크기: 가로 1292pixel, 세로 34pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1940"
+    },
+    "original_size": {
+      "width": "96900",
+      "height": "2580"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00006",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage10",
+    "source_ref": {
+      "package_entry": "Contents/masterpage10.xml",
+      "xml_path": "Contents/masterpage10.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image84",
+    "binary_package_entry": "BinData/image84.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580005.bmp 원본 그림의 크기: 가로 1290pixel, 세로 20pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1130"
+    },
+    "original_size": {
+      "width": "96780",
+      "height": "1500"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00007",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage11",
+    "source_ref": {
+      "package_entry": "Contents/masterpage11.xml",
+      "xml_path": "Contents/masterpage11.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image84",
+    "binary_package_entry": "BinData/image84.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580005.bmp 원본 그림의 크기: 가로 1290pixel, 세로 20pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1130"
+    },
+    "original_size": {
+      "width": "96780",
+      "height": "1500"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00008",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage11",
+    "source_ref": {
+      "package_entry": "Contents/masterpage11.xml",
+      "xml_path": "Contents/masterpage11.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image83",
+    "binary_package_entry": "BinData/image83.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580007.bmp 원본 그림의 크기: 가로 1292pixel, 세로 34pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1940"
+    },
+    "original_size": {
+      "width": "96900",
+      "height": "2580"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00009",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage12",
+    "source_ref": {
+      "package_entry": "Contents/masterpage12.xml",
+      "xml_path": "Contents/masterpage12.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00010",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage12",
+    "source_ref": {
+      "package_entry": "Contents/masterpage12.xml",
+      "xml_path": "Contents/masterpage12.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00011",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage13",
+    "source_ref": {
+      "package_entry": "Contents/masterpage13.xml",
+      "xml_path": "Contents/masterpage13.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00012",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage13",
+    "source_ref": {
+      "package_entry": "Contents/masterpage13.xml",
+      "xml_path": "Contents/masterpage13.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00013",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage2",
+    "source_ref": {
+      "package_entry": "Contents/masterpage2.xml",
+      "xml_path": "Contents/masterpage2.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image83",
+    "binary_package_entry": "BinData/image83.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580007.bmp 원본 그림의 크기: 가로 1292pixel, 세로 34pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1940"
+    },
+    "original_size": {
+      "width": "96900",
+      "height": "2580"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00014",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage2",
+    "source_ref": {
+      "package_entry": "Contents/masterpage2.xml",
+      "xml_path": "Contents/masterpage2.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image84",
+    "binary_package_entry": "BinData/image84.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580005.bmp 원본 그림의 크기: 가로 1290pixel, 세로 20pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1130"
+    },
+    "original_size": {
+      "width": "96780",
+      "height": "1500"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00015",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage3",
+    "source_ref": {
+      "package_entry": "Contents/masterpage3.xml",
+      "xml_path": "Contents/masterpage3.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image84",
+    "binary_package_entry": "BinData/image84.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580005.bmp 원본 그림의 크기: 가로 1290pixel, 세로 20pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1130"
+    },
+    "original_size": {
+      "width": "96780",
+      "height": "1500"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00016",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage3",
+    "source_ref": {
+      "package_entry": "Contents/masterpage3.xml",
+      "xml_path": "Contents/masterpage3.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image83",
+    "binary_package_entry": "BinData/image83.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580007.bmp 원본 그림의 크기: 가로 1292pixel, 세로 34pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1940"
+    },
+    "original_size": {
+      "width": "96900",
+      "height": "2580"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00017",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage4",
+    "source_ref": {
+      "package_entry": "Contents/masterpage4.xml",
+      "xml_path": "Contents/masterpage4.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00018",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage4",
+    "source_ref": {
+      "package_entry": "Contents/masterpage4.xml",
+      "xml_path": "Contents/masterpage4.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00019",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage5",
+    "source_ref": {
+      "package_entry": "Contents/masterpage5.xml",
+      "xml_path": "Contents/masterpage5.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00020",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage5",
+    "source_ref": {
+      "package_entry": "Contents/masterpage5.xml",
+      "xml_path": "Contents/masterpage5.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00021",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage6",
+    "source_ref": {
+      "package_entry": "Contents/masterpage6.xml",
+      "xml_path": "Contents/masterpage6.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image83",
+    "binary_package_entry": "BinData/image83.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580007.bmp 원본 그림의 크기: 가로 1292pixel, 세로 34pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1940"
+    },
+    "original_size": {
+      "width": "96900",
+      "height": "2580"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00022",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage6",
+    "source_ref": {
+      "package_entry": "Contents/masterpage6.xml",
+      "xml_path": "Contents/masterpage6.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image84",
+    "binary_package_entry": "BinData/image84.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580005.bmp 원본 그림의 크기: 가로 1290pixel, 세로 20pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1130"
+    },
+    "original_size": {
+      "width": "96780",
+      "height": "1500"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00023",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage7",
+    "source_ref": {
+      "package_entry": "Contents/masterpage7.xml",
+      "xml_path": "Contents/masterpage7.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image84",
+    "binary_package_entry": "BinData/image84.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580005.bmp 원본 그림의 크기: 가로 1290pixel, 세로 20pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1130"
+    },
+    "original_size": {
+      "width": "96780",
+      "height": "1500"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00024",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage7",
+    "source_ref": {
+      "package_entry": "Contents/masterpage7.xml",
+      "xml_path": "Contents/masterpage7.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image83",
+    "binary_package_entry": "BinData/image83.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580007.bmp 원본 그림의 크기: 가로 1292pixel, 세로 34pixel",
+    "current_size": {
+      "width": "72850",
+      "height": "1940"
+    },
+    "original_size": {
+      "width": "96900",
+      "height": "2580"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00025",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage8",
+    "source_ref": {
+      "package_entry": "Contents/masterpage8.xml",
+      "xml_path": "Contents/masterpage8.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00026",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage8",
+    "source_ref": {
+      "package_entry": "Contents/masterpage8.xml",
+      "xml_path": "Contents/masterpage8.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00027",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage9",
+    "source_ref": {
+      "package_entry": "Contents/masterpage9.xml",
+      "xml_path": "Contents/masterpage9.xml#/masterPage/pic[1]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image2",
+    "binary_package_entry": "BinData/image2.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580004.bmp 원본 그림의 크기: 가로 1288pixel, 세로 28pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "961"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2100"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "asset_id": "imgocc_mp00028",
+    "asset_type": "image_occurrence",
+    "section_id": null,
+    "owner_type": "masterpage",
+    "owner_id": "masterpage9",
+    "source_ref": {
+      "package_entry": "Contents/masterpage9.xml",
+      "xml_path": "Contents/masterpage9.xml#/masterPage/pic[2]",
+      "parent_asset_id": null
+    },
+    "page_no": null,
+    "page_source": null,
+    "binary_item_id_ref": "image1",
+    "binary_package_entry": "BinData/image1.bmp",
+    "media_type": "image/bmp",
+    "comment": "그림입니다. 원본 그림의 이름: CLP000026580006.bmp 원본 그림의 크기: 가로 1288pixel, 세로 30pixel",
+    "current_size": {
+      "width": "44220",
+      "height": "1043"
+    },
+    "original_size": {
+      "width": "96600",
+      "height": "2280"
+    }
+  }
+]

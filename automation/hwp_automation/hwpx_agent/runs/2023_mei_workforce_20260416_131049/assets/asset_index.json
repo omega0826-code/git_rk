@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "files": {
+    "document": "assets/document.json",
+    "paragraphs": "assets/blocks/paragraphs.json",
+    "tables": "assets/tables/tables.json",
+    "image_binaries": "assets/images/binaries.json",
+    "image_occurrences": "assets/images/occurrences.json",
+    "sections": "assets/sections/sections.json",
+    "masterpages": "assets/masterpages/masterpages.json",
+    "page_summary": "assets/pages/page_summary.json"
+  }
+}

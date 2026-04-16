@@ -64,6 +64,30 @@
 
 ---
 
+## TS-006: generate_macros.py — DEFAULT_TEMPLATE FileNotFoundError
+
+| 항목          | 내용                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------- |
+| **증상**      | `python generate_macros.py config.json -o output.sps` 실행 시 `FileNotFoundError` 발생   |
+| **원인**      | `DEFAULT_TEMPLATE` 상수가 `../Macro/lib/common_macros_template.sps`를 가리키나, 실제 파일 위치는 `../macros/common_macros_template.sps` (대소문자 불일치 + 존재하지 않는 `lib/` 서브폴더) |
+| **해결**      | `DEFAULT_TEMPLATE` 경로를 `../macros/common_macros_template.sps`로 수정 (v1.0.1)         |
+| **영향 버전** | v1.0.0에서 발견, v1.0.1에서 수정                                                          |
+| **회귀 방지** | `--template` 없이 기본 경로로 실행하는 통합 테스트 추가 권장. Windows는 경로 대소문자를 무시하지만 이식성을 위해 정확히 맞출 것 |
+
+---
+
+## TS-007: common_macros_template.sps — cot/cst 매크로 VALIDN_LABEL 미치환
+
+| 항목          | 내용                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| **증상**      | `generate_macros.py`로 생성한 매크로에서 `cot`, `cst` 매크로의 VALIDN 라벨이 설정값이 아닌 `'업체수'`로 고정 출력 |
+| **원인**      | 템플릿 파일 `cot`(489번줄), `cst`(527번줄)에 `{{VALIDN_LABEL}}` 대신 `'업체수'`가 하드코딩  |
+| **해결**      | 해당 2개소를 `'{{VALIDN_LABEL}}'`로 교체 (v1.0.1)                                           |
+| **영향 버전** | v1.0.0에서 발견, v1.0.1에서 수정                                                              |
+| **회귀 방지** | 플레이스홀더 치환 후 결과 파일에 `{{` 문자열이 잔존하지 않는지 grep으로 검증                  |
+
+---
+
 ## 신규 오류 등록 양식
 
 ```markdown

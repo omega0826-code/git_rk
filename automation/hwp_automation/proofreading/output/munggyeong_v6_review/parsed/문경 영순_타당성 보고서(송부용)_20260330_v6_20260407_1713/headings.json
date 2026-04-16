@@ -1,0 +1,37 @@
+[
+  {
+    "level": 5,
+    "styleIDRef": "5",
+    "text": "1.2. 전제조건의 설정"
+  },
+  {
+    "level": 4,
+    "styleIDRef": "4",
+    "text": "2. 비용 추정"
+  },
+  {
+    "level": 5,
+    "styleIDRef": "5",
+    "text": "2.1. 분석 관점에 따른 비용추정의 개요"
+  },
+  {
+    "level": 5,
+    "styleIDRef": "5",
+    "text": "2.2. 경제성 분석용 사업비 설정"
+  },
+  {
+    "level": 5,
+    "styleIDRef": "5",
+    "text": "2.3. 상부건축물 건축비 추정"
+  },
+  {
+    "level": 6,
+    "styleIDRef": "6",
+    "text": "3) 운영경비 추정"
+  },
+  {
+    "level": 6,
+    "styleIDRef": "6",
+    "text": "4) 연차별 사업비 추정 결과"
+  }
+]

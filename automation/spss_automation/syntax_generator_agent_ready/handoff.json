@@ -1,0 +1,38 @@
+{
+  "name": "spss-syntax-generator-agent-bundle",
+  "version": "1.0.1-agent-ready",
+  "root": ".",
+  "preferred_entrypoint": "agent_runner.py",
+  "secondary_entrypoints": [
+    "app.py",
+    "start.bat",
+    "launch_web_ui.hta"
+  ],
+  "tasks": [
+    {
+      "id": "guideline-to-sps",
+      "command": "python agent_runner.py guideline-to-sps --csv <path> [--short-labels <path>] [--job-id <id>]"
+    },
+    {
+      "id": "generate-syntax",
+      "command": "python agent_runner.py generate-syntax --config <path> [--label-sps <path>] [--job-id <id>]"
+    },
+    {
+      "id": "generate-macros",
+      "command": "python agent_runner.py generate-macros --config <path> [--job-id <id>]"
+    },
+    {
+      "id": "sps-to-md",
+      "command": "python agent_runner.py sps-to-md --input-sps <path> [--job-id <id>]"
+    },
+    {
+      "id": "md-to-sps",
+      "command": "python agent_runner.py md-to-sps --input-md <path> [--strip-define-blanks] [--job-id <id>]"
+    }
+  ],
+  "result_contract": {
+    "stdout": "single JSON manifest",
+    "outputs_field": "absolute file paths for downstream chaining",
+    "job_dir": "runs/<job_id>/"
+  }
+}

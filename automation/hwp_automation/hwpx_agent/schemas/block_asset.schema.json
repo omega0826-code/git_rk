@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.hwpx-agent/schemas/block_asset.schema.json",
+  "title": "HWPX Block Asset",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "asset_id",
+    "asset_type",
+    "source_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "asset_id": {
+      "type": "string"
+    },
+    "asset_type": {
+      "type": "string",
+      "enum": [
+        "paragraph",
+        "table",
+        "image_occurrence",
+        "masterpage"
+      ]
+    },
+    "section_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "page_no": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "page_source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_ref": {
+      "type": "object",
+      "required": [
+        "package_entry",
+        "xml_path"
+      ]
+    },
+    "text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "embedded_object_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
