@@ -21,6 +21,7 @@
       "enum": [
         "paragraph",
         "table",
+        "table_cell",
         "image_occurrence",
         "masterpage"
       ]
@@ -43,6 +44,12 @@
         "null"
       ]
     },
+    "root_flow_paragraph_index": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
     "source_ref": {
       "type": "object",
       "required": [
@@ -60,6 +67,41 @@
       "type": "array",
       "items": {
         "type": "string"
+      }
+    },
+    "classification": {
+      "type": "object",
+      "properties": {
+        "context_type": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        },
+        "is_root_flow": {
+          "type": "boolean"
+        },
+        "root_flow_paragraph_index": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "host_body_paragraph_asset_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "host_root_flow_paragraph_index": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rebuild_safe_text_only": {
+          "type": "boolean"
+        }
       }
     }
   }

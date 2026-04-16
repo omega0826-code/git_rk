@@ -9,7 +9,7 @@ from typing import Any
 from lxml import etree
 
 from .namespaces import NS, local_name, tag
-from .page_map import build_xml_page_map, try_get_pyhwpx_page_count
+from .page_map import build_xml_page_map, try_build_pyhwpx_root_page_map
 from .utils import SCHEMA_VERSION, compact_text, element_children_summary, ensure_dir, sanitize_name, sha1_file, write_json
 
 
@@ -77,7 +77,7 @@ class HwpxAssetizer:
             write_json(self.styles_dir / "named_styles.json", styles["named_styles"])
 
             xml_page_summary = build_xml_page_map(section_roots)
-            pyhwpx_summary = try_get_pyhwpx_page_count(self.hwpx_path)
+            pyhwpx_summary = try_build_pyhwpx_root_page_map(self.hwpx_path)
 
             if pyhwpx_summary["page_count"] and pyhwpx_summary["page_count"] != xml_page_summary["estimated_total_pages"]:
                 notes.append(
@@ -109,27 +109,46 @@ class HwpxAssetizer:
             )
             image_occurrences.extend(masterpage_occurrences)
             image_binaries = self._extract_binary_assets(archive, content_manifest["binary_items"])
+            paragraph_summary = self._build_paragraph_summary(paragraph_assets)
+            page_summary = self._apply_page_numbers(
+                paragraph_assets=paragraph_assets,
+                table_assets=table_assets,
+                image_occurrences=image_occurrences,
+                xml_page_summary=xml_page_summary,
+                pyhwpx_summary=pyhwpx_summary,
+                notes=notes
+            )
+            table_cell_assets = self._build_table_cell_assets(table_assets)
 
             asset_index = {
                 "schema_version": SCHEMA_VERSION,
                 "files": {
                     "document": "assets/document.json",
                     "paragraphs": "assets/blocks/paragraphs.json",
+                    "paragraph_summary": "assets/blocks/paragraph_summary.json",
                     "tables": "assets/tables/tables.json",
+                    "table_cells": "assets/tables/cells.json",
                     "image_binaries": "assets/images/binaries.json",
                     "image_occurrences": "assets/images/occurrences.json",
                     "sections": "assets/sections/sections.json",
                     "masterpages": "assets/masterpages/masterpages.json",
-                    "page_summary": "assets/pages/page_summary.json"
+                    "page_summary": "assets/pages/page_summary.json",
+                    "paragraph_page_map": "assets/pages/paragraph_page_map.json"
                 }
             }
 
             write_json(self.blocks_dir / "paragraphs.json", paragraph_assets)
+            write_json(self.blocks_dir / "paragraph_summary.json", paragraph_summary)
             write_json(self.tables_dir / "tables.json", table_assets)
+            write_json(self.tables_dir / "cells.json", table_cell_assets)
             write_json(self.images_dir / "binaries.json", image_binaries)
             write_json(self.images_dir / "occurrences.json", image_occurrences)
             write_json(self.sections_dir / "sections.json", section_assets)
             write_json(self.masterpages_dir / "masterpages.json", masterpage_assets)
+            write_json(self.pages_dir / "page_summary.json", page_summary)
+            write_json(self.pages_dir / "paragraph_page_map.json", self._build_paragraph_page_map(paragraph_assets))
+            if pyhwpx_summary["root_paragraph_to_page"]:
+                write_json(self.pages_dir / "root_body_page_map.json", pyhwpx_summary["root_paragraph_to_page"])
             write_json(self.assets_dir / "asset_index.json", asset_index)
 
             document_asset = {
@@ -147,6 +166,7 @@ class HwpxAssetizer:
                 "counts": {
                     "paragraphs": len(paragraph_assets),
                     "tables": len(table_assets),
+                    "table_cells": len(table_cell_assets),
                     "image_binaries": len(image_binaries),
                     "image_occurrences": len(image_occurrences),
                     "sections": len(section_assets),
@@ -155,6 +175,7 @@ class HwpxAssetizer:
                     "para_styles": len(styles["para_styles"]),
                     "named_styles": len(styles["named_styles"])
                 },
+                "paragraph_breakdown": paragraph_summary,
                 "page_summary": page_summary,
                 "asset_files": asset_index["files"],
                 "notes": notes
@@ -304,7 +325,11 @@ class HwpxAssetizer:
         table_assets = []
         image_occurrences = []
 
+        paragraph_element_to_asset_id: dict[Any, str] = {}
+        paragraph_element_to_root_index: dict[Any, int] = {}
+
         global_paragraph_index = 0
+        global_root_paragraph_index = 0
         global_table_index = 0
         global_image_occurrence_index = 0
 
@@ -326,17 +351,27 @@ class HwpxAssetizer:
                 paragraph_id = f"{section_id}.p{section_paragraph_index:05d}"
                 paragraph_ids.append(paragraph_id)
 
-                paragraph_text = self._extract_paragraph_text(paragraph)
-                if paragraph_text:
-                    last_non_empty_text = paragraph_text
+                context = self._describe_paragraph_context(paragraph)
+                root_flow_index = None
+                if context["is_root_flow"]:
+                    global_root_paragraph_index += 1
+                    root_flow_index = global_root_paragraph_index
 
+                host_body_element = context["host_body_paragraph_element"]
+                host_body_paragraph_id = paragraph_id if context["is_root_flow"] else paragraph_element_to_asset_id.get(host_body_element)
+                host_root_flow_index = root_flow_index if context["is_root_flow"] else paragraph_element_to_root_index.get(host_body_element)
+
+                paragraph_text = self._extract_paragraph_text(paragraph)
                 paragraph_page_no = paragraph_page_map.get(global_paragraph_index)
+
                 embedded_refs = []
                 runs = []
                 char_pr_ids = []
                 control_tags = set()
 
-                for run_index, run in enumerate(paragraph.findall(".//hp:run", NS), start=1):
+                for run in paragraph.findall(".//hp:run", NS):
+                    if not self._is_owned_by_paragraph(run, paragraph):
+                        continue
                     if self._has_ancestor(run, tag("hp", "tbl"), paragraph):
                         continue
                     run_text = self._extract_run_text(run)
@@ -347,14 +382,16 @@ class HwpxAssetizer:
                         char_pr_ids.append(char_pr_id)
                     runs.append(
                         {
-                            "run_index": run_index,
+                            "run_index": len(runs) + 1,
                             "text": run_text,
                             "char_pr_id_ref": char_pr_id,
                             "child_tags": child_tags
                         }
                     )
 
-                for image_position, picture in enumerate(paragraph.iter(tag("hp", "pic")), start=1):
+                paragraph_pictures = list(paragraph.iter(tag("hp", "pic")))
+
+                for image_position, picture in enumerate(paragraph_pictures, start=1):
                     global_image_occurrence_index += 1
                     occurrence_id = f"imgocc{global_image_occurrence_index:05d}"
                     embedded_refs.append(occurrence_id)
@@ -373,7 +410,9 @@ class HwpxAssetizer:
                         )
                     )
 
-                for table_position, table in enumerate(paragraph.iter(tag("hp", "tbl")), start=1):
+                paragraph_tables = list(paragraph.iter(tag("hp", "tbl")))
+
+                for table_position, table in enumerate(paragraph_tables, start=1):
                     global_table_index += 1
                     section_table_index += 1
                     table_id = f"tbl{global_table_index:05d}"
@@ -395,6 +434,19 @@ class HwpxAssetizer:
                         )
                     )
 
+                classification = self._build_paragraph_classification(
+                    paragraph=paragraph,
+                    paragraph_text=paragraph_text,
+                    control_tags=sorted(control_tags),
+                    table_count=len(paragraph_tables),
+                    image_count=len(paragraph_pictures),
+                    host_body_paragraph_id=host_body_paragraph_id,
+                    root_flow_index=root_flow_index,
+                    host_root_flow_index=host_root_flow_index
+                )
+                if paragraph_text and classification["context_type"] == "body":
+                    last_non_empty_text = paragraph_text
+
                 paragraph_assets.append(
                     {
                         "schema_version": SCHEMA_VERSION,
@@ -404,10 +456,11 @@ class HwpxAssetizer:
                         "section_index": section_index,
                         "section_paragraph_index": section_paragraph_index,
                         "global_paragraph_index": global_paragraph_index,
+                        "root_flow_paragraph_index": root_flow_index,
                         "source_ref": {
                             "package_entry": entry_name,
                             "xml_path": f"{entry_name}#/body/p[{section_paragraph_index}]",
-                            "parent_asset_id": None
+                            "parent_asset_id": host_body_paragraph_id if not context["is_root_flow"] else None
                         },
                         "page_no": paragraph_page_no,
                         "page_source": "xml_pagebreak_estimate" if paragraph_page_no else None,
@@ -426,9 +479,14 @@ class HwpxAssetizer:
                         "run_count": len(runs),
                         "runs": runs,
                         "embedded_object_refs": embedded_refs,
-                        "control_tags": sorted(control_tags)
+                        "control_tags": sorted(control_tags),
+                        "classification": classification
                     }
                 )
+
+                paragraph_element_to_asset_id[paragraph] = paragraph_id
+                if root_flow_index is not None:
+                    paragraph_element_to_root_index[paragraph] = root_flow_index
 
             section_assets.append(
                 {
@@ -532,14 +590,36 @@ class HwpxAssetizer:
         for cell_index, cell in enumerate(table.iter(tag("hp", "tc")), start=1):
             addr = cell.find(tag("hp", "cellAddr"))
             span = cell.find(tag("hp", "cellSpan"))
+            cell_text = self._extract_table_cell_text(cell)
+            cell_control_tags = self._extract_table_cell_control_tags(cell)
+            cell_picture_count = len(list(cell.iter(tag("hp", "pic"))))
+            cell_nested_table_count = len(list(cell.iter(tag("hp", "tbl"))))
+            cell_classification = self._build_table_cell_classification(
+                text=cell_text,
+                control_tags=cell_control_tags,
+                picture_count=cell_picture_count,
+                nested_table_count=cell_nested_table_count
+            )
             cells.append(
                 {
+                    "schema_version": SCHEMA_VERSION,
+                    "asset_id": f"{table_id}.c{cell_index:05d}",
+                    "asset_type": "table_cell",
+                    "table_id": table_id,
                     "cell_index": cell_index,
                     "row": int(addr.get("rowAddr", 0)) if addr is not None else 0,
                     "col": int(addr.get("colAddr", 0)) if addr is not None else 0,
                     "row_span": int(span.get("rowSpan", 1)) if span is not None else 1,
                     "col_span": int(span.get("colSpan", 1)) if span is not None else 1,
-                    "text": self._extract_table_cell_text(cell)
+                    "text": cell_text,
+                    "page_no": page_no,
+                    "page_source": "xml_pagebreak_estimate" if page_no else None,
+                    "source_ref": {
+                        "package_entry": entry_name,
+                        "xml_path": f"{entry_name}#/body/p[{paragraph_index}]/tbl[{table_position}]/tc[{cell_index}]",
+                        "parent_asset_id": table_id
+                    },
+                    "classification": cell_classification
                 }
             )
 
@@ -550,6 +630,8 @@ class HwpxAssetizer:
             "section_id": section_id,
             "section_index": section_index,
             "section_table_index": section_table_index,
+            "paragraph_index": paragraph_index,
+            "table_position": table_position,
             "source_ref": {
                 "package_entry": entry_name,
                 "xml_path": f"{entry_name}#/body/p[{paragraph_index}]/tbl[{table_position}]",
@@ -604,22 +686,303 @@ class HwpxAssetizer:
             "original_size": dict(original_size.attrib) if original_size is not None else {}
         }
 
+    def _build_table_cell_assets(self, table_assets: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        cells: list[dict[str, Any]] = []
+        for table in table_assets:
+            for cell in table.get("cells", []):
+                cell_asset = dict(cell)
+                cell_asset["table_id"] = table.get("asset_id")
+                cell_asset["section_id"] = table.get("section_id")
+                cell_asset["section_index"] = table.get("section_index")
+                cell_asset["section_table_index"] = table.get("section_table_index")
+                cell_asset["table_title"] = table.get("title")
+                cells.append(cell_asset)
+        return cells
+
+    def _build_table_cell_classification(
+        self,
+        text: str,
+        control_tags: list[str],
+        picture_count: int,
+        nested_table_count: int
+    ) -> dict[str, Any]:
+        has_text = bool(text.strip())
+        if has_text and not control_tags and not picture_count and not nested_table_count:
+            content_type = "text"
+        elif not has_text and not control_tags and not picture_count and not nested_table_count:
+            content_type = "empty"
+        elif picture_count and not has_text and not control_tags and not nested_table_count:
+            content_type = "image_only"
+        elif picture_count and has_text and not control_tags and not nested_table_count:
+            content_type = "image_with_text"
+        elif nested_table_count and not has_text and not control_tags:
+            content_type = "table_only"
+        elif nested_table_count and has_text and not control_tags:
+            content_type = "table_with_text"
+        elif control_tags and has_text and not picture_count and not nested_table_count:
+            content_type = "control_with_text"
+        elif control_tags and not has_text and not picture_count and not nested_table_count:
+            content_type = "control_only"
+        else:
+            content_type = "mixed"
+
+        rebuild_safe_text_only = content_type == "text"
+        return {
+            "content_type": content_type,
+            "has_text": has_text,
+            "control_tags": control_tags,
+            "picture_count": picture_count,
+            "nested_table_count": nested_table_count,
+            "rebuild_safe_text_only": rebuild_safe_text_only
+        }
+
+    def _build_paragraph_summary(self, paragraph_assets: list[dict[str, Any]]) -> dict[str, Any]:
+        by_context: dict[str, int] = {}
+        by_content: dict[str, int] = {}
+        root_flow_count = 0
+        rebuild_safe_count = 0
+
+        for paragraph in paragraph_assets:
+            classification = paragraph.get("classification", {})
+            context_type = classification.get("context_type", "unknown")
+            content_type = classification.get("content_type", "unknown")
+            by_context[context_type] = by_context.get(context_type, 0) + 1
+            by_content[content_type] = by_content.get(content_type, 0) + 1
+            if classification.get("is_root_flow"):
+                root_flow_count += 1
+            if classification.get("rebuild_safe_text_only"):
+                rebuild_safe_count += 1
+
+        return {
+            "schema_version": SCHEMA_VERSION,
+            "total_paragraphs": len(paragraph_assets),
+            "root_flow_paragraphs": root_flow_count,
+            "nested_control_paragraphs": len(paragraph_assets) - root_flow_count,
+            "rebuild_safe_text_only": rebuild_safe_count,
+            "by_context": by_context,
+            "by_content": by_content
+        }
+
+    def _build_paragraph_page_map(self, paragraph_assets: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        return [
+            {
+                "asset_id": paragraph.get("asset_id"),
+                "global_paragraph_index": paragraph.get("global_paragraph_index"),
+                "root_flow_paragraph_index": paragraph.get("root_flow_paragraph_index"),
+                "page_no": paragraph.get("page_no"),
+                "page_source": paragraph.get("page_source"),
+                "context_type": paragraph.get("classification", {}).get("context_type"),
+                "content_type": paragraph.get("classification", {}).get("content_type")
+            }
+            for paragraph in paragraph_assets
+        ]
+
+    def _apply_page_numbers(
+        self,
+        paragraph_assets: list[dict[str, Any]],
+        table_assets: list[dict[str, Any]],
+        image_occurrences: list[dict[str, Any]],
+        xml_page_summary: dict[str, Any],
+        pyhwpx_summary: dict[str, Any],
+        notes: list[str]
+    ) -> dict[str, Any]:
+        paragraph_by_id = {paragraph["asset_id"]: paragraph for paragraph in paragraph_assets}
+        root_flow_count = sum(1 for paragraph in paragraph_assets if paragraph.get("classification", {}).get("is_root_flow"))
+        notes.clear()
+
+        use_pyhwpx_exact = (
+            pyhwpx_summary.get("available")
+            and not pyhwpx_summary.get("error")
+            and pyhwpx_summary.get("paragraph_count") == root_flow_count
+            and pyhwpx_summary.get("mapped_root_paragraphs") == root_flow_count
+        )
+
+        inherited_page_count = 0
+        if use_pyhwpx_exact:
+            notes.append("루트 본문 문단은 pyhwpx 실측 페이지를 사용하고, 글상자/각주 하위 문단은 상위 본문 문단의 페이지를 상속했습니다.")
+            root_page_map = pyhwpx_summary.get("root_paragraph_to_page", {})
+            for paragraph in paragraph_assets:
+                classification = paragraph.get("classification", {})
+                if classification.get("is_root_flow"):
+                    root_index = paragraph.get("root_flow_paragraph_index")
+                    page_no = root_page_map.get(root_index)
+                    paragraph["page_no"] = page_no
+                    paragraph["page_source"] = "pyhwpx_root_paragraph" if page_no is not None else None
+                    continue
+
+                host_id = classification.get("host_body_paragraph_asset_id")
+                host_paragraph = paragraph_by_id.get(host_id)
+                if host_paragraph and host_paragraph.get("page_no") is not None:
+                    paragraph["page_no"] = host_paragraph["page_no"]
+                    paragraph["page_source"] = "parent_body_paragraph"
+                    inherited_page_count += 1
+        else:
+            if pyhwpx_summary.get("available") and pyhwpx_summary.get("error"):
+                notes.append(f"pyhwpx 본문 페이지 맵 생성 실패: {pyhwpx_summary['error']}")
+            elif pyhwpx_summary.get("available"):
+                notes.append(
+                    "pyhwpx 본문 문단 수와 파서 루트 본문 문단 수가 달라 exact page 매핑을 적용하지 못했습니다. "
+                    "page_no는 XML 추정값을 유지하고, 하위 컨트롤 문단은 상위 본문 문단 page를 우선 상속합니다."
+                )
+
+            for paragraph in paragraph_assets:
+                classification = paragraph.get("classification", {})
+                if classification.get("is_root_flow"):
+                    continue
+                host_id = classification.get("host_body_paragraph_asset_id")
+                host_paragraph = paragraph_by_id.get(host_id)
+                if host_paragraph and host_paragraph.get("page_no") is not None:
+                    paragraph["page_no"] = host_paragraph["page_no"]
+                    paragraph["page_source"] = "parent_body_paragraph_fallback"
+                    inherited_page_count += 1
+
+        for table in table_assets:
+            parent_id = table.get("source_ref", {}).get("parent_asset_id")
+            parent_paragraph = paragraph_by_id.get(parent_id)
+            if parent_paragraph and parent_paragraph.get("page_no") is not None:
+                table["page_no"] = parent_paragraph["page_no"]
+                table["page_source"] = parent_paragraph.get("page_source")
+                for cell in table.get("cells", []):
+                    cell["page_no"] = table["page_no"]
+                    cell["page_source"] = table.get("page_source")
+
+        for occurrence in image_occurrences:
+            parent_id = occurrence.get("source_ref", {}).get("parent_asset_id")
+            parent_paragraph = paragraph_by_id.get(parent_id)
+            if parent_paragraph and parent_paragraph.get("page_no") is not None:
+                occurrence["page_no"] = parent_paragraph["page_no"]
+                occurrence["page_source"] = parent_paragraph.get("page_source")
+
+        return {
+            "schema_version": SCHEMA_VERSION,
+            "assignment": {
+                "method": "pyhwpx_root_paragraph_exact" if use_pyhwpx_exact else "xml_pagebreak_estimate",
+                "paragraphs_with_page": sum(1 for paragraph in paragraph_assets if paragraph.get("page_no") is not None),
+                "paragraphs_without_page": sum(1 for paragraph in paragraph_assets if paragraph.get("page_no") is None),
+                "root_flow_paragraphs": root_flow_count,
+                "nested_paragraphs_inherited": inherited_page_count
+            },
+            "xml_page_map": {
+                "method": xml_page_summary["method"],
+                "estimated_total_pages": xml_page_summary["estimated_total_pages"],
+                "mapped_paragraphs": xml_page_summary["mapped_paragraphs"]
+            },
+            "pyhwpx": {
+                "available": pyhwpx_summary.get("available"),
+                "page_count": pyhwpx_summary.get("page_count"),
+                "paragraph_count": pyhwpx_summary.get("paragraph_count"),
+                "mapped_root_paragraphs": pyhwpx_summary.get("mapped_root_paragraphs"),
+                "used_for_assignment": use_pyhwpx_exact,
+                "error": pyhwpx_summary.get("error")
+            },
+            "notes": notes
+        }
+
+    def _describe_paragraph_context(self, paragraph) -> dict[str, Any]:
+        parent = paragraph.getparent()
+        is_root_flow = parent is not None and local_name(parent.tag) == "sec"
+
+        host_body_paragraph = paragraph if is_root_flow else None
+        context_path: list[str] = []
+        context_type = "body" if is_root_flow else "control_sublist"
+
+        current = paragraph.getparent()
+        while current is not None:
+            name = local_name(current.tag)
+            context_path.append(name)
+            if current.tag == tag("hp", "p"):
+                grandparent = current.getparent()
+                if grandparent is not None and local_name(grandparent.tag) == "sec":
+                    host_body_paragraph = current
+            if name == "footNote":
+                context_type = "footnote"
+            elif name == "endNote":
+                context_type = "endnote"
+            elif name in {"container", "drawText"} and context_type == "control_sublist":
+                context_type = "container"
+            current = current.getparent()
+
+        return {
+            "is_root_flow": is_root_flow,
+            "host_body_paragraph_element": host_body_paragraph,
+            "context_type": context_type,
+            "context_path": list(reversed(context_path))
+        }
+
+    def _build_paragraph_classification(
+        self,
+        paragraph,
+        paragraph_text: str,
+        control_tags: list[str],
+        table_count: int,
+        image_count: int,
+        host_body_paragraph_id: str | None,
+        root_flow_index: int | None,
+        host_root_flow_index: int | None
+    ) -> dict[str, Any]:
+        context = self._describe_paragraph_context(paragraph)
+        has_text = bool(paragraph_text.strip())
+        control_only_tags = [name for name in control_tags if name not in {"tbl", "pic"}]
+
+        if has_text and not table_count and not image_count and not control_only_tags:
+            content_type = "text"
+        elif not has_text and not table_count and not image_count and not control_only_tags:
+            content_type = "empty"
+        elif table_count and not has_text and not image_count and not control_only_tags:
+            content_type = "table_only"
+        elif table_count and has_text and not image_count and not control_only_tags:
+            content_type = "table_with_text"
+        elif image_count and not has_text and not table_count and not control_only_tags:
+            content_type = "image_only"
+        elif image_count and has_text and not table_count and not control_only_tags:
+            content_type = "image_with_text"
+        elif control_only_tags and not has_text and not table_count and not image_count:
+            content_type = "control_only"
+        elif control_only_tags and has_text and not table_count and not image_count:
+            content_type = "control_with_text"
+        else:
+            content_type = "mixed"
+
+        rebuild_safe_text_only = (
+            context["context_type"] == "body"
+            and bool(root_flow_index)
+            and content_type == "text"
+        )
+
+        return {
+            "context_type": context["context_type"],
+            "context_path": context["context_path"],
+            "is_root_flow": context["is_root_flow"],
+            "root_flow_paragraph_index": root_flow_index,
+            "host_body_paragraph_asset_id": host_body_paragraph_id,
+            "host_root_flow_paragraph_index": host_root_flow_index,
+            "content_type": content_type,
+            "has_text": has_text,
+            "table_count": table_count,
+            "image_count": image_count,
+            "control_tag_count": len(control_only_tags),
+            "rebuild_safe_text_only": rebuild_safe_text_only
+        }
+
     def _extract_run_text(self, run) -> str:
         texts = []
-        for text_node in run.iter(tag("hp", "t")):
-            if text_node.text:
-                texts.append(text_node.text)
+        for child in run.iterchildren():
+            if local_name(child.tag) != "t":
+                continue
+            texts.append("".join(child.itertext()))
         return compact_text("".join(texts))
 
     def _extract_paragraph_text(self, paragraph) -> str:
         texts = []
         for run in paragraph.findall(".//hp:run", NS):
+            if not self._is_owned_by_paragraph(run, paragraph):
+                continue
             if self._has_ancestor(run, tag("hp", "tbl"), paragraph):
                 continue
-            for text_node in run.iter(tag("hp", "t")):
-                if text_node.text:
-                    texts.append(text_node.text)
-        return compact_text("".join(texts))
+            run_text = self._extract_run_text(run)
+            if run_text:
+                texts.append(run_text)
+        return compact_text(" ".join(texts))
 
     def _extract_table_cell_text(self, cell) -> str:
         texts = []
@@ -627,6 +990,16 @@ class HwpxAssetizer:
             if text_node.text:
                 texts.append(text_node.text)
         return compact_text(" ".join(texts))
+
+    def _extract_table_cell_control_tags(self, cell) -> list[str]:
+        tags_found: set[str] = set()
+        for run in cell.iter(tag("hp", "run")):
+            for child in run.iterchildren():
+                child_name = local_name(child.tag)
+                if child_name == "t":
+                    continue
+                tags_found.add(child_name)
+        return sorted(tags_found)
 
     def _is_in_table(self, element) -> bool:
         parent = element.getparent()
@@ -651,3 +1024,11 @@ class HwpxAssetizer:
                 return True
             parent = parent.getparent()
         return False
+
+    def _is_owned_by_paragraph(self, element, paragraph) -> bool:
+        parent = element.getparent()
+        while parent is not None and parent is not paragraph:
+            if parent.tag == tag("hp", "p"):
+                return False
+            parent = parent.getparent()
+        return parent is paragraph
